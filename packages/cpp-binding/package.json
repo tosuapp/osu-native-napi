@@ -2,12 +2,35 @@
   "name": "@tosuapp/osu-native-napi-raw",
   "version": "1.0.0",
   "author": "Cherry",
-  "main": "index.ts",
+  "main": "index.js",
+  "types": "osu-native.d.ts",
   "license": "GPL-3.0",
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "exports": {
+    ".": {
+      "types": "./osu-native.d.ts",
+      "require": "./index.js",
+      "import": "./index.mjs"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.mjs",
+    "osu-native.d.ts",
+    "dist/Release/*.node",
+    "dist/Release/*.dll"
+  ],
   "scripts": {
-    "build": "cmake -B build && cmake --build build --config Release"
+    "build": "cmake -B build && cmake --build build --config Release",
+    "prepack": "npm run build"
   },
   "devDependencies": {
-    "@types/node": "^20.11.1"
+    "@types/node": "^20.11.1",
+    "typescript": "^5.9.3"
   }
 }
