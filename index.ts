@@ -1,4 +1,4 @@
-import type OsuNativeType from "./osu-native";
+import type * as OsuNativeType from "./osu-native";
 
 let addon: typeof OsuNativeType;
 
@@ -9,3 +9,4 @@ try {
 }
 
 export default addon;
+export type * from "./osu-native";
