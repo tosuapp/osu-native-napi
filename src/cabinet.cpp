@@ -9,6 +9,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <cstdlib>
+#include <vector>
 #include "NAPIHelpers.h"
 
 static napi_value register_enum__ErrorCode(napi_env env, napi_value exports)
@@ -79,8 +80,8 @@ static napi_value callback_method_ManagedObjectHandle_ManagedObjectHandle(napi_e
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -175,8 +176,8 @@ static napi_value callback_method_NativeScoreInfo_NativeScoreInfo(napi_env env, 
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -781,8 +782,8 @@ static napi_value callback_method_NativeCatchPerformanceAttributes_NativeCatchPe
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -877,8 +878,8 @@ static napi_value callback_method_NativeManiaPerformanceAttributes_NativeManiaPe
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -1013,8 +1014,8 @@ static napi_value callback_method_Cabinet__Nullable_double_Cabinet__Nullable_dou
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -1149,8 +1150,8 @@ static napi_value callback_method_NativeOsuPerformanceAttributes_NativeOsuPerfor
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -1665,8 +1666,8 @@ static napi_value callback_method_NativeTaikoPerformanceAttributes_NativeTaikoPe
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -1891,8 +1892,8 @@ static napi_value callback_method_NativeCatchDifficultyAttributes_NativeCatchDif
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -2027,8 +2028,8 @@ static napi_value callback_method_NativeManiaDifficultyAttributes_NativeManiaDif
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -2163,8 +2164,8 @@ static napi_value callback_method_NativeOsuDifficultyAttributes_NativeOsuDifficu
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -2979,8 +2980,8 @@ static napi_value callback_method_NativeTaikoDifficultyAttributes_NativeTaikoDif
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -3435,8 +3436,8 @@ static napi_value callback_method_NativeBeatmap_NativeBeatmap(napi_env env, napi
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -3821,8 +3822,8 @@ static napi_value callback_method_NativeCatchDifficultyCalculator_NativeCatchDif
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -3927,8 +3928,8 @@ static napi_value callback_method_NativeManiaDifficultyCalculator_NativeManiaDif
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -4033,8 +4034,8 @@ static napi_value callback_method_NativeOsuDifficultyCalculator_NativeOsuDifficu
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -4139,8 +4140,8 @@ static napi_value callback_method_NativeTaikoDifficultyCalculator_NativeTaikoDif
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -4245,8 +4246,8 @@ static napi_value callback_method_NativeMod_NativeMod(napi_env env, napi_callbac
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -4351,8 +4352,8 @@ static napi_value callback_method_NativeModsCollection_NativeModsCollection(napi
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -4457,8 +4458,8 @@ static napi_value callback_method_NativeRuleset_NativeRuleset(napi_env env, napi
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -4603,8 +4604,8 @@ static napi_value callback_method_NativeCatchPerformanceCalculator_NativeCatchPe
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -4709,8 +4710,8 @@ static napi_value callback_method_NativeManiaPerformanceCalculator_NativeManiaPe
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -4815,8 +4816,8 @@ static napi_value callback_method_NativeOsuPerformanceCalculator_NativeOsuPerfor
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -4921,8 +4922,8 @@ static napi_value callback_method_NativeTaikoPerformanceCalculator_NativeTaikoPe
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -5046,8 +5047,8 @@ static napi_value callback_function__ErrorHandler_GetLastMessage(napi_env env, n
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc > 0)
     {
@@ -5087,8 +5088,8 @@ static napi_value callback_function__Beatmap_CreateFromFile(napi_env env, napi_c
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -5098,7 +5099,7 @@ static napi_value callback_function__Beatmap_CreateFromFile(napi_env env, napi_c
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -5172,8 +5173,8 @@ static napi_value callback_function__Beatmap_CreateFromText(napi_env env, napi_c
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -5183,7 +5184,7 @@ static napi_value callback_function__Beatmap_CreateFromText(napi_env env, napi_c
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -5257,8 +5258,8 @@ static napi_value callback_function__Beatmap_GetTitle(napi_env env, napi_callbac
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -5268,7 +5269,7 @@ static napi_value callback_function__Beatmap_GetTitle(napi_env env, napi_callbac
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -5358,8 +5359,8 @@ static napi_value callback_function__Beatmap_GetArtist(napi_env env, napi_callba
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -5369,7 +5370,7 @@ static napi_value callback_function__Beatmap_GetArtist(napi_env env, napi_callba
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -5459,8 +5460,8 @@ static napi_value callback_function__Beatmap_GetVersion(napi_env env, napi_callb
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -5470,7 +5471,7 @@ static napi_value callback_function__Beatmap_GetVersion(napi_env env, napi_callb
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -5560,8 +5561,8 @@ static napi_value callback_function__Beatmap_Destroy(napi_env env, napi_callback
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -5571,7 +5572,7 @@ static napi_value callback_function__Beatmap_Destroy(napi_env env, napi_callback
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -5629,8 +5630,8 @@ static napi_value callback_function__CatchDifficultyCalculator_Create(napi_env e
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -5640,7 +5641,7 @@ static napi_value callback_function__CatchDifficultyCalculator_Create(napi_env e
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -5718,8 +5719,8 @@ static napi_value callback_function__CatchDifficultyCalculator_Calculate(napi_en
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -5729,7 +5730,7 @@ static napi_value callback_function__CatchDifficultyCalculator_Calculate(napi_en
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -5797,8 +5798,8 @@ static napi_value callback_function__CatchDifficultyCalculator_CalculateMods(nap
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 4 || argc > 4)
     {
@@ -5808,7 +5809,7 @@ static napi_value callback_function__CatchDifficultyCalculator_CalculateMods(nap
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -5896,8 +5897,8 @@ static napi_value callback_function__CatchDifficultyCalculator_Destroy(napi_env 
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -5907,7 +5908,7 @@ static napi_value callback_function__CatchDifficultyCalculator_Destroy(napi_env 
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -5965,8 +5966,8 @@ static napi_value callback_function__ManiaDifficultyCalculator_Create(napi_env e
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -5976,7 +5977,7 @@ static napi_value callback_function__ManiaDifficultyCalculator_Create(napi_env e
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6054,8 +6055,8 @@ static napi_value callback_function__ManiaDifficultyCalculator_Calculate(napi_en
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -6065,7 +6066,7 @@ static napi_value callback_function__ManiaDifficultyCalculator_Calculate(napi_en
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6133,8 +6134,8 @@ static napi_value callback_function__ManiaDifficultyCalculator_CalculateMods(nap
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 4 || argc > 4)
     {
@@ -6144,7 +6145,7 @@ static napi_value callback_function__ManiaDifficultyCalculator_CalculateMods(nap
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6232,8 +6233,8 @@ static napi_value callback_function__ManiaDifficultyCalculator_Destroy(napi_env 
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -6243,7 +6244,7 @@ static napi_value callback_function__ManiaDifficultyCalculator_Destroy(napi_env 
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6301,8 +6302,8 @@ static napi_value callback_function__OsuDifficultyCalculator_Create(napi_env env
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -6312,7 +6313,7 @@ static napi_value callback_function__OsuDifficultyCalculator_Create(napi_env env
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6390,8 +6391,8 @@ static napi_value callback_function__OsuDifficultyCalculator_Calculate(napi_env 
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -6401,7 +6402,7 @@ static napi_value callback_function__OsuDifficultyCalculator_Calculate(napi_env 
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6469,8 +6470,8 @@ static napi_value callback_function__OsuDifficultyCalculator_CalculateMods(napi_
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 4 || argc > 4)
     {
@@ -6480,7 +6481,7 @@ static napi_value callback_function__OsuDifficultyCalculator_CalculateMods(napi_
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6568,8 +6569,8 @@ static napi_value callback_function__OsuDifficultyCalculator_Destroy(napi_env en
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -6579,7 +6580,7 @@ static napi_value callback_function__OsuDifficultyCalculator_Destroy(napi_env en
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6637,8 +6638,8 @@ static napi_value callback_function__TaikoDifficultyCalculator_Create(napi_env e
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -6648,7 +6649,7 @@ static napi_value callback_function__TaikoDifficultyCalculator_Create(napi_env e
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6726,8 +6727,8 @@ static napi_value callback_function__TaikoDifficultyCalculator_Calculate(napi_en
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -6737,7 +6738,7 @@ static napi_value callback_function__TaikoDifficultyCalculator_Calculate(napi_en
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6805,8 +6806,8 @@ static napi_value callback_function__TaikoDifficultyCalculator_CalculateMods(nap
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 4 || argc > 4)
     {
@@ -6816,7 +6817,7 @@ static napi_value callback_function__TaikoDifficultyCalculator_CalculateMods(nap
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6904,8 +6905,8 @@ static napi_value callback_function__TaikoDifficultyCalculator_Destroy(napi_env 
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -6915,7 +6916,7 @@ static napi_value callback_function__TaikoDifficultyCalculator_Destroy(napi_env 
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -6973,8 +6974,8 @@ static napi_value callback_function__Mod_Create(napi_env env, napi_callback_info
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -6984,7 +6985,7 @@ static napi_value callback_function__Mod_Create(napi_env env, napi_callback_info
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7058,8 +7059,8 @@ static napi_value callback_function__Mod_SetSettingBool(napi_env env, napi_callb
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -7069,7 +7070,7 @@ static napi_value callback_function__Mod_SetSettingBool(napi_env env, napi_callb
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7153,8 +7154,8 @@ static napi_value callback_function__Mod_SetSettingInteger(napi_env env, napi_ca
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -7164,7 +7165,7 @@ static napi_value callback_function__Mod_SetSettingInteger(napi_env env, napi_ca
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7248,8 +7249,8 @@ static napi_value callback_function__Mod_SetSettingFloat(napi_env env, napi_call
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -7259,7 +7260,7 @@ static napi_value callback_function__Mod_SetSettingFloat(napi_env env, napi_call
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7343,8 +7344,8 @@ static napi_value callback_function__Mod_Debug(napi_env env, napi_callback_info 
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -7354,7 +7355,7 @@ static napi_value callback_function__Mod_Debug(napi_env env, napi_callback_info 
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7412,8 +7413,8 @@ static napi_value callback_function__Mod_Destroy(napi_env env, napi_callback_inf
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -7423,7 +7424,7 @@ static napi_value callback_function__Mod_Destroy(napi_env env, napi_callback_inf
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7481,8 +7482,8 @@ static napi_value callback_function__ModsCollection_Create(napi_env env, napi_ca
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -7492,7 +7493,7 @@ static napi_value callback_function__ModsCollection_Create(napi_env env, napi_ca
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7550,8 +7551,8 @@ static napi_value callback_function__ModsCollection_Add(napi_env env, napi_callb
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -7561,7 +7562,7 @@ static napi_value callback_function__ModsCollection_Add(napi_env env, napi_callb
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7629,8 +7630,8 @@ static napi_value callback_function__ModsCollection_Remove(napi_env env, napi_ca
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -7640,7 +7641,7 @@ static napi_value callback_function__ModsCollection_Remove(napi_env env, napi_ca
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7708,8 +7709,8 @@ static napi_value callback_function__ModsCollection_Debug(napi_env env, napi_cal
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -7719,7 +7720,7 @@ static napi_value callback_function__ModsCollection_Debug(napi_env env, napi_cal
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7777,8 +7778,8 @@ static napi_value callback_function__ModsCollection_Destroy(napi_env env, napi_c
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -7788,7 +7789,7 @@ static napi_value callback_function__ModsCollection_Destroy(napi_env env, napi_c
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7846,8 +7847,8 @@ static napi_value callback_function__Ruleset_CreateFromId(napi_env env, napi_cal
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -7857,7 +7858,7 @@ static napi_value callback_function__Ruleset_CreateFromId(napi_env env, napi_cal
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -7925,8 +7926,8 @@ static napi_value callback_function__Ruleset_CreateFromShortName(napi_env env, n
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 2 || argc > 2)
     {
@@ -7936,7 +7937,7 @@ static napi_value callback_function__Ruleset_CreateFromShortName(napi_env env, n
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8010,8 +8011,8 @@ static napi_value callback_function__Ruleset_GetShortName(napi_env env, napi_cal
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 3 || argc > 3)
     {
@@ -8021,7 +8022,7 @@ static napi_value callback_function__Ruleset_GetShortName(napi_env env, napi_cal
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8111,8 +8112,8 @@ static napi_value callback_function__Ruleset_Destroy(napi_env env, napi_callback
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -8122,7 +8123,7 @@ static napi_value callback_function__Ruleset_Destroy(napi_env env, napi_callback
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8180,8 +8181,8 @@ static napi_value callback_function__CatchPerformanceCalculator_Create(napi_env 
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -8191,7 +8192,7 @@ static napi_value callback_function__CatchPerformanceCalculator_Create(napi_env 
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8249,8 +8250,8 @@ static napi_value callback_function__CatchPerformanceCalculator_Calculate(napi_e
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 4 || argc > 4)
     {
@@ -8260,7 +8261,7 @@ static napi_value callback_function__CatchPerformanceCalculator_Calculate(napi_e
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8348,8 +8349,8 @@ static napi_value callback_function__CatchPerformanceCalculator_Destroy(napi_env
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -8359,7 +8360,7 @@ static napi_value callback_function__CatchPerformanceCalculator_Destroy(napi_env
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8417,8 +8418,8 @@ static napi_value callback_function__ManiaPerformanceCalculator_Create(napi_env 
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -8428,7 +8429,7 @@ static napi_value callback_function__ManiaPerformanceCalculator_Create(napi_env 
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8486,8 +8487,8 @@ static napi_value callback_function__ManiaPerformanceCalculator_Calculate(napi_e
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 4 || argc > 4)
     {
@@ -8497,7 +8498,7 @@ static napi_value callback_function__ManiaPerformanceCalculator_Calculate(napi_e
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8585,8 +8586,8 @@ static napi_value callback_function__ManiaPerformanceCalculator_Destroy(napi_env
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -8596,7 +8597,7 @@ static napi_value callback_function__ManiaPerformanceCalculator_Destroy(napi_env
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8654,8 +8655,8 @@ static napi_value callback_function__OsuPerformanceCalculator_Create(napi_env en
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -8665,7 +8666,7 @@ static napi_value callback_function__OsuPerformanceCalculator_Create(napi_env en
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8723,8 +8724,8 @@ static napi_value callback_function__OsuPerformanceCalculator_Calculate(napi_env
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 4 || argc > 4)
     {
@@ -8734,7 +8735,7 @@ static napi_value callback_function__OsuPerformanceCalculator_Calculate(napi_env
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8822,8 +8823,8 @@ static napi_value callback_function__OsuPerformanceCalculator_Destroy(napi_env e
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -8833,7 +8834,7 @@ static napi_value callback_function__OsuPerformanceCalculator_Destroy(napi_env e
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8891,8 +8892,8 @@ static napi_value callback_function__TaikoPerformanceCalculator_Create(napi_env 
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -8902,7 +8903,7 @@ static napi_value callback_function__TaikoPerformanceCalculator_Create(napi_env 
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -8960,8 +8961,8 @@ static napi_value callback_function__TaikoPerformanceCalculator_Calculate(napi_e
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 4 || argc > 4)
     {
@@ -8971,7 +8972,7 @@ static napi_value callback_function__TaikoPerformanceCalculator_Calculate(napi_e
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)
@@ -9059,8 +9060,8 @@ static napi_value callback_function__TaikoPerformanceCalculator_Destroy(napi_env
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    napi_value args[argc];
-    napi_valuetype types[argc];
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
 
     if (argc < 1 || argc > 1)
     {
@@ -9070,7 +9071,7 @@ static napi_value callback_function__TaikoPerformanceCalculator_Destroy(napi_env
         return nullptr;
     }
 
-    status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
     assert(status == napi_ok);
 
     for (size_t i = 0; i < argc; i++)

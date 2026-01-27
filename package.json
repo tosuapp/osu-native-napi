@@ -1,6 +1,7 @@
 {
   "name": "osu-native-napi-raw",
   "version": "1.0.0",
+  "author": "Cherry",
   "main": "index.ts",
   "scripts": {
     "install": "cmake -B build && cmake --build build --config Release"
