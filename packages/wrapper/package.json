@@ -1,0 +1,16 @@
+{
+  "name": "osu-native-ts-example",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx index.ts"
+  },
+  "dependencies": {
+    "@tosuapp/osu-native-napi-raw": "workspace:*",
+    "tsx": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.1"
+  }
+}

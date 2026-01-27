@@ -1,12 +1,14 @@
 {
-  "name": "osu-native-napi-raw",
-  "version": "1.0.0",
-  "author": "Cherry",
-  "main": "index.ts",
-  "scripts": {
-    "install": "cmake -B build && cmake --build build --config Release"
-  },
-  "devDependencies": {
-    "@types/node": "^24.7.2"
-  }
+    "name": "@tosu/osu-native-monorepo",
+    "version": "1.0.0",
+    "license": "GPL-3.0",
+    "packageManager": "pnpm@10.10.0",
+    "scripts": {
+        "postinstall": "pnpm -r build"
+    },
+    "dependencies": {},
+    "devDependencies": {},
+    "engines": {
+        "node": ">=20.11.1"
+    }
 }
