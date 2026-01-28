@@ -33,13 +33,10 @@ export class Ruleset extends NativeHandleOwner<NativeRuleset> {
     return RULESET_SHORT_NAME_BY_ID.get(this.rulesetId);
   }
 
-  // Raw binding wrapper (the upstream addon currently does not surface the output string).
-  getShortNameRaw(buffer: string, bufferSize: Int32Array): void {
+  getShortName(): void {
     this.ensureAlive();
-    OsuNative.assertOk(
-      "Ruleset_GetShortName",
-      raw.Ruleset_GetShortName(this.handle, buffer, bufferSize),
-    );
+
+    return;
   }
 
   destroy(): void {
