@@ -39,12 +39,18 @@ typedef struct NativeRuleset {
   int32_t rulesetId;
 } NativeRuleset;
 
+typedef struct Cabinet__Nullable_int64_t {
+  bool hasValue;
+  int64_t value;
+} Cabinet__Nullable_int64_t;
+
 typedef struct NativeScoreInfo {
   ManagedObjectHandle rulesetHandle;
   ManagedObjectHandle beatmapHandle;
   ManagedObjectHandle modsHandle;
   int32_t maxCombo;
   double accuracy;
+  Cabinet__Nullable_int64_t legacyTotalScore;
   int32_t countMiss;
   int32_t countMeh;
   int32_t countOk;

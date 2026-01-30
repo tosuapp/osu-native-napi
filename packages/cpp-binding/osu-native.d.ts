@@ -63,6 +63,15 @@ export class NativeRuleset {
   rulesetId: number;
 }
 
+export class Cabinet__Nullable_int64_t {
+  constructor();
+
+  constructor(_0: Cabinet__Nullable_int64_t);
+
+  hasValue: boolean;
+  value: number;
+}
+
 export class NativeScoreInfo {
   constructor();
 
@@ -73,6 +82,7 @@ export class NativeScoreInfo {
   modsHandle: ManagedObjectHandle;
   maxCombo: number;
   accuracy: number;
+  legacyTotalScore: Cabinet__Nullable_int64_t;
   countMiss: number;
   countMeh: number;
   countOk: number;

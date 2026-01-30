@@ -5,7 +5,7 @@ import type { Beatmap } from "../objects/Beatmap";
 import type { ModsCollection } from "../objects/ModsCollection";
 import type { Ruleset } from "../objects/Ruleset";
 
-import raw from "@tosuapp/osu-native-napi";
+import raw, { Cabinet__Nullable_int64_t } from "@tosuapp/osu-native-napi";
 
 export type ScoreInfoInput = Partial<
   Omit<NativeScoreInfo, "rulesetHandle" | "beatmapHandle" | "modsHandle">
@@ -13,6 +13,7 @@ export type ScoreInfoInput = Partial<
   ruleset: Ruleset;
   beatmap: Beatmap;
   mods?: ModsCollection | null;
+  legacyScore: number;
 };
 
 export function makeScoreInfo(input: ScoreInfoInput): NativeScoreInfo {
@@ -20,6 +21,11 @@ export function makeScoreInfo(input: ScoreInfoInput): NativeScoreInfo {
   score.rulesetHandle = input.ruleset.handle;
   score.beatmapHandle = input.beatmap.handle;
   score.modsHandle = input.mods?.handle ?? OsuNative.makeNullHandle();
+
+  const nullableScore = new Cabinet__Nullable_int64_t();
+  nullableScore.hasValue = true;
+  nullableScore.value = input.legacyScore;
+  score.legacyTotalScore = nullableScore;
 
   score.maxCombo = input.maxCombo ?? 0;
   score.accuracy = input.accuracy ?? 0;

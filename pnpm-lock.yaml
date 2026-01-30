@@ -20,8 +20,8 @@ importers:
   packages/wrapper:
     dependencies:
       '@tosuapp/osu-native-napi':
-        specifier: 1.0.0
-        version: 1.0.0
+        specifier: workspace:*
+        version: link:../cpp-binding
     devDependencies:
       '@swc/core':
         specifier: ^1.15.11
@@ -409,10 +409,6 @@ packages:
 
   '@swc/types@0.1.25':
     resolution: {integrity: sha512-iAoY/qRhNH8a/hBvm3zKj9qQ4oc2+3w1unPJa2XvTK3XjeLXtzcCingVPw/9e5mn1+0yPqxcBGp9Jf0pkfMb1g==}
-
-  '@tosuapp/osu-native-napi@1.0.0':
-    resolution: {integrity: sha512-zeS1bci5RudCTob4KDNYGSmhs8JDfzspLVtMrEfDRxgIrANNWlVz95yhy6BqAzY+rdeYA/KiSQtoySteeGW+vA==}
-    os: [win32]
 
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
@@ -854,8 +850,6 @@ snapshots:
   '@swc/types@0.1.25':
     dependencies:
       '@swc/counter': 0.1.3
-
-  '@tosuapp/osu-native-napi@1.0.0': {}
 
   '@types/estree@1.0.8': {}
 

@@ -945,6 +945,143 @@ static napi_value register_class__NativeRuleset(napi_env env)
     return constructor;
 }
 
+static void dtor_Cabinet__Nullable_int64_t_Cabinet__Nullable_int64_t(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_Cabinet__Nullable_int64_t_Cabinet__Nullable_int64_t;
+
+// Cabinet__Nullable_int64_t::Cabinet__Nullable_int64_t
+static napi_value callback_method_Cabinet__Nullable_int64_t_Cabinet__Nullable_int64_t(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    Cabinet__Nullable_int64_t* instance = nullptr;
+
+    instance = new Cabinet__Nullable_int64_t();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_Cabinet__Nullable_int64_t_Cabinet__Nullable_int64_t, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// Cabinet__Nullable_int64_t::__hasValue
+static napi_value getter_field_Cabinet__Nullable_int64_t_hasValue(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    Cabinet__Nullable_int64_t* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____hasValue;
+    status = napi_get_boolean(env, instance->hasValue, &____hasValue);
+    assert(status == napi_ok);
+    return ____hasValue;
+}
+
+static napi_value setter_field_Cabinet__Nullable_int64_t_hasValue
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    Cabinet__Nullable_int64_t* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    bool __hasValue;
+    status = napi_get_value_bool(env, args[0], &__hasValue);
+    instance->hasValue = (bool)__hasValue;
+    return nullptr;
+}
+
+// Cabinet__Nullable_int64_t::__value
+static napi_value getter_field_Cabinet__Nullable_int64_t_value(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    Cabinet__Nullable_int64_t* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____value;
+    status = napi_create_bigint_int64(env, instance->value, &____value);
+    assert(status == napi_ok);
+    return ____value;
+}
+
+static napi_value setter_field_Cabinet__Nullable_int64_t_value
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    Cabinet__Nullable_int64_t* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    int64_t __value;
+    bool lossless;
+    status = napi_get_value_bigint_int64(env, args[0], &__value, &lossless);
+    instance->value = (::int64_t)__value;
+    return nullptr;
+}
+
+static napi_value register_class__Cabinet__Nullable_int64_t(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "hasValue", nullptr, nullptr, getter_field_Cabinet__Nullable_int64_t_hasValue, setter_field_Cabinet__Nullable_int64_t_hasValue, nullptr, attributes, nullptr },
+        { "value", nullptr, nullptr, getter_field_Cabinet__Nullable_int64_t_value, setter_field_Cabinet__Nullable_int64_t_value, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "Cabinet__Nullable_int64_t", NAPI_AUTO_LENGTH, callback_method_Cabinet__Nullable_int64_t_Cabinet__Nullable_int64_t, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_Cabinet__Nullable_int64_t_Cabinet__Nullable_int64_t);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
 static void dtor_NativeScoreInfo_NativeScoreInfo(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
@@ -1204,6 +1341,55 @@ static napi_value setter_field_NativeScoreInfo_accuracy
     double __accuracy;
     status = napi_get_value_double(env, args[0], &__accuracy);
     instance->accuracy = __accuracy;
+    return nullptr;
+}
+
+// NativeScoreInfo::__legacyTotalScore
+static napi_value getter_field_NativeScoreInfo_legacyTotalScore(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeScoreInfo* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____legacyTotalScore_ctor;
+    status = napi_get_reference_value(env, ctor_Cabinet__Nullable_int64_t_Cabinet__Nullable_int64_t, &____legacyTotalScore_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____legacyTotalScore_instance;
+    status = napi_new_instance(env, ____legacyTotalScore_ctor, 0, nullptr, &____legacyTotalScore_instance);
+    assert(status == napi_ok);
+
+    Cabinet__Nullable_int64_t* ____legacyTotalScore_native;
+    status = napi_unwrap(env, ____legacyTotalScore_instance, (void**) &____legacyTotalScore_native);
+    assert(status == napi_ok);
+    *____legacyTotalScore_native = *&instance->legacyTotalScore;
+
+    return ____legacyTotalScore_instance;
+}
+
+static napi_value setter_field_NativeScoreInfo_legacyTotalScore
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeScoreInfo* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    Cabinet__Nullable_int64_t* __legacyTotalScore_instance;
+    status = napi_unwrap(env, args[0], (void**) &__legacyTotalScore_instance);
+    instance->legacyTotalScore = *__legacyTotalScore_instance;
     return nullptr;
 }
 
@@ -1531,6 +1717,7 @@ static napi_value register_class__NativeScoreInfo(napi_env env)
         { "modsHandle", nullptr, nullptr, getter_field_NativeScoreInfo_modsHandle, setter_field_NativeScoreInfo_modsHandle, nullptr, attributes, nullptr },
         { "maxCombo", nullptr, nullptr, getter_field_NativeScoreInfo_maxCombo, setter_field_NativeScoreInfo_maxCombo, nullptr, attributes, nullptr },
         { "accuracy", nullptr, nullptr, getter_field_NativeScoreInfo_accuracy, setter_field_NativeScoreInfo_accuracy, nullptr, attributes, nullptr },
+        { "legacyTotalScore", nullptr, nullptr, getter_field_NativeScoreInfo_legacyTotalScore, setter_field_NativeScoreInfo_legacyTotalScore, nullptr, attributes, nullptr },
         { "countMiss", nullptr, nullptr, getter_field_NativeScoreInfo_countMiss, setter_field_NativeScoreInfo_countMiss, nullptr, attributes, nullptr },
         { "countMeh", nullptr, nullptr, getter_field_NativeScoreInfo_countMeh, setter_field_NativeScoreInfo_countMeh, nullptr, attributes, nullptr },
         { "countOk", nullptr, nullptr, getter_field_NativeScoreInfo_countOk, setter_field_NativeScoreInfo_countOk, nullptr, attributes, nullptr },
@@ -5643,6 +5830,7 @@ typedef ::NativeBeatmap NativeBeatmap;
 typedef ::NativeMod NativeMod;
 typedef ::NativeModsCollection NativeModsCollection;
 typedef ::NativeRuleset NativeRuleset;
+typedef ::Cabinet__Nullable_int64_t Cabinet__Nullable_int64_t;
 typedef ::NativeScoreInfo NativeScoreInfo;
 typedef ::NativeCatchPerformanceAttributes NativeCatchPerformanceAttributes;
 typedef ::NativeCatchPerformanceCalculator NativeCatchPerformanceCalculator;
@@ -11149,6 +11337,9 @@ void register_cabinet(napi_env env, napi_value exports)
     value = register_class__NativeRuleset(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeRuleset", value));
 
+    value = register_class__Cabinet__Nullable_int64_t(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "Cabinet__Nullable_int64_t", value));
+
     value = register_class__NativeScoreInfo(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeScoreInfo", value));
 
@@ -11221,6 +11412,7 @@ void register_cabinet(napi_env env, napi_value exports)
     typedef ::NativeMod NativeMod;
     typedef ::NativeModsCollection NativeModsCollection;
     typedef ::NativeRuleset NativeRuleset;
+    typedef ::Cabinet__Nullable_int64_t Cabinet__Nullable_int64_t;
     typedef ::NativeScoreInfo NativeScoreInfo;
     typedef ::NativeCatchPerformanceAttributes NativeCatchPerformanceAttributes;
     typedef ::NativeCatchPerformanceCalculator NativeCatchPerformanceCalculator;
