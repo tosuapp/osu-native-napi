@@ -283,29 +283,56 @@ const mods = ModsCollection.create();
 const modHd = Mod.create("HD");
 const modDt = Mod.create("DT");
 const modCl = Mod.create("CL");
+mods.add(modCl);
 mods.add(modHd);
 mods.add(modDt);
-mods.add(modCl);
 
-const attrs = diffCalculator.calculateWithModsTimed(mods);
-
-console.log("Attributes:");
-
-for (const attr of attrs) {
-  console.log(attr.time, attr.attributes.hitCircleCount);
-}
-
-const attributes = diffCalculator.calculateWithMods(mods);
+const attributes = diffCalculator.calculateWithModsTimed(mods);
+const attr = attributes[attributes.length - 1].attributes;
 
 const scoreInfo: ScoreInfoInput = {
   ruleset: ruleset,
   beatmap: beatmap,
   mods: mods,
-  maxCombo: 238,
-  countGreat: 178,
-  countSliderTailHit: !mods.has(modCl) ? 55 : 0,
-  accuracy: 1,
+  maxCombo: 589,
+  countOk: 4,
+  countMiss: 1,
+  countGreat: 395,
+  countGood: 3,
+  countPerfect: 117,
+  accuracy: 0.9908333333333332,
+  legacyScore: 8577684,
 };
 
-const result = calculator.calculate(scoreInfo, attributes);
-console.log("Total PP:", result.total);
+const result = calculator.calculate(scoreInfo, attr);
+console.log(result.total);
+console.log("NativeOsuPerformanceAttributes:", {
+  total: result.total,
+  aim: result.aim,
+  speed: result.speed,
+  accuracy: result.accuracy,
+  flashlight: result.flashlight,
+  effectiveMissCount: result.effectiveMissCount,
+
+  speedDeviation: result.speedDeviation
+    ? {
+        hasValue: result.speedDeviation.hasValue,
+        value: result.speedDeviation.value,
+      }
+    : null,
+
+  comboBasedEstimatedMissCount: result.comboBasedEstimatedMissCount,
+
+  scoreBasedEstimatedMissCount: result.scoreBasedEstimatedMissCount
+    ? {
+        hasValue: result.scoreBasedEstimatedMissCount.hasValue,
+        value: result.scoreBasedEstimatedMissCount.value,
+      }
+    : null,
+
+  aimEstimatedSliderBreaks: result.aimEstimatedSliderBreaks,
+
+  speedEstimatedSliderBreaks: result.speedEstimatedSliderBreaks,
+});
+
+console.log("Total PP:", result.total, result.effectiveMissCount);

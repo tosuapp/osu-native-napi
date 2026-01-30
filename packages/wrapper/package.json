@@ -1,6 +1,6 @@
 {
   "name": "@tosuapp/osu-native-wrapper",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "type": "commonjs",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -21,7 +21,7 @@
     "prepack": "pnpm run build"
   },
   "dependencies": {
-    "@tosuapp/osu-native-napi": "1.0.1"
+    "@tosuapp/osu-native-napi": "1.0.2"
   },
   "devDependencies": {
     "@swc/core": "^1.15.11",

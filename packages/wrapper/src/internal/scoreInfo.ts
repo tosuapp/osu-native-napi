@@ -13,7 +13,7 @@ export type ScoreInfoInput = Partial<
   ruleset: Ruleset;
   beatmap: Beatmap;
   mods?: ModsCollection | null;
-  legacyScore: number;
+  legacyScore?: number;
 };
 
 export function makeScoreInfo(input: ScoreInfoInput): NativeScoreInfo {
@@ -23,8 +23,13 @@ export function makeScoreInfo(input: ScoreInfoInput): NativeScoreInfo {
   score.modsHandle = input.mods?.handle ?? OsuNative.makeNullHandle();
 
   const nullableScore = new Cabinet__Nullable_int64_t();
-  nullableScore.hasValue = true;
-  nullableScore.value = input.legacyScore;
+  if (input.legacyScore !== undefined) {
+    nullableScore.hasValue = true;
+    nullableScore.value = input.legacyScore;
+  } else {
+    nullableScore.hasValue = false;
+  }
+
   score.legacyTotalScore = nullableScore;
 
   score.maxCombo = input.maxCombo ?? 0;
