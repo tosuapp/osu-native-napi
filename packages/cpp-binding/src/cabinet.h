@@ -4,7 +4,7 @@
 typedef enum ErrorCode {
   BUFFER_SIZE_QUERY = -1,
   SUCCESS = 0,
-  OBJECT_NOT_FOUND = 1,
+  OBJECT_NOT_RESOLVED = 1,
   RULESET_UNAVAILABLE = 2,
   UNEXPECTED_RULESET = 3,
   FAILURE = 127
@@ -13,6 +13,31 @@ typedef enum ErrorCode {
 typedef struct ManagedObjectHandle {
   int32_t id;
 } ManagedObjectHandle;
+
+typedef struct NativeBeatmap {
+  ManagedObjectHandle handle;
+  int32_t rulesetId;
+  int32_t beatmapId;
+  float approachRate;
+  float drainRate;
+  float overallDifficulty;
+  float circleSize;
+  double sliderMultiplier;
+  double sliderTickRate;
+} NativeBeatmap;
+
+typedef struct NativeMod {
+  ManagedObjectHandle handle;
+} NativeMod;
+
+typedef struct NativeModsCollection {
+  ManagedObjectHandle handle;
+} NativeModsCollection;
+
+typedef struct NativeRuleset {
+  ManagedObjectHandle handle;
+  int32_t rulesetId;
+} NativeRuleset;
 
 typedef struct NativeScoreInfo {
   ManagedObjectHandle rulesetHandle;
@@ -34,10 +59,18 @@ typedef struct NativeCatchPerformanceAttributes {
   double total;
 } NativeCatchPerformanceAttributes;
 
+typedef struct NativeCatchPerformanceCalculator {
+  ManagedObjectHandle handle;
+} NativeCatchPerformanceCalculator;
+
 typedef struct NativeManiaPerformanceAttributes {
   double total;
   double difficulty;
 } NativeManiaPerformanceAttributes;
+
+typedef struct NativeManiaPerformanceCalculator {
+  ManagedObjectHandle handle;
+} NativeManiaPerformanceCalculator;
 
 typedef struct Cabinet__Nullable_double {
   bool hasValue;
@@ -58,6 +91,10 @@ typedef struct NativeOsuPerformanceAttributes {
   double speedEstimatedSliderBreaks;
 } NativeOsuPerformanceAttributes;
 
+typedef struct NativeOsuPerformanceCalculator {
+  ManagedObjectHandle handle;
+} NativeOsuPerformanceCalculator;
+
 typedef struct NativeTaikoPerformanceAttributes {
   double total;
   double difficulty;
@@ -65,15 +102,27 @@ typedef struct NativeTaikoPerformanceAttributes {
   Cabinet__Nullable_double estimatedUnstableRate;
 } NativeTaikoPerformanceAttributes;
 
+typedef struct NativeTaikoPerformanceCalculator {
+  ManagedObjectHandle handle;
+} NativeTaikoPerformanceCalculator;
+
 typedef struct NativeCatchDifficultyAttributes {
   double starRating;
   int32_t maxCombo;
 } NativeCatchDifficultyAttributes;
 
+typedef struct NativeCatchDifficultyCalculator {
+  ManagedObjectHandle handle;
+} NativeCatchDifficultyCalculator;
+
 typedef struct NativeManiaDifficultyAttributes {
   double starRating;
   int32_t maxCombo;
 } NativeManiaDifficultyAttributes;
+
+typedef struct NativeManiaDifficultyCalculator {
+  ManagedObjectHandle handle;
+} NativeManiaDifficultyCalculator;
 
 typedef struct NativeOsuDifficultyAttributes {
   double starRating;
@@ -97,6 +146,10 @@ typedef struct NativeOsuDifficultyAttributes {
   int32_t spinnerCount;
 } NativeOsuDifficultyAttributes;
 
+typedef struct NativeOsuDifficultyCalculator {
+  ManagedObjectHandle handle;
+} NativeOsuDifficultyCalculator;
+
 typedef struct NativeTaikoDifficultyAttributes {
   double starRating;
   int32_t maxCombo;
@@ -110,142 +163,67 @@ typedef struct NativeTaikoDifficultyAttributes {
   double staminaTopStrains;
 } NativeTaikoDifficultyAttributes;
 
-typedef struct NativeBeatmap {
-  ManagedObjectHandle handle;
-  int32_t rulesetId;
-  float approachRate;
-  float drainRate;
-  float overallDifficulty;
-  float circleSize;
-  double sliderMultiplier;
-  double sliderTickRate;
-} NativeBeatmap;
-
-typedef struct NativeCatchDifficultyCalculator {
-  ManagedObjectHandle handle;
-} NativeCatchDifficultyCalculator;
-
-typedef struct NativeManiaDifficultyCalculator {
-  ManagedObjectHandle handle;
-} NativeManiaDifficultyCalculator;
-
-typedef struct NativeOsuDifficultyCalculator {
-  ManagedObjectHandle handle;
-} NativeOsuDifficultyCalculator;
-
 typedef struct NativeTaikoDifficultyCalculator {
   ManagedObjectHandle handle;
 } NativeTaikoDifficultyCalculator;
 
-typedef struct NativeMod {
-  ManagedObjectHandle handle;
-} NativeMod;
+typedef struct NativeTimedCatchDifficultyAttributes {
+  double time;
+  NativeCatchDifficultyAttributes attributes;
+} NativeTimedCatchDifficultyAttributes;
 
-typedef struct NativeModsCollection {
-  ManagedObjectHandle handle;
-} NativeModsCollection;
+typedef struct NativeTimedManiaDifficultyAttributes {
+  double time;
+  NativeManiaDifficultyAttributes attributes;
+} NativeTimedManiaDifficultyAttributes;
 
-typedef struct NativeRuleset {
-  ManagedObjectHandle handle;
-  int32_t rulesetId;
-} NativeRuleset;
+typedef struct NativeTimedOsuDifficultyAttributes {
+  double time;
+  NativeOsuDifficultyAttributes attributes;
+} NativeTimedOsuDifficultyAttributes;
 
-typedef struct NativeCatchPerformanceCalculator {
-  ManagedObjectHandle handle;
-} NativeCatchPerformanceCalculator;
-
-typedef struct NativeManiaPerformanceCalculator {
-  ManagedObjectHandle handle;
-} NativeManiaPerformanceCalculator;
-
-typedef struct NativeOsuPerformanceCalculator {
-  ManagedObjectHandle handle;
-} NativeOsuPerformanceCalculator;
-
-typedef struct NativeTaikoPerformanceCalculator {
-  ManagedObjectHandle handle;
-} NativeTaikoPerformanceCalculator;
+typedef struct NativeTimedTaikoDifficultyAttributes {
+  double time;
+  NativeTaikoDifficultyAttributes attributes;
+} NativeTimedTaikoDifficultyAttributes;
 
 extern "C" {
+
 const char *ErrorHandler_GetLastMessage();
-const ErrorCode Beatmap_CreateFromFile(const char *filePathPtr,
+const ErrorCode Beatmap_CreateFromFile(uint8_t *filePathPtr,
                                        NativeBeatmap *nativeBeatmapPtr);
-const ErrorCode Beatmap_CreateFromText(const char *beatmapTextPtr,
+const ErrorCode Beatmap_CreateFromText(uint8_t *beatmapTextPtr,
                                        NativeBeatmap *nativeBeatmapPtr);
 const ErrorCode Beatmap_GetTitle(ManagedObjectHandle beatmapHandle,
-                                 const char *buffer, int32_t *bufferSize);
+                                 uint8_t *buffer, int32_t *bufferSize);
 const ErrorCode Beatmap_GetArtist(ManagedObjectHandle beatmapHandle,
-                                  const char *buffer, int32_t *bufferSize);
+                                  uint8_t *buffer, int32_t *bufferSize);
 const ErrorCode Beatmap_GetVersion(ManagedObjectHandle beatmapHandle,
-                                   const char *buffer, int32_t *bufferSize);
+                                   uint8_t *buffer, int32_t *bufferSize);
 const ErrorCode Beatmap_Destroy(ManagedObjectHandle handle);
-const ErrorCode CatchDifficultyCalculator_Create(
-    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,
-    NativeCatchDifficultyCalculator *nativeCatchDifficultyCalculatorPtr);
-const ErrorCode CatchDifficultyCalculator_Calculate(
-    ManagedObjectHandle calcHandle,
-    NativeCatchDifficultyAttributes *nativeAttributesPtr);
-const ErrorCode CatchDifficultyCalculator_CalculateMods(
-    ManagedObjectHandle calcHandle, ManagedObjectHandle rulesetHandle,
-    ManagedObjectHandle modsHandle,
-    NativeCatchDifficultyAttributes *nativeAttributesPtr);
-const ErrorCode CatchDifficultyCalculator_Destroy(ManagedObjectHandle handle);
-const ErrorCode ManiaDifficultyCalculator_Create(
-    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,
-    NativeManiaDifficultyCalculator *nativeManiaDifficultyCalculatorPtr);
-const ErrorCode ManiaDifficultyCalculator_Calculate(
-    ManagedObjectHandle calcHandle,
-    NativeManiaDifficultyAttributes *nativeAttributesPtr);
-const ErrorCode ManiaDifficultyCalculator_CalculateMods(
-    ManagedObjectHandle calcHandle, ManagedObjectHandle rulesetHandle,
-    ManagedObjectHandle modsHandle,
-    NativeManiaDifficultyAttributes *nativeAttributesPtr);
-const ErrorCode ManiaDifficultyCalculator_Destroy(ManagedObjectHandle handle);
-const ErrorCode OsuDifficultyCalculator_Create(
-    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,
-    NativeOsuDifficultyCalculator *nativeOsuDifficultyCalculatorPtr);
-const ErrorCode OsuDifficultyCalculator_Calculate(
-    ManagedObjectHandle calcHandle,
-    NativeOsuDifficultyAttributes *nativeAttributesPtr);
-const ErrorCode OsuDifficultyCalculator_CalculateMods(
-    ManagedObjectHandle calcHandle, ManagedObjectHandle rulesetHandle,
-    ManagedObjectHandle modsHandle,
-    NativeOsuDifficultyAttributes *nativeAttributesPtr);
-const ErrorCode OsuDifficultyCalculator_Destroy(ManagedObjectHandle handle);
-const ErrorCode TaikoDifficultyCalculator_Create(
-    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,
-    NativeTaikoDifficultyCalculator *nativeTaikoDifficultyCalculatorPtr);
-const ErrorCode TaikoDifficultyCalculator_Calculate(
-    ManagedObjectHandle calcHandle,
-    NativeTaikoDifficultyAttributes *nativeAttributesPtr);
-const ErrorCode TaikoDifficultyCalculator_CalculateMods(
-    ManagedObjectHandle calcHandle, ManagedObjectHandle rulesetHandle,
-    ManagedObjectHandle modsHandle,
-    NativeTaikoDifficultyAttributes *nativeAttributesPtr);
-const ErrorCode TaikoDifficultyCalculator_Destroy(ManagedObjectHandle handle);
-const ErrorCode Mod_Create(const char *acronymPtr, NativeMod *nativeModPtr);
+const ErrorCode Mod_Create(uint8_t *acronymPtr, NativeMod *nativeModPtr);
 const ErrorCode Mod_SetSettingBool(ManagedObjectHandle modHandle,
-                                   const char *keyPtr, bool value);
+                                   uint8_t *keyPtr, bool value);
 const ErrorCode Mod_SetSettingInteger(ManagedObjectHandle modHandle,
-                                      const char *keyPtr, int32_t value);
+                                      uint8_t *keyPtr, int32_t value);
 const ErrorCode Mod_SetSettingFloat(ManagedObjectHandle modHandle,
-                                    const char *keyPtr, float value);
+                                    uint8_t *keyPtr, float value);
 const ErrorCode Mod_Debug(ManagedObjectHandle modHandle);
 const ErrorCode Mod_Destroy(ManagedObjectHandle handle);
 const ErrorCode
 ModsCollection_Create(NativeModsCollection *nativeModsCollectionPtr);
-const ErrorCode ModsCollection_Add(ManagedObjectHandle modsHandle,
+const ErrorCode ModsCollection_Add(ManagedObjectHandle modsCollectionHandle,
                                    ManagedObjectHandle modHandle);
-const ErrorCode ModsCollection_Remove(ManagedObjectHandle modsHandle,
+const ErrorCode ModsCollection_Remove(ManagedObjectHandle modsCollectionHandle,
                                       ManagedObjectHandle modHandle);
-const ErrorCode ModsCollection_Debug(ManagedObjectHandle modsHandle);
+const ErrorCode ModsCollection_Debug(ManagedObjectHandle modsCollectionHandle);
 const ErrorCode ModsCollection_Destroy(ManagedObjectHandle handle);
 const ErrorCode Ruleset_CreateFromId(int32_t rulesetId,
                                      NativeRuleset *rulesetPtr);
-const ErrorCode Ruleset_CreateFromShortName(const char *shortName,
+const ErrorCode Ruleset_CreateFromShortName(uint8_t *shortName,
                                             NativeRuleset *rulesetPtr);
 const ErrorCode Ruleset_GetShortName(ManagedObjectHandle rulesetHandle,
-                                     const char *buffer, int32_t *bufferSize);
+                                     uint8_t *buffer, int32_t *bufferSize);
 const ErrorCode Ruleset_Destroy(ManagedObjectHandle handle);
 const ErrorCode CatchPerformanceCalculator_Create(
     NativeCatchPerformanceCalculator *nativeCatchPerformanceCalculatorPtr);
@@ -275,4 +253,76 @@ const ErrorCode TaikoPerformanceCalculator_Calculate(
     NativeTaikoDifficultyAttributes nativeDifficultyAttributes,
     NativeTaikoPerformanceAttributes *nativeAttributesPtr);
 const ErrorCode TaikoPerformanceCalculator_Destroy(ManagedObjectHandle handle);
+const ErrorCode CatchDifficultyCalculator_Create(
+    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,
+    NativeCatchDifficultyCalculator *nativeCatchDifficultyCalculatorPtr);
+const ErrorCode CatchDifficultyCalculator_Calculate(
+    ManagedObjectHandle calcHandle,
+    NativeCatchDifficultyAttributes *nativeAttributesPtr);
+const ErrorCode CatchDifficultyCalculator_CalculateMods(
+    ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle,
+    NativeCatchDifficultyAttributes *nativeAttributesPtr);
+const ErrorCode CatchDifficultyCalculator_CalculateTimed(
+    ManagedObjectHandle calcHandle,
+    NativeTimedCatchDifficultyAttributes *nativeTimedAttributesBuffer,
+    int32_t *bufferSize);
+const ErrorCode CatchDifficultyCalculator_CalculateModsTimed(
+    ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle,
+    NativeTimedCatchDifficultyAttributes *nativeTimedAttributesBuffer,
+    int32_t *bufferSize);
+const ErrorCode CatchDifficultyCalculator_Destroy(ManagedObjectHandle handle);
+const ErrorCode ManiaDifficultyCalculator_Create(
+    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,
+    NativeManiaDifficultyCalculator *nativeManiaDifficultyCalculatorPtr);
+const ErrorCode ManiaDifficultyCalculator_Calculate(
+    ManagedObjectHandle calcHandle,
+    NativeManiaDifficultyAttributes *nativeAttributesPtr);
+const ErrorCode ManiaDifficultyCalculator_CalculateMods(
+    ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle,
+    NativeManiaDifficultyAttributes *nativeAttributesPtr);
+const ErrorCode ManiaDifficultyCalculator_CalculateTimed(
+    ManagedObjectHandle calcHandle,
+    NativeTimedManiaDifficultyAttributes *nativeTimedAttributesBuffer,
+    int32_t *bufferSize);
+const ErrorCode ManiaDifficultyCalculator_CalculateModsTimed(
+    ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle,
+    NativeTimedManiaDifficultyAttributes *nativeTimedAttributesBuffer,
+    int32_t *bufferSize);
+const ErrorCode ManiaDifficultyCalculator_Destroy(ManagedObjectHandle handle);
+const ErrorCode OsuDifficultyCalculator_Create(
+    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,
+    NativeOsuDifficultyCalculator *nativeOsuDifficultyCalculatorPtr);
+const ErrorCode OsuDifficultyCalculator_Calculate(
+    ManagedObjectHandle calcHandle,
+    NativeOsuDifficultyAttributes *nativeAttributesPtr);
+const ErrorCode OsuDifficultyCalculator_CalculateMods(
+    ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle,
+    NativeOsuDifficultyAttributes *nativeAttributesPtr);
+const ErrorCode OsuDifficultyCalculator_CalculateTimed(
+    ManagedObjectHandle calcHandle,
+    NativeTimedOsuDifficultyAttributes *nativeTimedAttributesBuffer,
+    int32_t *bufferSize);
+const ErrorCode OsuDifficultyCalculator_CalculateModsTimed(
+    ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle,
+    NativeTimedOsuDifficultyAttributes *nativeTimedAttributesBuffer,
+    int32_t *bufferSize);
+const ErrorCode OsuDifficultyCalculator_Destroy(ManagedObjectHandle handle);
+const ErrorCode TaikoDifficultyCalculator_Create(
+    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,
+    NativeTaikoDifficultyCalculator *nativeTaikoDifficultyCalculatorPtr);
+const ErrorCode TaikoDifficultyCalculator_Calculate(
+    ManagedObjectHandle calcHandle,
+    NativeTaikoDifficultyAttributes *nativeAttributesPtr);
+const ErrorCode TaikoDifficultyCalculator_CalculateMods(
+    ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle,
+    NativeTaikoDifficultyAttributes *nativeAttributesPtr);
+const ErrorCode TaikoDifficultyCalculator_CalculateTimed(
+    ManagedObjectHandle calcHandle,
+    NativeTimedTaikoDifficultyAttributes *nativeTimedAttributesBuffer,
+    int32_t *bufferSize);
+const ErrorCode TaikoDifficultyCalculator_CalculateModsTimed(
+    ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle,
+    NativeTimedTaikoDifficultyAttributes *nativeTimedAttributesBuffer,
+    int32_t *bufferSize);
+const ErrorCode TaikoDifficultyCalculator_Destroy(ManagedObjectHandle handle);
 }

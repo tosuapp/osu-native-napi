@@ -1,11 +1,11 @@
 build
 lib/node.lib
-include/js_native_api.h
-include/js_native_api_types.h
-include/napi.h
-include/napi-inl.h
-include/node_api.h
-include/node_api_types.h
+cpp-binding/include/js_native_api.h
+cpp-binding/include/js_native_api_types.h
+cpp-binding/include/napi.h
+cpp-binding/include/napi-inl.h
+cpp-binding/include/node_api.h
+cpp-binding/include/node_api_types.h
 .cache
 dist
 node_modules

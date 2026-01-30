@@ -27,23 +27,58 @@ export class Beatmap extends NativeHandleOwner<NativeBeatmap> {
     super(native);
   }
 
-  // note: those are not handled, because we don't have a way to pass null to obtain buffer size yet
   getTitle(): string {
     this.ensureAlive();
 
-    return "";
+    const bufferSizeArr = new Int32Array([0]);
+    OsuNative.assertSizeQuery(
+      "Beatmap_GetTitle",
+      raw.Beatmap_GetTitle(this.handle, null, bufferSizeArr),
+    );
+
+    const buffer = Buffer.alloc(bufferSizeArr[0]);
+    OsuNative.assertOk(
+      "Beatmap_GetTitle",
+      raw.Beatmap_GetTitle(this.handle, buffer, bufferSizeArr),
+    );
+
+    return buffer.toString();
   }
 
   getArtist(): string {
     this.ensureAlive();
 
-    return "";
+    const bufferSizeArr = new Int32Array([0]);
+    OsuNative.assertSizeQuery(
+      "Beatmap_GetArtist",
+      raw.Beatmap_GetArtist(this.handle, null, bufferSizeArr),
+    );
+
+    const buffer = Buffer.alloc(bufferSizeArr[0]);
+    OsuNative.assertOk(
+      "Beatmap_GetArtist",
+      raw.Beatmap_GetArtist(this.handle, buffer, bufferSizeArr),
+    );
+
+    return buffer.toString();
   }
 
   getVersion(): string {
     this.ensureAlive();
 
-    return "";
+    const bufferSizeArr = new Int32Array([0]);
+    OsuNative.assertSizeQuery(
+      "Beatmap_GetVersion",
+      raw.Beatmap_GetVersion(this.handle, null, bufferSizeArr),
+    );
+
+    const buffer = Buffer.alloc(bufferSizeArr[0]);
+    OsuNative.assertOk(
+      "Beatmap_GetArtist",
+      raw.Beatmap_GetVersion(this.handle, buffer, bufferSizeArr),
+    );
+
+    return buffer.toString();
   }
 
   destroy(): void {

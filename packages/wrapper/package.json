@@ -4,7 +4,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx index.ts"
+    "dev": "tsx examples/usage.ts"
   },
   "dependencies": {
     "@tosuapp/osu-native-napi-raw": "workspace:*",

@@ -1,6 +1,7 @@
 import type {
   NativeOsuDifficultyAttributes,
   NativeOsuDifficultyCalculator,
+  NativeTimedOsuDifficultyAttributes,
 } from "@tosuapp/osu-native-napi-raw";
 import raw from "@tosuapp/osu-native-napi-raw";
 
@@ -49,12 +50,75 @@ export class OsuDifficultyCalculator extends NativeHandleOwner<NativeOsuDifficul
       "OsuDifficultyCalculator_CalculateMods",
       raw.OsuDifficultyCalculator_CalculateMods(
         this.handle,
-        this.ruleset.handle,
         mods.handle,
         attrs,
       ),
     );
     return attrs;
+  }
+
+  calculateTimed(): NativeTimedOsuDifficultyAttributes[] {
+    this.ensureAlive();
+
+    const bufferSize = new Int32Array(1);
+    OsuNative.assertSizeQuery(
+      "OsuDifficultyCalculator_CalculateTimed",
+      raw.OsuDifficultyCalculator_CalculateTimed(this.handle, null, bufferSize),
+    );
+
+    if (bufferSize[0] <= 0) {
+      return [];
+    }
+
+    const outAttrs = new Array<NativeTimedOsuDifficultyAttributes>(
+      bufferSize[0],
+    );
+    OsuNative.assertOk(
+      "OsuDifficultyCalculator_CalculateTimed",
+      raw.OsuDifficultyCalculator_CalculateTimed(
+        this.handle,
+        outAttrs,
+        bufferSize,
+      ),
+    );
+
+    return outAttrs;
+  }
+
+  calculateWithModsTimed(
+    mods: ModsCollection,
+  ): NativeTimedOsuDifficultyAttributes[] {
+    this.ensureAlive();
+
+    const bufferSize = new Int32Array(1);
+    OsuNative.assertSizeQuery(
+      "OsuDifficultyCalculator_CalculateModsTimed",
+      raw.OsuDifficultyCalculator_CalculateModsTimed(
+        this.handle,
+        mods.handle,
+        null,
+        bufferSize,
+      ),
+    );
+
+    if (bufferSize[0] <= 0) {
+      return [];
+    }
+
+    const outAttrs = new Array<NativeTimedOsuDifficultyAttributes>(
+      bufferSize[0],
+    );
+    OsuNative.assertOk(
+      "OsuDifficultyCalculator_CalculateModsTimed",
+      raw.OsuDifficultyCalculator_CalculateModsTimed(
+        this.handle,
+        mods.handle,
+        outAttrs,
+        bufferSize,
+      ),
+    );
+
+    return outAttrs;
   }
 
   destroy(): void {

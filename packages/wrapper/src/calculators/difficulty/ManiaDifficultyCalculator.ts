@@ -1,6 +1,7 @@
 import type {
   NativeManiaDifficultyAttributes,
   NativeManiaDifficultyCalculator,
+  NativeTimedManiaDifficultyAttributes,
 } from "@tosuapp/osu-native-napi-raw";
 import raw from "@tosuapp/osu-native-napi-raw";
 
@@ -49,12 +50,79 @@ export class ManiaDifficultyCalculator extends NativeHandleOwner<NativeManiaDiff
       "ManiaDifficultyCalculator_CalculateMods",
       raw.ManiaDifficultyCalculator_CalculateMods(
         this.handle,
-        this.ruleset.handle,
         mods.handle,
         attrs,
       ),
     );
     return attrs;
+  }
+
+  calculateTimed(): NativeTimedManiaDifficultyAttributes[] {
+    this.ensureAlive();
+
+    const bufferSize = new Int32Array(1);
+    OsuNative.assertSizeQuery(
+      "ManiaDifficultyCalculator_CalculateTimed",
+      raw.ManiaDifficultyCalculator_CalculateTimed(
+        this.handle,
+        null,
+        bufferSize,
+      ),
+    );
+
+    if (bufferSize[0] <= 0) {
+      return [];
+    }
+
+    const outAttrs = new Array<NativeTimedManiaDifficultyAttributes>(
+      bufferSize[0],
+    );
+    OsuNative.assertOk(
+      "ManiaDifficultyCalculator_CalculateTimed",
+      raw.ManiaDifficultyCalculator_CalculateTimed(
+        this.handle,
+        outAttrs,
+        bufferSize,
+      ),
+    );
+
+    return outAttrs;
+  }
+
+  calculateWithModsTimed(
+    mods: ModsCollection,
+  ): NativeTimedManiaDifficultyAttributes[] {
+    this.ensureAlive();
+
+    const bufferSize = new Int32Array(1);
+    OsuNative.assertSizeQuery(
+      "ManiaDifficultyCalculator_CalculateModsTimed",
+      raw.ManiaDifficultyCalculator_CalculateModsTimed(
+        this.handle,
+        mods.handle,
+        null,
+        bufferSize,
+      ),
+    );
+
+    if (bufferSize[0] <= 0) {
+      return [];
+    }
+
+    const outAttrs = new Array<NativeTimedManiaDifficultyAttributes>(
+      bufferSize[0],
+    );
+    OsuNative.assertOk(
+      "ManiaDifficultyCalculator_CalculateModsTimed",
+      raw.ManiaDifficultyCalculator_CalculateModsTimed(
+        this.handle,
+        mods.handle,
+        outAttrs,
+        bufferSize,
+      ),
+    );
+
+    return outAttrs;
   }
 
   destroy(): void {

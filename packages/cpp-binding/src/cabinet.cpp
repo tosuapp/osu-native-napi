@@ -28,7 +28,7 @@ static napi_value register_enum__ErrorCode(napi_env env, napi_value exports)
     status = napi_create_int32(env, 0, &i_1);
     assert(status == napi_ok);
 
-    // OBJECT_NOT_FOUND
+    // OBJECT_NOT_RESOLVED
     napi_value i_2;
     status = napi_create_int32(env, 1, &i_2);
     assert(status == napi_ok);
@@ -54,7 +54,7 @@ static napi_value register_enum__ErrorCode(napi_env env, napi_value exports)
         // { utf8name, name, method, getter, setter, value, attributes, data }
         { "BUFFER_SIZE_QUERY", nullptr, nullptr, nullptr, nullptr, i_0, attributes, nullptr },
         { "SUCCESS", nullptr, nullptr, nullptr, nullptr, i_1, attributes, nullptr },
-        { "OBJECT_NOT_FOUND", nullptr, nullptr, nullptr, nullptr, i_2, attributes, nullptr },
+        { "OBJECT_NOT_RESOLVED", nullptr, nullptr, nullptr, nullptr, i_2, attributes, nullptr },
         { "RULESET_UNAVAILABLE", nullptr, nullptr, nullptr, nullptr, i_3, attributes, nullptr },
         { "UNEXPECTED_RULESET", nullptr, nullptr, nullptr, nullptr, i_4, attributes, nullptr },
         { "FAILURE", nullptr, nullptr, nullptr, nullptr, i_5, attributes, nullptr }
@@ -156,6 +156,790 @@ static napi_value register_class__ManagedObjectHandle(napi_env env)
     assert(status == napi_ok);
 
     status = napi_create_reference(env, constructor, 1, &ctor_ManagedObjectHandle_ManagedObjectHandle);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
+static void dtor_NativeBeatmap_NativeBeatmap(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeBeatmap_NativeBeatmap;
+
+// NativeBeatmap::NativeBeatmap
+static napi_value callback_method_NativeBeatmap_NativeBeatmap(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeBeatmap* instance = nullptr;
+
+    instance = new NativeBeatmap();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeBeatmap_NativeBeatmap, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeBeatmap::__handle
+static napi_value getter_field_NativeBeatmap_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeBeatmap_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+// NativeBeatmap::__rulesetId
+static napi_value getter_field_NativeBeatmap_rulesetId(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____rulesetId;
+    status = napi_create_int32(env, instance->rulesetId, &____rulesetId);
+    assert(status == napi_ok);
+    return ____rulesetId;
+}
+
+static napi_value setter_field_NativeBeatmap_rulesetId
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    int32_t __rulesetId;
+    status = napi_get_value_int32(env, args[0], &__rulesetId);
+    instance->rulesetId = (::int32_t)__rulesetId;
+    return nullptr;
+}
+
+// NativeBeatmap::__beatmapId
+static napi_value getter_field_NativeBeatmap_beatmapId(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____beatmapId;
+    status = napi_create_int32(env, instance->beatmapId, &____beatmapId);
+    assert(status == napi_ok);
+    return ____beatmapId;
+}
+
+static napi_value setter_field_NativeBeatmap_beatmapId
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    int32_t __beatmapId;
+    status = napi_get_value_int32(env, args[0], &__beatmapId);
+    instance->beatmapId = (::int32_t)__beatmapId;
+    return nullptr;
+}
+
+// NativeBeatmap::__approachRate
+static napi_value getter_field_NativeBeatmap_approachRate(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____approachRate;
+    status = napi_create_double(env, instance->approachRate, &____approachRate);
+    assert(status == napi_ok);
+    return ____approachRate;
+}
+
+static napi_value setter_field_NativeBeatmap_approachRate
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    double __approachRate;
+    status = napi_get_value_double(env, args[0], &__approachRate);
+    instance->approachRate = (float)__approachRate;
+    return nullptr;
+}
+
+// NativeBeatmap::__drainRate
+static napi_value getter_field_NativeBeatmap_drainRate(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____drainRate;
+    status = napi_create_double(env, instance->drainRate, &____drainRate);
+    assert(status == napi_ok);
+    return ____drainRate;
+}
+
+static napi_value setter_field_NativeBeatmap_drainRate
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    double __drainRate;
+    status = napi_get_value_double(env, args[0], &__drainRate);
+    instance->drainRate = (float)__drainRate;
+    return nullptr;
+}
+
+// NativeBeatmap::__overallDifficulty
+static napi_value getter_field_NativeBeatmap_overallDifficulty(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____overallDifficulty;
+    status = napi_create_double(env, instance->overallDifficulty, &____overallDifficulty);
+    assert(status == napi_ok);
+    return ____overallDifficulty;
+}
+
+static napi_value setter_field_NativeBeatmap_overallDifficulty
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    double __overallDifficulty;
+    status = napi_get_value_double(env, args[0], &__overallDifficulty);
+    instance->overallDifficulty = (float)__overallDifficulty;
+    return nullptr;
+}
+
+// NativeBeatmap::__circleSize
+static napi_value getter_field_NativeBeatmap_circleSize(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____circleSize;
+    status = napi_create_double(env, instance->circleSize, &____circleSize);
+    assert(status == napi_ok);
+    return ____circleSize;
+}
+
+static napi_value setter_field_NativeBeatmap_circleSize
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    double __circleSize;
+    status = napi_get_value_double(env, args[0], &__circleSize);
+    instance->circleSize = (float)__circleSize;
+    return nullptr;
+}
+
+// NativeBeatmap::__sliderMultiplier
+static napi_value getter_field_NativeBeatmap_sliderMultiplier(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____sliderMultiplier;
+    status = napi_create_double(env, instance->sliderMultiplier, &____sliderMultiplier);
+    assert(status == napi_ok);
+    return ____sliderMultiplier;
+}
+
+static napi_value setter_field_NativeBeatmap_sliderMultiplier
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    double __sliderMultiplier;
+    status = napi_get_value_double(env, args[0], &__sliderMultiplier);
+    instance->sliderMultiplier = __sliderMultiplier;
+    return nullptr;
+}
+
+// NativeBeatmap::__sliderTickRate
+static napi_value getter_field_NativeBeatmap_sliderTickRate(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____sliderTickRate;
+    status = napi_create_double(env, instance->sliderTickRate, &____sliderTickRate);
+    assert(status == napi_ok);
+    return ____sliderTickRate;
+}
+
+static napi_value setter_field_NativeBeatmap_sliderTickRate
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeBeatmap* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    double __sliderTickRate;
+    status = napi_get_value_double(env, args[0], &__sliderTickRate);
+    instance->sliderTickRate = __sliderTickRate;
+    return nullptr;
+}
+
+static napi_value register_class__NativeBeatmap(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeBeatmap_handle, setter_field_NativeBeatmap_handle, nullptr, attributes, nullptr },
+        { "rulesetId", nullptr, nullptr, getter_field_NativeBeatmap_rulesetId, setter_field_NativeBeatmap_rulesetId, nullptr, attributes, nullptr },
+        { "beatmapId", nullptr, nullptr, getter_field_NativeBeatmap_beatmapId, setter_field_NativeBeatmap_beatmapId, nullptr, attributes, nullptr },
+        { "approachRate", nullptr, nullptr, getter_field_NativeBeatmap_approachRate, setter_field_NativeBeatmap_approachRate, nullptr, attributes, nullptr },
+        { "drainRate", nullptr, nullptr, getter_field_NativeBeatmap_drainRate, setter_field_NativeBeatmap_drainRate, nullptr, attributes, nullptr },
+        { "overallDifficulty", nullptr, nullptr, getter_field_NativeBeatmap_overallDifficulty, setter_field_NativeBeatmap_overallDifficulty, nullptr, attributes, nullptr },
+        { "circleSize", nullptr, nullptr, getter_field_NativeBeatmap_circleSize, setter_field_NativeBeatmap_circleSize, nullptr, attributes, nullptr },
+        { "sliderMultiplier", nullptr, nullptr, getter_field_NativeBeatmap_sliderMultiplier, setter_field_NativeBeatmap_sliderMultiplier, nullptr, attributes, nullptr },
+        { "sliderTickRate", nullptr, nullptr, getter_field_NativeBeatmap_sliderTickRate, setter_field_NativeBeatmap_sliderTickRate, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeBeatmap", NAPI_AUTO_LENGTH, callback_method_NativeBeatmap_NativeBeatmap, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeBeatmap_NativeBeatmap);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
+static void dtor_NativeMod_NativeMod(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeMod_NativeMod;
+
+// NativeMod::NativeMod
+static napi_value callback_method_NativeMod_NativeMod(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeMod* instance = nullptr;
+
+    instance = new NativeMod();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeMod_NativeMod, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeMod::__handle
+static napi_value getter_field_NativeMod_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeMod* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeMod_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeMod* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeMod(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeMod_handle, setter_field_NativeMod_handle, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeMod", NAPI_AUTO_LENGTH, callback_method_NativeMod_NativeMod, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeMod_NativeMod);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
+static void dtor_NativeModsCollection_NativeModsCollection(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeModsCollection_NativeModsCollection;
+
+// NativeModsCollection::NativeModsCollection
+static napi_value callback_method_NativeModsCollection_NativeModsCollection(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeModsCollection* instance = nullptr;
+
+    instance = new NativeModsCollection();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeModsCollection_NativeModsCollection, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeModsCollection::__handle
+static napi_value getter_field_NativeModsCollection_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeModsCollection* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeModsCollection_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeModsCollection* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeModsCollection(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeModsCollection_handle, setter_field_NativeModsCollection_handle, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeModsCollection", NAPI_AUTO_LENGTH, callback_method_NativeModsCollection_NativeModsCollection, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeModsCollection_NativeModsCollection);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
+static void dtor_NativeRuleset_NativeRuleset(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeRuleset_NativeRuleset;
+
+// NativeRuleset::NativeRuleset
+static napi_value callback_method_NativeRuleset_NativeRuleset(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeRuleset* instance = nullptr;
+
+    instance = new NativeRuleset();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeRuleset_NativeRuleset, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeRuleset::__handle
+static napi_value getter_field_NativeRuleset_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeRuleset* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeRuleset_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeRuleset* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+// NativeRuleset::__rulesetId
+static napi_value getter_field_NativeRuleset_rulesetId(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeRuleset* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____rulesetId;
+    status = napi_create_int32(env, instance->rulesetId, &____rulesetId);
+    assert(status == napi_ok);
+    return ____rulesetId;
+}
+
+static napi_value setter_field_NativeRuleset_rulesetId
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeRuleset* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    int32_t __rulesetId;
+    status = napi_get_value_int32(env, args[0], &__rulesetId);
+    instance->rulesetId = (::int32_t)__rulesetId;
+    return nullptr;
+}
+
+static napi_value register_class__NativeRuleset(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeRuleset_handle, setter_field_NativeRuleset_handle, nullptr, attributes, nullptr },
+        { "rulesetId", nullptr, nullptr, getter_field_NativeRuleset_rulesetId, setter_field_NativeRuleset_rulesetId, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeRuleset", NAPI_AUTO_LENGTH, callback_method_NativeRuleset_NativeRuleset, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeRuleset_NativeRuleset);
     assert(status == napi_ok);
 
     return constructor;
@@ -863,6 +1647,112 @@ static napi_value register_class__NativeCatchPerformanceAttributes(napi_env env)
     return constructor;
 }
 
+static void dtor_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator;
+
+// NativeCatchPerformanceCalculator::NativeCatchPerformanceCalculator
+static napi_value callback_method_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeCatchPerformanceCalculator* instance = nullptr;
+
+    instance = new NativeCatchPerformanceCalculator();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeCatchPerformanceCalculator::__handle
+static napi_value getter_field_NativeCatchPerformanceCalculator_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeCatchPerformanceCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeCatchPerformanceCalculator_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeCatchPerformanceCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeCatchPerformanceCalculator(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeCatchPerformanceCalculator_handle, setter_field_NativeCatchPerformanceCalculator_handle, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeCatchPerformanceCalculator", NAPI_AUTO_LENGTH, callback_method_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
 static void dtor_NativeManiaPerformanceAttributes_NativeManiaPerformanceAttributes(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
@@ -994,6 +1884,112 @@ static napi_value register_class__NativeManiaPerformanceAttributes(napi_env env)
     assert(status == napi_ok);
 
     status = napi_create_reference(env, constructor, 1, &ctor_NativeManiaPerformanceAttributes_NativeManiaPerformanceAttributes);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
+static void dtor_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator;
+
+// NativeManiaPerformanceCalculator::NativeManiaPerformanceCalculator
+static napi_value callback_method_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeManiaPerformanceCalculator* instance = nullptr;
+
+    instance = new NativeManiaPerformanceCalculator();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeManiaPerformanceCalculator::__handle
+static napi_value getter_field_NativeManiaPerformanceCalculator_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeManiaPerformanceCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeManiaPerformanceCalculator_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeManiaPerformanceCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeManiaPerformanceCalculator(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeManiaPerformanceCalculator_handle, setter_field_NativeManiaPerformanceCalculator_handle, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeManiaPerformanceCalculator", NAPI_AUTO_LENGTH, callback_method_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator);
     assert(status == napi_ok);
 
     return constructor;
@@ -1651,6 +2647,112 @@ static napi_value register_class__NativeOsuPerformanceAttributes(napi_env env)
     return constructor;
 }
 
+static void dtor_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator;
+
+// NativeOsuPerformanceCalculator::NativeOsuPerformanceCalculator
+static napi_value callback_method_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeOsuPerformanceCalculator* instance = nullptr;
+
+    instance = new NativeOsuPerformanceCalculator();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeOsuPerformanceCalculator::__handle
+static napi_value getter_field_NativeOsuPerformanceCalculator_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeOsuPerformanceCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeOsuPerformanceCalculator_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeOsuPerformanceCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeOsuPerformanceCalculator(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeOsuPerformanceCalculator_handle, setter_field_NativeOsuPerformanceCalculator_handle, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeOsuPerformanceCalculator", NAPI_AUTO_LENGTH, callback_method_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
 static void dtor_NativeTaikoPerformanceAttributes_NativeTaikoPerformanceAttributes(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
@@ -1877,6 +2979,112 @@ static napi_value register_class__NativeTaikoPerformanceAttributes(napi_env env)
     return constructor;
 }
 
+static void dtor_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator;
+
+// NativeTaikoPerformanceCalculator::NativeTaikoPerformanceCalculator
+static napi_value callback_method_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeTaikoPerformanceCalculator* instance = nullptr;
+
+    instance = new NativeTaikoPerformanceCalculator();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeTaikoPerformanceCalculator::__handle
+static napi_value getter_field_NativeTaikoPerformanceCalculator_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeTaikoPerformanceCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeTaikoPerformanceCalculator_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeTaikoPerformanceCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeTaikoPerformanceCalculator(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeTaikoPerformanceCalculator_handle, setter_field_NativeTaikoPerformanceCalculator_handle, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeTaikoPerformanceCalculator", NAPI_AUTO_LENGTH, callback_method_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
 static void dtor_NativeCatchDifficultyAttributes_NativeCatchDifficultyAttributes(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
@@ -2013,6 +3221,112 @@ static napi_value register_class__NativeCatchDifficultyAttributes(napi_env env)
     return constructor;
 }
 
+static void dtor_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator;
+
+// NativeCatchDifficultyCalculator::NativeCatchDifficultyCalculator
+static napi_value callback_method_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeCatchDifficultyCalculator* instance = nullptr;
+
+    instance = new NativeCatchDifficultyCalculator();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeCatchDifficultyCalculator::__handle
+static napi_value getter_field_NativeCatchDifficultyCalculator_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeCatchDifficultyCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeCatchDifficultyCalculator_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeCatchDifficultyCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeCatchDifficultyCalculator(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeCatchDifficultyCalculator_handle, setter_field_NativeCatchDifficultyCalculator_handle, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeCatchDifficultyCalculator", NAPI_AUTO_LENGTH, callback_method_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
 static void dtor_NativeManiaDifficultyAttributes_NativeManiaDifficultyAttributes(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
@@ -2144,6 +3458,112 @@ static napi_value register_class__NativeManiaDifficultyAttributes(napi_env env)
     assert(status == napi_ok);
 
     status = napi_create_reference(env, constructor, 1, &ctor_NativeManiaDifficultyAttributes_NativeManiaDifficultyAttributes);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
+static void dtor_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator;
+
+// NativeManiaDifficultyCalculator::NativeManiaDifficultyCalculator
+static napi_value callback_method_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeManiaDifficultyCalculator* instance = nullptr;
+
+    instance = new NativeManiaDifficultyCalculator();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeManiaDifficultyCalculator::__handle
+static napi_value getter_field_NativeManiaDifficultyCalculator_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeManiaDifficultyCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeManiaDifficultyCalculator_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeManiaDifficultyCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeManiaDifficultyCalculator(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeManiaDifficultyCalculator_handle, setter_field_NativeManiaDifficultyCalculator_handle, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeManiaDifficultyCalculator", NAPI_AUTO_LENGTH, callback_method_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator);
     assert(status == napi_ok);
 
     return constructor;
@@ -2965,6 +4385,112 @@ static napi_value register_class__NativeOsuDifficultyAttributes(napi_env env)
     return constructor;
 }
 
+static void dtor_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator(napi_env env, void* finalize_data, void* finalize_hint)
+{
+}
+
+static napi_ref ctor_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator;
+
+// NativeOsuDifficultyCalculator::NativeOsuDifficultyCalculator
+static napi_value callback_method_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc > 0)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    NativeOsuDifficultyCalculator* instance = nullptr;
+
+    instance = new NativeOsuDifficultyCalculator();
+    napi_ref result;
+    status = napi_wrap(env, _this, instance, dtor_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator, nullptr, &result);
+    assert(status == napi_ok);
+
+
+    return _this;
+}
+
+// NativeOsuDifficultyCalculator::__handle
+static napi_value getter_field_NativeOsuDifficultyCalculator_handle(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeOsuDifficultyCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____handle_ctor;
+    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____handle_instance;
+    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* ____handle_native;
+    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    assert(status == napi_ok);
+    *____handle_native = *&instance->handle;
+
+    return ____handle_instance;
+}
+
+static napi_value setter_field_NativeOsuDifficultyCalculator_handle
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeOsuDifficultyCalculator* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    ManagedObjectHandle* __handle_instance;
+    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
+    instance->handle = *__handle_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeOsuDifficultyCalculator(napi_env env)
+{
+    napi_status status;
+    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
+    napi_property_descriptor props[] =
+    {
+        // { utf8name, name, method, getter, setter, value, attributes, data }
+        { "handle", nullptr, nullptr, getter_field_NativeOsuDifficultyCalculator_handle, setter_field_NativeOsuDifficultyCalculator_handle, nullptr, attributes, nullptr },
+    };
+
+    napi_value constructor;
+    status = napi_define_class(env, "NativeOsuDifficultyCalculator", NAPI_AUTO_LENGTH, callback_method_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    assert(status == napi_ok);
+
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator);
+    assert(status == napi_ok);
+
+    return constructor;
+}
+
 static void dtor_NativeTaikoDifficultyAttributes_NativeTaikoDifficultyAttributes(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
@@ -3421,710 +4947,6 @@ static napi_value register_class__NativeTaikoDifficultyAttributes(napi_env env)
     return constructor;
 }
 
-static void dtor_NativeBeatmap_NativeBeatmap(napi_env env, void* finalize_data, void* finalize_hint)
-{
-}
-
-static napi_ref ctor_NativeBeatmap_NativeBeatmap;
-
-// NativeBeatmap::NativeBeatmap
-static napi_value callback_method_NativeBeatmap_NativeBeatmap(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc > 0)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    NativeBeatmap* instance = nullptr;
-
-    instance = new NativeBeatmap();
-    napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeBeatmap_NativeBeatmap, nullptr, &result);
-    assert(status == napi_ok);
-
-
-    return _this;
-}
-
-// NativeBeatmap::__handle
-static napi_value getter_field_NativeBeatmap_handle(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
-    assert(status == napi_ok);
-
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
-    assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
-
-    return ____handle_instance;
-}
-
-static napi_value setter_field_NativeBeatmap_handle
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
-    return nullptr;
-}
-
-// NativeBeatmap::__rulesetId
-static napi_value getter_field_NativeBeatmap_rulesetId(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____rulesetId;
-    status = napi_create_int32(env, instance->rulesetId, &____rulesetId);
-    assert(status == napi_ok);
-    return ____rulesetId;
-}
-
-static napi_value setter_field_NativeBeatmap_rulesetId
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    int32_t __rulesetId;
-    status = napi_get_value_int32(env, args[0], &__rulesetId);
-    instance->rulesetId = (::int32_t)__rulesetId;
-    return nullptr;
-}
-
-// NativeBeatmap::__approachRate
-static napi_value getter_field_NativeBeatmap_approachRate(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____approachRate;
-    status = napi_create_double(env, instance->approachRate, &____approachRate);
-    assert(status == napi_ok);
-    return ____approachRate;
-}
-
-static napi_value setter_field_NativeBeatmap_approachRate
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    double __approachRate;
-    status = napi_get_value_double(env, args[0], &__approachRate);
-    instance->approachRate = (float)__approachRate;
-    return nullptr;
-}
-
-// NativeBeatmap::__drainRate
-static napi_value getter_field_NativeBeatmap_drainRate(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____drainRate;
-    status = napi_create_double(env, instance->drainRate, &____drainRate);
-    assert(status == napi_ok);
-    return ____drainRate;
-}
-
-static napi_value setter_field_NativeBeatmap_drainRate
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    double __drainRate;
-    status = napi_get_value_double(env, args[0], &__drainRate);
-    instance->drainRate = (float)__drainRate;
-    return nullptr;
-}
-
-// NativeBeatmap::__overallDifficulty
-static napi_value getter_field_NativeBeatmap_overallDifficulty(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____overallDifficulty;
-    status = napi_create_double(env, instance->overallDifficulty, &____overallDifficulty);
-    assert(status == napi_ok);
-    return ____overallDifficulty;
-}
-
-static napi_value setter_field_NativeBeatmap_overallDifficulty
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    double __overallDifficulty;
-    status = napi_get_value_double(env, args[0], &__overallDifficulty);
-    instance->overallDifficulty = (float)__overallDifficulty;
-    return nullptr;
-}
-
-// NativeBeatmap::__circleSize
-static napi_value getter_field_NativeBeatmap_circleSize(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____circleSize;
-    status = napi_create_double(env, instance->circleSize, &____circleSize);
-    assert(status == napi_ok);
-    return ____circleSize;
-}
-
-static napi_value setter_field_NativeBeatmap_circleSize
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    double __circleSize;
-    status = napi_get_value_double(env, args[0], &__circleSize);
-    instance->circleSize = (float)__circleSize;
-    return nullptr;
-}
-
-// NativeBeatmap::__sliderMultiplier
-static napi_value getter_field_NativeBeatmap_sliderMultiplier(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____sliderMultiplier;
-    status = napi_create_double(env, instance->sliderMultiplier, &____sliderMultiplier);
-    assert(status == napi_ok);
-    return ____sliderMultiplier;
-}
-
-static napi_value setter_field_NativeBeatmap_sliderMultiplier
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    double __sliderMultiplier;
-    status = napi_get_value_double(env, args[0], &__sliderMultiplier);
-    instance->sliderMultiplier = __sliderMultiplier;
-    return nullptr;
-}
-
-// NativeBeatmap::__sliderTickRate
-static napi_value getter_field_NativeBeatmap_sliderTickRate(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____sliderTickRate;
-    status = napi_create_double(env, instance->sliderTickRate, &____sliderTickRate);
-    assert(status == napi_ok);
-    return ____sliderTickRate;
-}
-
-static napi_value setter_field_NativeBeatmap_sliderTickRate
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeBeatmap* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    double __sliderTickRate;
-    status = napi_get_value_double(env, args[0], &__sliderTickRate);
-    instance->sliderTickRate = __sliderTickRate;
-    return nullptr;
-}
-
-static napi_value register_class__NativeBeatmap(napi_env env)
-{
-    napi_status status;
-    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
-    napi_property_descriptor props[] =
-    {
-        // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeBeatmap_handle, setter_field_NativeBeatmap_handle, nullptr, attributes, nullptr },
-        { "rulesetId", nullptr, nullptr, getter_field_NativeBeatmap_rulesetId, setter_field_NativeBeatmap_rulesetId, nullptr, attributes, nullptr },
-        { "approachRate", nullptr, nullptr, getter_field_NativeBeatmap_approachRate, setter_field_NativeBeatmap_approachRate, nullptr, attributes, nullptr },
-        { "drainRate", nullptr, nullptr, getter_field_NativeBeatmap_drainRate, setter_field_NativeBeatmap_drainRate, nullptr, attributes, nullptr },
-        { "overallDifficulty", nullptr, nullptr, getter_field_NativeBeatmap_overallDifficulty, setter_field_NativeBeatmap_overallDifficulty, nullptr, attributes, nullptr },
-        { "circleSize", nullptr, nullptr, getter_field_NativeBeatmap_circleSize, setter_field_NativeBeatmap_circleSize, nullptr, attributes, nullptr },
-        { "sliderMultiplier", nullptr, nullptr, getter_field_NativeBeatmap_sliderMultiplier, setter_field_NativeBeatmap_sliderMultiplier, nullptr, attributes, nullptr },
-        { "sliderTickRate", nullptr, nullptr, getter_field_NativeBeatmap_sliderTickRate, setter_field_NativeBeatmap_sliderTickRate, nullptr, attributes, nullptr },
-    };
-
-    napi_value constructor;
-    status = napi_define_class(env, "NativeBeatmap", NAPI_AUTO_LENGTH, callback_method_NativeBeatmap_NativeBeatmap, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
-    assert(status == napi_ok);
-
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeBeatmap_NativeBeatmap);
-    assert(status == napi_ok);
-
-    return constructor;
-}
-
-static void dtor_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator(napi_env env, void* finalize_data, void* finalize_hint)
-{
-}
-
-static napi_ref ctor_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator;
-
-// NativeCatchDifficultyCalculator::NativeCatchDifficultyCalculator
-static napi_value callback_method_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc > 0)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    NativeCatchDifficultyCalculator* instance = nullptr;
-
-    instance = new NativeCatchDifficultyCalculator();
-    napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator, nullptr, &result);
-    assert(status == napi_ok);
-
-
-    return _this;
-}
-
-// NativeCatchDifficultyCalculator::__handle
-static napi_value getter_field_NativeCatchDifficultyCalculator_handle(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeCatchDifficultyCalculator* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
-    assert(status == napi_ok);
-
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
-    assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
-
-    return ____handle_instance;
-}
-
-static napi_value setter_field_NativeCatchDifficultyCalculator_handle
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeCatchDifficultyCalculator* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
-    return nullptr;
-}
-
-static napi_value register_class__NativeCatchDifficultyCalculator(napi_env env)
-{
-    napi_status status;
-    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
-    napi_property_descriptor props[] =
-    {
-        // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeCatchDifficultyCalculator_handle, setter_field_NativeCatchDifficultyCalculator_handle, nullptr, attributes, nullptr },
-    };
-
-    napi_value constructor;
-    status = napi_define_class(env, "NativeCatchDifficultyCalculator", NAPI_AUTO_LENGTH, callback_method_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
-    assert(status == napi_ok);
-
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeCatchDifficultyCalculator_NativeCatchDifficultyCalculator);
-    assert(status == napi_ok);
-
-    return constructor;
-}
-
-static void dtor_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator(napi_env env, void* finalize_data, void* finalize_hint)
-{
-}
-
-static napi_ref ctor_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator;
-
-// NativeManiaDifficultyCalculator::NativeManiaDifficultyCalculator
-static napi_value callback_method_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc > 0)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    NativeManiaDifficultyCalculator* instance = nullptr;
-
-    instance = new NativeManiaDifficultyCalculator();
-    napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator, nullptr, &result);
-    assert(status == napi_ok);
-
-
-    return _this;
-}
-
-// NativeManiaDifficultyCalculator::__handle
-static napi_value getter_field_NativeManiaDifficultyCalculator_handle(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeManiaDifficultyCalculator* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
-    assert(status == napi_ok);
-
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
-    assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
-
-    return ____handle_instance;
-}
-
-static napi_value setter_field_NativeManiaDifficultyCalculator_handle
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeManiaDifficultyCalculator* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
-    return nullptr;
-}
-
-static napi_value register_class__NativeManiaDifficultyCalculator(napi_env env)
-{
-    napi_status status;
-    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
-    napi_property_descriptor props[] =
-    {
-        // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeManiaDifficultyCalculator_handle, setter_field_NativeManiaDifficultyCalculator_handle, nullptr, attributes, nullptr },
-    };
-
-    napi_value constructor;
-    status = napi_define_class(env, "NativeManiaDifficultyCalculator", NAPI_AUTO_LENGTH, callback_method_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
-    assert(status == napi_ok);
-
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeManiaDifficultyCalculator_NativeManiaDifficultyCalculator);
-    assert(status == napi_ok);
-
-    return constructor;
-}
-
-static void dtor_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator(napi_env env, void* finalize_data, void* finalize_hint)
-{
-}
-
-static napi_ref ctor_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator;
-
-// NativeOsuDifficultyCalculator::NativeOsuDifficultyCalculator
-static napi_value callback_method_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc > 0)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    NativeOsuDifficultyCalculator* instance = nullptr;
-
-    instance = new NativeOsuDifficultyCalculator();
-    napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator, nullptr, &result);
-    assert(status == napi_ok);
-
-
-    return _this;
-}
-
-// NativeOsuDifficultyCalculator::__handle
-static napi_value getter_field_NativeOsuDifficultyCalculator_handle(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeOsuDifficultyCalculator* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
-    assert(status == napi_ok);
-
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
-    assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
-
-    return ____handle_instance;
-}
-
-static napi_value setter_field_NativeOsuDifficultyCalculator_handle
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeOsuDifficultyCalculator* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
-    return nullptr;
-}
-
-static napi_value register_class__NativeOsuDifficultyCalculator(napi_env env)
-{
-    napi_status status;
-    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
-    napi_property_descriptor props[] =
-    {
-        // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeOsuDifficultyCalculator_handle, setter_field_NativeOsuDifficultyCalculator_handle, nullptr, attributes, nullptr },
-    };
-
-    napi_value constructor;
-    status = napi_define_class(env, "NativeOsuDifficultyCalculator", NAPI_AUTO_LENGTH, callback_method_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
-    assert(status == napi_ok);
-
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeOsuDifficultyCalculator_NativeOsuDifficultyCalculator);
-    assert(status == napi_ok);
-
-    return constructor;
-}
-
 static void dtor_NativeTaikoDifficultyCalculator_NativeTaikoDifficultyCalculator(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
@@ -4231,14 +5053,14 @@ static napi_value register_class__NativeTaikoDifficultyCalculator(napi_env env)
     return constructor;
 }
 
-static void dtor_NativeMod_NativeMod(napi_env env, void* finalize_data, void* finalize_hint)
+static void dtor_NativeTimedCatchDifficultyAttributes_NativeTimedCatchDifficultyAttributes(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
 
-static napi_ref ctor_NativeMod_NativeMod;
+static napi_ref ctor_NativeTimedCatchDifficultyAttributes_NativeTimedCatchDifficultyAttributes;
 
-// NativeMod::NativeMod
-static napi_value callback_method_NativeMod_NativeMod(napi_env env, napi_callback_info info)
+// NativeTimedCatchDifficultyAttributes::NativeTimedCatchDifficultyAttributes
+static napi_value callback_method_NativeTimedCatchDifficultyAttributes_NativeTimedCatchDifficultyAttributes(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -4257,19 +5079,19 @@ static napi_value callback_method_NativeMod_NativeMod(napi_env env, napi_callbac
         return nullptr;
     }
 
-    NativeMod* instance = nullptr;
+    NativeTimedCatchDifficultyAttributes* instance = nullptr;
 
-    instance = new NativeMod();
+    instance = new NativeTimedCatchDifficultyAttributes();
     napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeMod_NativeMod, nullptr, &result);
+    status = napi_wrap(env, _this, instance, dtor_NativeTimedCatchDifficultyAttributes_NativeTimedCatchDifficultyAttributes, nullptr, &result);
     assert(status == napi_ok);
 
 
     return _this;
 }
 
-// NativeMod::__handle
-static napi_value getter_field_NativeMod_handle(napi_env env, napi_callback_info info)
+// NativeTimedCatchDifficultyAttributes::__time
+static napi_value getter_field_NativeTimedCatchDifficultyAttributes_time(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -4277,27 +5099,17 @@ static napi_value getter_field_NativeMod_handle(napi_env env, napi_callback_info
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeMod* instance;
+    NativeTimedCatchDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    napi_value ____time;
+    status = napi_create_double(env, instance->time, &____time);
     assert(status == napi_ok);
-
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
-    assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
-
-    return ____handle_instance;
+    return ____time;
 }
 
-static napi_value setter_field_NativeMod_handle
+static napi_value setter_field_NativeTimedCatchDifficultyAttributes_time
 (napi_env env, napi_callback_info info)
 {
     napi_status status;
@@ -4307,44 +5119,94 @@ static napi_value setter_field_NativeMod_handle
     status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeMod* instance;
+    NativeTimedCatchDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
+    double __time;
+    status = napi_get_value_double(env, args[0], &__time);
+    instance->time = __time;
     return nullptr;
 }
 
-static napi_value register_class__NativeMod(napi_env env)
+// NativeTimedCatchDifficultyAttributes::__attributes
+static napi_value getter_field_NativeTimedCatchDifficultyAttributes_attributes(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeTimedCatchDifficultyAttributes* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____attributes_ctor;
+    status = napi_get_reference_value(env, ctor_NativeCatchDifficultyAttributes_NativeCatchDifficultyAttributes, &____attributes_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____attributes_instance;
+    status = napi_new_instance(env, ____attributes_ctor, 0, nullptr, &____attributes_instance);
+    assert(status == napi_ok);
+
+    NativeCatchDifficultyAttributes* ____attributes_native;
+    status = napi_unwrap(env, ____attributes_instance, (void**) &____attributes_native);
+    assert(status == napi_ok);
+    *____attributes_native = *&instance->attributes;
+
+    return ____attributes_instance;
+}
+
+static napi_value setter_field_NativeTimedCatchDifficultyAttributes_attributes
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeTimedCatchDifficultyAttributes* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    NativeCatchDifficultyAttributes* __attributes_instance;
+    status = napi_unwrap(env, args[0], (void**) &__attributes_instance);
+    instance->attributes = *__attributes_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeTimedCatchDifficultyAttributes(napi_env env)
 {
     napi_status status;
     napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
     napi_property_descriptor props[] =
     {
         // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeMod_handle, setter_field_NativeMod_handle, nullptr, attributes, nullptr },
+        { "time", nullptr, nullptr, getter_field_NativeTimedCatchDifficultyAttributes_time, setter_field_NativeTimedCatchDifficultyAttributes_time, nullptr, attributes, nullptr },
+        { "attributes", nullptr, nullptr, getter_field_NativeTimedCatchDifficultyAttributes_attributes, setter_field_NativeTimedCatchDifficultyAttributes_attributes, nullptr, attributes, nullptr },
     };
 
     napi_value constructor;
-    status = napi_define_class(env, "NativeMod", NAPI_AUTO_LENGTH, callback_method_NativeMod_NativeMod, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    status = napi_define_class(env, "NativeTimedCatchDifficultyAttributes", NAPI_AUTO_LENGTH, callback_method_NativeTimedCatchDifficultyAttributes_NativeTimedCatchDifficultyAttributes, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
     assert(status == napi_ok);
 
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeMod_NativeMod);
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeTimedCatchDifficultyAttributes_NativeTimedCatchDifficultyAttributes);
     assert(status == napi_ok);
 
     return constructor;
 }
 
-static void dtor_NativeModsCollection_NativeModsCollection(napi_env env, void* finalize_data, void* finalize_hint)
+static void dtor_NativeTimedManiaDifficultyAttributes_NativeTimedManiaDifficultyAttributes(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
 
-static napi_ref ctor_NativeModsCollection_NativeModsCollection;
+static napi_ref ctor_NativeTimedManiaDifficultyAttributes_NativeTimedManiaDifficultyAttributes;
 
-// NativeModsCollection::NativeModsCollection
-static napi_value callback_method_NativeModsCollection_NativeModsCollection(napi_env env, napi_callback_info info)
+// NativeTimedManiaDifficultyAttributes::NativeTimedManiaDifficultyAttributes
+static napi_value callback_method_NativeTimedManiaDifficultyAttributes_NativeTimedManiaDifficultyAttributes(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -4363,19 +5225,19 @@ static napi_value callback_method_NativeModsCollection_NativeModsCollection(napi
         return nullptr;
     }
 
-    NativeModsCollection* instance = nullptr;
+    NativeTimedManiaDifficultyAttributes* instance = nullptr;
 
-    instance = new NativeModsCollection();
+    instance = new NativeTimedManiaDifficultyAttributes();
     napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeModsCollection_NativeModsCollection, nullptr, &result);
+    status = napi_wrap(env, _this, instance, dtor_NativeTimedManiaDifficultyAttributes_NativeTimedManiaDifficultyAttributes, nullptr, &result);
     assert(status == napi_ok);
 
 
     return _this;
 }
 
-// NativeModsCollection::__handle
-static napi_value getter_field_NativeModsCollection_handle(napi_env env, napi_callback_info info)
+// NativeTimedManiaDifficultyAttributes::__time
+static napi_value getter_field_NativeTimedManiaDifficultyAttributes_time(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -4383,27 +5245,17 @@ static napi_value getter_field_NativeModsCollection_handle(napi_env env, napi_ca
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeModsCollection* instance;
+    NativeTimedManiaDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    napi_value ____time;
+    status = napi_create_double(env, instance->time, &____time);
     assert(status == napi_ok);
-
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
-    assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
-
-    return ____handle_instance;
+    return ____time;
 }
 
-static napi_value setter_field_NativeModsCollection_handle
+static napi_value setter_field_NativeTimedManiaDifficultyAttributes_time
 (napi_env env, napi_callback_info info)
 {
     napi_status status;
@@ -4413,44 +5265,94 @@ static napi_value setter_field_NativeModsCollection_handle
     status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeModsCollection* instance;
+    NativeTimedManiaDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
+    double __time;
+    status = napi_get_value_double(env, args[0], &__time);
+    instance->time = __time;
     return nullptr;
 }
 
-static napi_value register_class__NativeModsCollection(napi_env env)
+// NativeTimedManiaDifficultyAttributes::__attributes
+static napi_value getter_field_NativeTimedManiaDifficultyAttributes_attributes(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeTimedManiaDifficultyAttributes* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____attributes_ctor;
+    status = napi_get_reference_value(env, ctor_NativeManiaDifficultyAttributes_NativeManiaDifficultyAttributes, &____attributes_ctor);
+    assert(status == napi_ok);
+
+    napi_value ____attributes_instance;
+    status = napi_new_instance(env, ____attributes_ctor, 0, nullptr, &____attributes_instance);
+    assert(status == napi_ok);
+
+    NativeManiaDifficultyAttributes* ____attributes_native;
+    status = napi_unwrap(env, ____attributes_instance, (void**) &____attributes_native);
+    assert(status == napi_ok);
+    *____attributes_native = *&instance->attributes;
+
+    return ____attributes_instance;
+}
+
+static napi_value setter_field_NativeTimedManiaDifficultyAttributes_attributes
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeTimedManiaDifficultyAttributes* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    NativeManiaDifficultyAttributes* __attributes_instance;
+    status = napi_unwrap(env, args[0], (void**) &__attributes_instance);
+    instance->attributes = *__attributes_instance;
+    return nullptr;
+}
+
+static napi_value register_class__NativeTimedManiaDifficultyAttributes(napi_env env)
 {
     napi_status status;
     napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
     napi_property_descriptor props[] =
     {
         // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeModsCollection_handle, setter_field_NativeModsCollection_handle, nullptr, attributes, nullptr },
+        { "time", nullptr, nullptr, getter_field_NativeTimedManiaDifficultyAttributes_time, setter_field_NativeTimedManiaDifficultyAttributes_time, nullptr, attributes, nullptr },
+        { "attributes", nullptr, nullptr, getter_field_NativeTimedManiaDifficultyAttributes_attributes, setter_field_NativeTimedManiaDifficultyAttributes_attributes, nullptr, attributes, nullptr },
     };
 
     napi_value constructor;
-    status = napi_define_class(env, "NativeModsCollection", NAPI_AUTO_LENGTH, callback_method_NativeModsCollection_NativeModsCollection, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    status = napi_define_class(env, "NativeTimedManiaDifficultyAttributes", NAPI_AUTO_LENGTH, callback_method_NativeTimedManiaDifficultyAttributes_NativeTimedManiaDifficultyAttributes, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
     assert(status == napi_ok);
 
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeModsCollection_NativeModsCollection);
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeTimedManiaDifficultyAttributes_NativeTimedManiaDifficultyAttributes);
     assert(status == napi_ok);
 
     return constructor;
 }
 
-static void dtor_NativeRuleset_NativeRuleset(napi_env env, void* finalize_data, void* finalize_hint)
+static void dtor_NativeTimedOsuDifficultyAttributes_NativeTimedOsuDifficultyAttributes(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
 
-static napi_ref ctor_NativeRuleset_NativeRuleset;
+static napi_ref ctor_NativeTimedOsuDifficultyAttributes_NativeTimedOsuDifficultyAttributes;
 
-// NativeRuleset::NativeRuleset
-static napi_value callback_method_NativeRuleset_NativeRuleset(napi_env env, napi_callback_info info)
+// NativeTimedOsuDifficultyAttributes::NativeTimedOsuDifficultyAttributes
+static napi_value callback_method_NativeTimedOsuDifficultyAttributes_NativeTimedOsuDifficultyAttributes(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -4469,19 +5371,19 @@ static napi_value callback_method_NativeRuleset_NativeRuleset(napi_env env, napi
         return nullptr;
     }
 
-    NativeRuleset* instance = nullptr;
+    NativeTimedOsuDifficultyAttributes* instance = nullptr;
 
-    instance = new NativeRuleset();
+    instance = new NativeTimedOsuDifficultyAttributes();
     napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeRuleset_NativeRuleset, nullptr, &result);
+    status = napi_wrap(env, _this, instance, dtor_NativeTimedOsuDifficultyAttributes_NativeTimedOsuDifficultyAttributes, nullptr, &result);
     assert(status == napi_ok);
 
 
     return _this;
 }
 
-// NativeRuleset::__handle
-static napi_value getter_field_NativeRuleset_handle(napi_env env, napi_callback_info info)
+// NativeTimedOsuDifficultyAttributes::__time
+static napi_value getter_field_NativeTimedOsuDifficultyAttributes_time(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -4489,27 +5391,17 @@ static napi_value getter_field_NativeRuleset_handle(napi_env env, napi_callback_
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeRuleset* instance;
+    NativeTimedOsuDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    napi_value ____time;
+    status = napi_create_double(env, instance->time, &____time);
     assert(status == napi_ok);
-
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
-    assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
-
-    return ____handle_instance;
+    return ____time;
 }
 
-static napi_value setter_field_NativeRuleset_handle
+static napi_value setter_field_NativeTimedOsuDifficultyAttributes_time
 (napi_env env, napi_callback_info info)
 {
     napi_status status;
@@ -4519,18 +5411,18 @@ static napi_value setter_field_NativeRuleset_handle
     status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeRuleset* instance;
+    NativeTimedOsuDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
+    double __time;
+    status = napi_get_value_double(env, args[0], &__time);
+    instance->time = __time;
     return nullptr;
 }
 
-// NativeRuleset::__rulesetId
-static napi_value getter_field_NativeRuleset_rulesetId(napi_env env, napi_callback_info info)
+// NativeTimedOsuDifficultyAttributes::__attributes
+static napi_value getter_field_NativeTimedOsuDifficultyAttributes_attributes(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -4538,17 +5430,27 @@ static napi_value getter_field_NativeRuleset_rulesetId(napi_env env, napi_callba
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeRuleset* instance;
+    NativeTimedOsuDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    napi_value ____rulesetId;
-    status = napi_create_int32(env, instance->rulesetId, &____rulesetId);
+    napi_value ____attributes_ctor;
+    status = napi_get_reference_value(env, ctor_NativeOsuDifficultyAttributes_NativeOsuDifficultyAttributes, &____attributes_ctor);
     assert(status == napi_ok);
-    return ____rulesetId;
+
+    napi_value ____attributes_instance;
+    status = napi_new_instance(env, ____attributes_ctor, 0, nullptr, &____attributes_instance);
+    assert(status == napi_ok);
+
+    NativeOsuDifficultyAttributes* ____attributes_native;
+    status = napi_unwrap(env, ____attributes_instance, (void**) &____attributes_native);
+    assert(status == napi_ok);
+    *____attributes_native = *&instance->attributes;
+
+    return ____attributes_instance;
 }
 
-static napi_value setter_field_NativeRuleset_rulesetId
+static napi_value setter_field_NativeTimedOsuDifficultyAttributes_attributes
 (napi_env env, napi_callback_info info)
 {
     napi_status status;
@@ -4558,45 +5460,45 @@ static napi_value setter_field_NativeRuleset_rulesetId
     status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeRuleset* instance;
+    NativeTimedOsuDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    int32_t __rulesetId;
-    status = napi_get_value_int32(env, args[0], &__rulesetId);
-    instance->rulesetId = (::int32_t)__rulesetId;
+    NativeOsuDifficultyAttributes* __attributes_instance;
+    status = napi_unwrap(env, args[0], (void**) &__attributes_instance);
+    instance->attributes = *__attributes_instance;
     return nullptr;
 }
 
-static napi_value register_class__NativeRuleset(napi_env env)
+static napi_value register_class__NativeTimedOsuDifficultyAttributes(napi_env env)
 {
     napi_status status;
     napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
     napi_property_descriptor props[] =
     {
         // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeRuleset_handle, setter_field_NativeRuleset_handle, nullptr, attributes, nullptr },
-        { "rulesetId", nullptr, nullptr, getter_field_NativeRuleset_rulesetId, setter_field_NativeRuleset_rulesetId, nullptr, attributes, nullptr },
+        { "time", nullptr, nullptr, getter_field_NativeTimedOsuDifficultyAttributes_time, setter_field_NativeTimedOsuDifficultyAttributes_time, nullptr, attributes, nullptr },
+        { "attributes", nullptr, nullptr, getter_field_NativeTimedOsuDifficultyAttributes_attributes, setter_field_NativeTimedOsuDifficultyAttributes_attributes, nullptr, attributes, nullptr },
     };
 
     napi_value constructor;
-    status = napi_define_class(env, "NativeRuleset", NAPI_AUTO_LENGTH, callback_method_NativeRuleset_NativeRuleset, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    status = napi_define_class(env, "NativeTimedOsuDifficultyAttributes", NAPI_AUTO_LENGTH, callback_method_NativeTimedOsuDifficultyAttributes_NativeTimedOsuDifficultyAttributes, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
     assert(status == napi_ok);
 
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeRuleset_NativeRuleset);
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeTimedOsuDifficultyAttributes_NativeTimedOsuDifficultyAttributes);
     assert(status == napi_ok);
 
     return constructor;
 }
 
-static void dtor_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator(napi_env env, void* finalize_data, void* finalize_hint)
+static void dtor_NativeTimedTaikoDifficultyAttributes_NativeTimedTaikoDifficultyAttributes(napi_env env, void* finalize_data, void* finalize_hint)
 {
 }
 
-static napi_ref ctor_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator;
+static napi_ref ctor_NativeTimedTaikoDifficultyAttributes_NativeTimedTaikoDifficultyAttributes;
 
-// NativeCatchPerformanceCalculator::NativeCatchPerformanceCalculator
-static napi_value callback_method_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator(napi_env env, napi_callback_info info)
+// NativeTimedTaikoDifficultyAttributes::NativeTimedTaikoDifficultyAttributes
+static napi_value callback_method_NativeTimedTaikoDifficultyAttributes_NativeTimedTaikoDifficultyAttributes(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -4615,19 +5517,19 @@ static napi_value callback_method_NativeCatchPerformanceCalculator_NativeCatchPe
         return nullptr;
     }
 
-    NativeCatchPerformanceCalculator* instance = nullptr;
+    NativeTimedTaikoDifficultyAttributes* instance = nullptr;
 
-    instance = new NativeCatchPerformanceCalculator();
+    instance = new NativeTimedTaikoDifficultyAttributes();
     napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator, nullptr, &result);
+    status = napi_wrap(env, _this, instance, dtor_NativeTimedTaikoDifficultyAttributes_NativeTimedTaikoDifficultyAttributes, nullptr, &result);
     assert(status == napi_ok);
 
 
     return _this;
 }
 
-// NativeCatchPerformanceCalculator::__handle
-static napi_value getter_field_NativeCatchPerformanceCalculator_handle(napi_env env, napi_callback_info info)
+// NativeTimedTaikoDifficultyAttributes::__time
+static napi_value getter_field_NativeTimedTaikoDifficultyAttributes_time(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -4635,27 +5537,17 @@ static napi_value getter_field_NativeCatchPerformanceCalculator_handle(napi_env 
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeCatchPerformanceCalculator* instance;
+    NativeTimedTaikoDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    napi_value ____time;
+    status = napi_create_double(env, instance->time, &____time);
     assert(status == napi_ok);
-
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
-    assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
-
-    return ____handle_instance;
+    return ____time;
 }
 
-static napi_value setter_field_NativeCatchPerformanceCalculator_handle
+static napi_value setter_field_NativeTimedTaikoDifficultyAttributes_time
 (napi_env env, napi_callback_info info)
 {
     napi_status status;
@@ -4665,44 +5557,18 @@ static napi_value setter_field_NativeCatchPerformanceCalculator_handle
     status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeCatchPerformanceCalculator* instance;
+    NativeTimedTaikoDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
+    double __time;
+    status = napi_get_value_double(env, args[0], &__time);
+    instance->time = __time;
     return nullptr;
 }
 
-static napi_value register_class__NativeCatchPerformanceCalculator(napi_env env)
-{
-    napi_status status;
-    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
-    napi_property_descriptor props[] =
-    {
-        // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeCatchPerformanceCalculator_handle, setter_field_NativeCatchPerformanceCalculator_handle, nullptr, attributes, nullptr },
-    };
-
-    napi_value constructor;
-    status = napi_define_class(env, "NativeCatchPerformanceCalculator", NAPI_AUTO_LENGTH, callback_method_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
-    assert(status == napi_ok);
-
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeCatchPerformanceCalculator_NativeCatchPerformanceCalculator);
-    assert(status == napi_ok);
-
-    return constructor;
-}
-
-static void dtor_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator(napi_env env, void* finalize_data, void* finalize_hint)
-{
-}
-
-static napi_ref ctor_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator;
-
-// NativeManiaPerformanceCalculator::NativeManiaPerformanceCalculator
-static napi_value callback_method_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator(napi_env env, napi_callback_info info)
+// NativeTimedTaikoDifficultyAttributes::__attributes
+static napi_value getter_field_NativeTimedTaikoDifficultyAttributes_attributes(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -4710,58 +5576,27 @@ static napi_value callback_method_NativeManiaPerformanceCalculator_NativeManiaPe
     status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
     assert(status == napi_ok);
 
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc > 0)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    NativeManiaPerformanceCalculator* instance = nullptr;
-
-    instance = new NativeManiaPerformanceCalculator();
-    napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator, nullptr, &result);
-    assert(status == napi_ok);
-
-
-    return _this;
-}
-
-// NativeManiaPerformanceCalculator::__handle
-static napi_value getter_field_NativeManiaPerformanceCalculator_handle(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeManiaPerformanceCalculator* instance;
+    NativeTimedTaikoDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
+    napi_value ____attributes_ctor;
+    status = napi_get_reference_value(env, ctor_NativeTaikoDifficultyAttributes_NativeTaikoDifficultyAttributes, &____attributes_ctor);
     assert(status == napi_ok);
 
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
+    napi_value ____attributes_instance;
+    status = napi_new_instance(env, ____attributes_ctor, 0, nullptr, &____attributes_instance);
     assert(status == napi_ok);
 
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
+    NativeTaikoDifficultyAttributes* ____attributes_native;
+    status = napi_unwrap(env, ____attributes_instance, (void**) &____attributes_native);
     assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
+    *____attributes_native = *&instance->attributes;
 
-    return ____handle_instance;
+    return ____attributes_instance;
 }
 
-static napi_value setter_field_NativeManiaPerformanceCalculator_handle
+static napi_value setter_field_NativeTimedTaikoDifficultyAttributes_attributes
 (napi_env env, napi_callback_info info)
 {
     napi_status status;
@@ -4771,243 +5606,32 @@ static napi_value setter_field_NativeManiaPerformanceCalculator_handle
     status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
     assert(status == napi_ok);
 
-    NativeManiaPerformanceCalculator* instance;
+    NativeTimedTaikoDifficultyAttributes* instance;
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
+    NativeTaikoDifficultyAttributes* __attributes_instance;
+    status = napi_unwrap(env, args[0], (void**) &__attributes_instance);
+    instance->attributes = *__attributes_instance;
     return nullptr;
 }
 
-static napi_value register_class__NativeManiaPerformanceCalculator(napi_env env)
+static napi_value register_class__NativeTimedTaikoDifficultyAttributes(napi_env env)
 {
     napi_status status;
     napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
     napi_property_descriptor props[] =
     {
         // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeManiaPerformanceCalculator_handle, setter_field_NativeManiaPerformanceCalculator_handle, nullptr, attributes, nullptr },
+        { "time", nullptr, nullptr, getter_field_NativeTimedTaikoDifficultyAttributes_time, setter_field_NativeTimedTaikoDifficultyAttributes_time, nullptr, attributes, nullptr },
+        { "attributes", nullptr, nullptr, getter_field_NativeTimedTaikoDifficultyAttributes_attributes, setter_field_NativeTimedTaikoDifficultyAttributes_attributes, nullptr, attributes, nullptr },
     };
 
     napi_value constructor;
-    status = napi_define_class(env, "NativeManiaPerformanceCalculator", NAPI_AUTO_LENGTH, callback_method_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
+    status = napi_define_class(env, "NativeTimedTaikoDifficultyAttributes", NAPI_AUTO_LENGTH, callback_method_NativeTimedTaikoDifficultyAttributes_NativeTimedTaikoDifficultyAttributes, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
     assert(status == napi_ok);
 
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeManiaPerformanceCalculator_NativeManiaPerformanceCalculator);
-    assert(status == napi_ok);
-
-    return constructor;
-}
-
-static void dtor_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator(napi_env env, void* finalize_data, void* finalize_hint)
-{
-}
-
-static napi_ref ctor_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator;
-
-// NativeOsuPerformanceCalculator::NativeOsuPerformanceCalculator
-static napi_value callback_method_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc > 0)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    NativeOsuPerformanceCalculator* instance = nullptr;
-
-    instance = new NativeOsuPerformanceCalculator();
-    napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator, nullptr, &result);
-    assert(status == napi_ok);
-
-
-    return _this;
-}
-
-// NativeOsuPerformanceCalculator::__handle
-static napi_value getter_field_NativeOsuPerformanceCalculator_handle(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeOsuPerformanceCalculator* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
-    assert(status == napi_ok);
-
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
-    assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
-
-    return ____handle_instance;
-}
-
-static napi_value setter_field_NativeOsuPerformanceCalculator_handle
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeOsuPerformanceCalculator* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
-    return nullptr;
-}
-
-static napi_value register_class__NativeOsuPerformanceCalculator(napi_env env)
-{
-    napi_status status;
-    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
-    napi_property_descriptor props[] =
-    {
-        // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeOsuPerformanceCalculator_handle, setter_field_NativeOsuPerformanceCalculator_handle, nullptr, attributes, nullptr },
-    };
-
-    napi_value constructor;
-    status = napi_define_class(env, "NativeOsuPerformanceCalculator", NAPI_AUTO_LENGTH, callback_method_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
-    assert(status == napi_ok);
-
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeOsuPerformanceCalculator_NativeOsuPerformanceCalculator);
-    assert(status == napi_ok);
-
-    return constructor;
-}
-
-static void dtor_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator(napi_env env, void* finalize_data, void* finalize_hint)
-{
-}
-
-static napi_ref ctor_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator;
-
-// NativeTaikoPerformanceCalculator::NativeTaikoPerformanceCalculator
-static napi_value callback_method_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc > 0)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    NativeTaikoPerformanceCalculator* instance = nullptr;
-
-    instance = new NativeTaikoPerformanceCalculator();
-    napi_ref result;
-    status = napi_wrap(env, _this, instance, dtor_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator, nullptr, &result);
-    assert(status == napi_ok);
-
-
-    return _this;
-}
-
-// NativeTaikoPerformanceCalculator::__handle
-static napi_value getter_field_NativeTaikoPerformanceCalculator_handle(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeTaikoPerformanceCalculator* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    napi_value ____handle_ctor;
-    status = napi_get_reference_value(env, ctor_ManagedObjectHandle_ManagedObjectHandle, &____handle_ctor);
-    assert(status == napi_ok);
-
-    napi_value ____handle_instance;
-    status = napi_new_instance(env, ____handle_ctor, 0, nullptr, &____handle_instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* ____handle_native;
-    status = napi_unwrap(env, ____handle_instance, (void**) &____handle_native);
-    assert(status == napi_ok);
-    *____handle_native = *&instance->handle;
-
-    return ____handle_instance;
-}
-
-static napi_value setter_field_NativeTaikoPerformanceCalculator_handle
-(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc = 1;
-    napi_value args[1];
-    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
-    assert(status == napi_ok);
-
-    NativeTaikoPerformanceCalculator* instance;
-    status = napi_unwrap(env, _this, (void**) &instance);
-    assert(status == napi_ok);
-
-    ManagedObjectHandle* __handle_instance;
-    status = napi_unwrap(env, args[0], (void**) &__handle_instance);
-    instance->handle = *__handle_instance;
-    return nullptr;
-}
-
-static napi_value register_class__NativeTaikoPerformanceCalculator(napi_env env)
-{
-    napi_status status;
-    napi_property_attributes attributes = (napi_property_attributes) (napi_default | napi_enumerable);
-    napi_property_descriptor props[] =
-    {
-        // { utf8name, name, method, getter, setter, value, attributes, data }
-        { "handle", nullptr, nullptr, getter_field_NativeTaikoPerformanceCalculator_handle, setter_field_NativeTaikoPerformanceCalculator_handle, nullptr, attributes, nullptr },
-    };
-
-    napi_value constructor;
-    status = napi_define_class(env, "NativeTaikoPerformanceCalculator", NAPI_AUTO_LENGTH, callback_method_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator, nullptr, sizeof(props) / sizeof(props[0]), props, &constructor);
-    assert(status == napi_ok);
-
-    status = napi_create_reference(env, constructor, 1, &ctor_NativeTaikoPerformanceCalculator_NativeTaikoPerformanceCalculator);
+    status = napi_create_reference(env, constructor, 1, &ctor_NativeTimedTaikoDifficultyAttributes_NativeTimedTaikoDifficultyAttributes);
     assert(status == napi_ok);
 
     return constructor;
@@ -5015,28 +5639,32 @@ static napi_value register_class__NativeTaikoPerformanceCalculator(napi_env env)
 
 typedef ::ErrorCode ErrorCode;
 typedef ::ManagedObjectHandle ManagedObjectHandle;
-typedef ::NativeScoreInfo NativeScoreInfo;
-typedef ::NativeCatchPerformanceAttributes NativeCatchPerformanceAttributes;
-typedef ::NativeManiaPerformanceAttributes NativeManiaPerformanceAttributes;
-typedef ::Cabinet__Nullable_double Cabinet__Nullable_double;
-typedef ::NativeOsuPerformanceAttributes NativeOsuPerformanceAttributes;
-typedef ::NativeTaikoPerformanceAttributes NativeTaikoPerformanceAttributes;
-typedef ::NativeCatchDifficultyAttributes NativeCatchDifficultyAttributes;
-typedef ::NativeManiaDifficultyAttributes NativeManiaDifficultyAttributes;
-typedef ::NativeOsuDifficultyAttributes NativeOsuDifficultyAttributes;
-typedef ::NativeTaikoDifficultyAttributes NativeTaikoDifficultyAttributes;
 typedef ::NativeBeatmap NativeBeatmap;
-typedef ::NativeCatchDifficultyCalculator NativeCatchDifficultyCalculator;
-typedef ::NativeManiaDifficultyCalculator NativeManiaDifficultyCalculator;
-typedef ::NativeOsuDifficultyCalculator NativeOsuDifficultyCalculator;
-typedef ::NativeTaikoDifficultyCalculator NativeTaikoDifficultyCalculator;
 typedef ::NativeMod NativeMod;
 typedef ::NativeModsCollection NativeModsCollection;
 typedef ::NativeRuleset NativeRuleset;
+typedef ::NativeScoreInfo NativeScoreInfo;
+typedef ::NativeCatchPerformanceAttributes NativeCatchPerformanceAttributes;
 typedef ::NativeCatchPerformanceCalculator NativeCatchPerformanceCalculator;
+typedef ::NativeManiaPerformanceAttributes NativeManiaPerformanceAttributes;
 typedef ::NativeManiaPerformanceCalculator NativeManiaPerformanceCalculator;
+typedef ::Cabinet__Nullable_double Cabinet__Nullable_double;
+typedef ::NativeOsuPerformanceAttributes NativeOsuPerformanceAttributes;
 typedef ::NativeOsuPerformanceCalculator NativeOsuPerformanceCalculator;
+typedef ::NativeTaikoPerformanceAttributes NativeTaikoPerformanceAttributes;
 typedef ::NativeTaikoPerformanceCalculator NativeTaikoPerformanceCalculator;
+typedef ::NativeCatchDifficultyAttributes NativeCatchDifficultyAttributes;
+typedef ::NativeCatchDifficultyCalculator NativeCatchDifficultyCalculator;
+typedef ::NativeManiaDifficultyAttributes NativeManiaDifficultyAttributes;
+typedef ::NativeManiaDifficultyCalculator NativeManiaDifficultyCalculator;
+typedef ::NativeOsuDifficultyAttributes NativeOsuDifficultyAttributes;
+typedef ::NativeOsuDifficultyCalculator NativeOsuDifficultyCalculator;
+typedef ::NativeTaikoDifficultyAttributes NativeTaikoDifficultyAttributes;
+typedef ::NativeTaikoDifficultyCalculator NativeTaikoDifficultyCalculator;
+typedef ::NativeTimedCatchDifficultyAttributes NativeTimedCatchDifficultyAttributes;
+typedef ::NativeTimedManiaDifficultyAttributes NativeTimedManiaDifficultyAttributes;
+typedef ::NativeTimedOsuDifficultyAttributes NativeTimedOsuDifficultyAttributes;
+typedef ::NativeTimedTaikoDifficultyAttributes NativeTimedTaikoDifficultyAttributes;
 
 // ErrorHandler_GetLastMessage
 static napi_value callback_function__ErrorHandler_GetLastMessage(napi_env env, napi_callback_info info)
@@ -5108,7 +5736,7 @@ static napi_value callback_function__Beatmap_CreateFromFile(napi_env env, napi_c
         assert(status == napi_ok);
     }
 
-    if (types[0] == napi_string)
+    if (NAPI_IS_NULL(types[0]) || types[0] == napi_string || NAPI_IS_BUFFER(args[0]))
         goto typecheck1;
 
     goto error;
@@ -5125,16 +5753,33 @@ error:
 
     return nullptr;
 
-    // ErrorCode Beatmap_CreateFromFile(const char *filePathPtr,                                       NativeBeatmap *nativeBeatmapPtr)
+    // ErrorCode Beatmap_CreateFromFile(uint8_t* filePathPtr, NativeBeatmap* nativeBeatmapPtr)
 overload0:
     {
-        size_t _filePathPtr_size;
-        status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &_filePathPtr_size);
-
-        char* filePathPtr = (char*) malloc(_filePathPtr_size + 1);
-        status = napi_get_value_string_utf8(env, args[0], filePathPtr, _filePathPtr_size + 1, &_filePathPtr_size);
+        napi_valuetype __filePathPtr_type;
+        status = napi_typeof(env, args[0], &__filePathPtr_type);
         assert(status == napi_ok);
-        auto __arg0 = filePathPtr;
+        bool __filePathPtr_is_buffer = false;
+        status = napi_is_buffer(env, args[0], &__filePathPtr_is_buffer);
+        assert(status == napi_ok);
+        void* __filePathPtr_buffer_data = nullptr;
+        size_t __filePathPtr_buffer_size = 0;
+        if (__filePathPtr_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[0], &__filePathPtr_buffer_data, &__filePathPtr_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __filePathPtr_string_size = 0;
+        char* __filePathPtr_string = nullptr;
+        if (__filePathPtr_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &__filePathPtr_string_size);
+            assert(status == napi_ok);
+            __filePathPtr_string = (char*) malloc(__filePathPtr_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[0], __filePathPtr_string, __filePathPtr_string_size + 1, &__filePathPtr_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg0 = (uint8_t*)(__filePathPtr_type == napi_null ? nullptr : (__filePathPtr_is_buffer ? __filePathPtr_buffer_data : __filePathPtr_string));
 
         NativeBeatmap* nativeBeatmapPtr_instance;
         status = napi_unwrap(env, args[1], (void**) &nativeBeatmapPtr_instance);
@@ -5142,7 +5787,7 @@ overload0:
 
         ErrorCode ___ret = ::Beatmap_CreateFromFile(__arg0, __arg1);
 
-        free(filePathPtr);
+        if (__filePathPtr_string != nullptr) free(__filePathPtr_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -5193,7 +5838,7 @@ static napi_value callback_function__Beatmap_CreateFromText(napi_env env, napi_c
         assert(status == napi_ok);
     }
 
-    if (types[0] == napi_string)
+    if (NAPI_IS_NULL(types[0]) || types[0] == napi_string || NAPI_IS_BUFFER(args[0]))
         goto typecheck1;
 
     goto error;
@@ -5210,16 +5855,33 @@ error:
 
     return nullptr;
 
-    // ErrorCode Beatmap_CreateFromText(const char *beatmapTextPtr,                                       NativeBeatmap *nativeBeatmapPtr)
+    // ErrorCode Beatmap_CreateFromText(uint8_t* beatmapTextPtr, NativeBeatmap* nativeBeatmapPtr)
 overload0:
     {
-        size_t _beatmapTextPtr_size;
-        status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &_beatmapTextPtr_size);
-
-        char* beatmapTextPtr = (char*) malloc(_beatmapTextPtr_size + 1);
-        status = napi_get_value_string_utf8(env, args[0], beatmapTextPtr, _beatmapTextPtr_size + 1, &_beatmapTextPtr_size);
+        napi_valuetype __beatmapTextPtr_type;
+        status = napi_typeof(env, args[0], &__beatmapTextPtr_type);
         assert(status == napi_ok);
-        auto __arg0 = beatmapTextPtr;
+        bool __beatmapTextPtr_is_buffer = false;
+        status = napi_is_buffer(env, args[0], &__beatmapTextPtr_is_buffer);
+        assert(status == napi_ok);
+        void* __beatmapTextPtr_buffer_data = nullptr;
+        size_t __beatmapTextPtr_buffer_size = 0;
+        if (__beatmapTextPtr_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[0], &__beatmapTextPtr_buffer_data, &__beatmapTextPtr_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __beatmapTextPtr_string_size = 0;
+        char* __beatmapTextPtr_string = nullptr;
+        if (__beatmapTextPtr_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &__beatmapTextPtr_string_size);
+            assert(status == napi_ok);
+            __beatmapTextPtr_string = (char*) malloc(__beatmapTextPtr_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[0], __beatmapTextPtr_string, __beatmapTextPtr_string_size + 1, &__beatmapTextPtr_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg0 = (uint8_t*)(__beatmapTextPtr_type == napi_null ? nullptr : (__beatmapTextPtr_is_buffer ? __beatmapTextPtr_buffer_data : __beatmapTextPtr_string));
 
         NativeBeatmap* nativeBeatmapPtr_instance;
         status = napi_unwrap(env, args[1], (void**) &nativeBeatmapPtr_instance);
@@ -5227,7 +5889,7 @@ overload0:
 
         ErrorCode ___ret = ::Beatmap_CreateFromText(__arg0, __arg1);
 
-        free(beatmapTextPtr);
+        if (__beatmapTextPtr_string != nullptr) free(__beatmapTextPtr_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -5284,7 +5946,7 @@ static napi_value callback_function__Beatmap_GetTitle(napi_env env, napi_callbac
     goto error;
 
 typecheck1:
-    if (types[1] == napi_string)
+    if (NAPI_IS_NULL(types[1]) || types[1] == napi_string || NAPI_IS_BUFFER(args[1]))
         goto typecheck2;
 
     goto error;
@@ -5301,20 +5963,37 @@ error:
 
     return nullptr;
 
-    // ErrorCode Beatmap_GetTitle(ManagedObjectHandle beatmapHandle,                                 const char *buffer, int32_t *bufferSize)
+    // ErrorCode Beatmap_GetTitle(ManagedObjectHandle beatmapHandle, uint8_t* buffer, int32_t* bufferSize)
 overload0:
     {
         ManagedObjectHandle* beatmapHandle_instance;
         status = napi_unwrap(env, args[0], (void**) &beatmapHandle_instance);
         auto __arg0 = *beatmapHandle_instance;
 
-        size_t _buffer_size;
-        status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &_buffer_size);
-
-        char* buffer = (char*) malloc(_buffer_size + 1);
-        status = napi_get_value_string_utf8(env, args[1], buffer, _buffer_size + 1, &_buffer_size);
+        napi_valuetype __buffer_type;
+        status = napi_typeof(env, args[1], &__buffer_type);
         assert(status == napi_ok);
-        auto __arg1 = buffer;
+        bool __buffer_is_buffer = false;
+        status = napi_is_buffer(env, args[1], &__buffer_is_buffer);
+        assert(status == napi_ok);
+        void* __buffer_buffer_data = nullptr;
+        size_t __buffer_buffer_size = 0;
+        if (__buffer_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[1], &__buffer_buffer_data, &__buffer_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __buffer_string_size = 0;
+        char* __buffer_string = nullptr;
+        if (__buffer_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &__buffer_string_size);
+            assert(status == napi_ok);
+            __buffer_string = (char*) malloc(__buffer_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[1], __buffer_string, __buffer_string_size + 1, &__buffer_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg1 = (uint8_t*)(__buffer_type == napi_null ? nullptr : (__buffer_is_buffer ? __buffer_buffer_data : __buffer_string));
 
         napi_typedarray_type __bufferSize_typedarray_type;
         size_t __bufferSize_typedarray_length;
@@ -5328,7 +6007,7 @@ overload0:
         int32_t* __arg2 = (int32_t*)__bufferSize_typedarray_data;
         ErrorCode ___ret = ::Beatmap_GetTitle(__arg0, __arg1, __arg2);
 
-        free(buffer);
+        if (__buffer_string != nullptr) free(__buffer_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -5385,7 +6064,7 @@ static napi_value callback_function__Beatmap_GetArtist(napi_env env, napi_callba
     goto error;
 
 typecheck1:
-    if (types[1] == napi_string)
+    if (NAPI_IS_NULL(types[1]) || types[1] == napi_string || NAPI_IS_BUFFER(args[1]))
         goto typecheck2;
 
     goto error;
@@ -5402,20 +6081,37 @@ error:
 
     return nullptr;
 
-    // ErrorCode Beatmap_GetArtist(ManagedObjectHandle beatmapHandle,                                  const char *buffer, int32_t *bufferSize)
+    // ErrorCode Beatmap_GetArtist(ManagedObjectHandle beatmapHandle, uint8_t* buffer, int32_t* bufferSize)
 overload0:
     {
         ManagedObjectHandle* beatmapHandle_instance;
         status = napi_unwrap(env, args[0], (void**) &beatmapHandle_instance);
         auto __arg0 = *beatmapHandle_instance;
 
-        size_t _buffer_size;
-        status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &_buffer_size);
-
-        char* buffer = (char*) malloc(_buffer_size + 1);
-        status = napi_get_value_string_utf8(env, args[1], buffer, _buffer_size + 1, &_buffer_size);
+        napi_valuetype __buffer_type;
+        status = napi_typeof(env, args[1], &__buffer_type);
         assert(status == napi_ok);
-        auto __arg1 = buffer;
+        bool __buffer_is_buffer = false;
+        status = napi_is_buffer(env, args[1], &__buffer_is_buffer);
+        assert(status == napi_ok);
+        void* __buffer_buffer_data = nullptr;
+        size_t __buffer_buffer_size = 0;
+        if (__buffer_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[1], &__buffer_buffer_data, &__buffer_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __buffer_string_size = 0;
+        char* __buffer_string = nullptr;
+        if (__buffer_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &__buffer_string_size);
+            assert(status == napi_ok);
+            __buffer_string = (char*) malloc(__buffer_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[1], __buffer_string, __buffer_string_size + 1, &__buffer_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg1 = (uint8_t*)(__buffer_type == napi_null ? nullptr : (__buffer_is_buffer ? __buffer_buffer_data : __buffer_string));
 
         napi_typedarray_type __bufferSize_typedarray_type;
         size_t __bufferSize_typedarray_length;
@@ -5429,7 +6125,7 @@ overload0:
         int32_t* __arg2 = (int32_t*)__bufferSize_typedarray_data;
         ErrorCode ___ret = ::Beatmap_GetArtist(__arg0, __arg1, __arg2);
 
-        free(buffer);
+        if (__buffer_string != nullptr) free(__buffer_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -5486,7 +6182,7 @@ static napi_value callback_function__Beatmap_GetVersion(napi_env env, napi_callb
     goto error;
 
 typecheck1:
-    if (types[1] == napi_string)
+    if (NAPI_IS_NULL(types[1]) || types[1] == napi_string || NAPI_IS_BUFFER(args[1]))
         goto typecheck2;
 
     goto error;
@@ -5503,20 +6199,37 @@ error:
 
     return nullptr;
 
-    // ErrorCode Beatmap_GetVersion(ManagedObjectHandle beatmapHandle,                                   const char *buffer, int32_t *bufferSize)
+    // ErrorCode Beatmap_GetVersion(ManagedObjectHandle beatmapHandle, uint8_t* buffer, int32_t* bufferSize)
 overload0:
     {
         ManagedObjectHandle* beatmapHandle_instance;
         status = napi_unwrap(env, args[0], (void**) &beatmapHandle_instance);
         auto __arg0 = *beatmapHandle_instance;
 
-        size_t _buffer_size;
-        status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &_buffer_size);
-
-        char* buffer = (char*) malloc(_buffer_size + 1);
-        status = napi_get_value_string_utf8(env, args[1], buffer, _buffer_size + 1, &_buffer_size);
+        napi_valuetype __buffer_type;
+        status = napi_typeof(env, args[1], &__buffer_type);
         assert(status == napi_ok);
-        auto __arg1 = buffer;
+        bool __buffer_is_buffer = false;
+        status = napi_is_buffer(env, args[1], &__buffer_is_buffer);
+        assert(status == napi_ok);
+        void* __buffer_buffer_data = nullptr;
+        size_t __buffer_buffer_size = 0;
+        if (__buffer_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[1], &__buffer_buffer_data, &__buffer_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __buffer_string_size = 0;
+        char* __buffer_string = nullptr;
+        if (__buffer_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &__buffer_string_size);
+            assert(status == napi_ok);
+            __buffer_string = (char*) malloc(__buffer_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[1], __buffer_string, __buffer_string_size + 1, &__buffer_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg1 = (uint8_t*)(__buffer_type == napi_null ? nullptr : (__buffer_is_buffer ? __buffer_buffer_data : __buffer_string));
 
         napi_typedarray_type __bufferSize_typedarray_type;
         size_t __bufferSize_typedarray_length;
@@ -5530,7 +6243,7 @@ overload0:
         int32_t* __arg2 = (int32_t*)__bufferSize_typedarray_data;
         ErrorCode ___ret = ::Beatmap_GetVersion(__arg0, __arg1, __arg2);
 
-        free(buffer);
+        if (__buffer_string != nullptr) free(__buffer_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -5621,1350 +6334,6 @@ static napi_value register_function__Beatmap_Destroy(napi_env env)
     return __Beatmap_Destroy;
 }
 
-// CatchDifficultyCalculator_Create
-static napi_value callback_function__CatchDifficultyCalculator_Create(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 3 || argc > 3)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto typecheck2;
-
-    goto error;
-
-typecheck2:
-    if (NAPI_IS_OBJECT(types[2]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode CatchDifficultyCalculator_Create(    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,    NativeCatchDifficultyCalculator *nativeCatchDifficultyCalculatorPtr)
-overload0:
-    {
-        ManagedObjectHandle* rulesetHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &rulesetHandle_instance);
-        auto __arg0 = *rulesetHandle_instance;
-
-        ManagedObjectHandle* beatmapHandle_instance;
-        status = napi_unwrap(env, args[1], (void**) &beatmapHandle_instance);
-        auto __arg1 = *beatmapHandle_instance;
-
-        NativeCatchDifficultyCalculator* nativeCatchDifficultyCalculatorPtr_instance;
-        status = napi_unwrap(env, args[2], (void**) &nativeCatchDifficultyCalculatorPtr_instance);
-        auto __arg2 = nativeCatchDifficultyCalculatorPtr_instance;
-
-        ErrorCode ___ret = ::CatchDifficultyCalculator_Create(__arg0, __arg1, __arg2);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__CatchDifficultyCalculator_Create(napi_env env)
-{
-    napi_status status;
-    napi_value __CatchDifficultyCalculator_Create;
-    status = napi_create_function(env, "CatchDifficultyCalculator_Create", NAPI_AUTO_LENGTH, callback_function__CatchDifficultyCalculator_Create, 0, &__CatchDifficultyCalculator_Create);
-    assert(status == napi_ok);
-
-    return __CatchDifficultyCalculator_Create;
-}
-
-// CatchDifficultyCalculator_Calculate
-static napi_value callback_function__CatchDifficultyCalculator_Calculate(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 2 || argc > 2)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode CatchDifficultyCalculator_Calculate(    ManagedObjectHandle calcHandle,    NativeCatchDifficultyAttributes *nativeAttributesPtr)
-overload0:
-    {
-        ManagedObjectHandle* calcHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
-        auto __arg0 = *calcHandle_instance;
-
-        NativeCatchDifficultyAttributes* nativeAttributesPtr_instance;
-        status = napi_unwrap(env, args[1], (void**) &nativeAttributesPtr_instance);
-        auto __arg1 = nativeAttributesPtr_instance;
-
-        ErrorCode ___ret = ::CatchDifficultyCalculator_Calculate(__arg0, __arg1);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__CatchDifficultyCalculator_Calculate(napi_env env)
-{
-    napi_status status;
-    napi_value __CatchDifficultyCalculator_Calculate;
-    status = napi_create_function(env, "CatchDifficultyCalculator_Calculate", NAPI_AUTO_LENGTH, callback_function__CatchDifficultyCalculator_Calculate, 0, &__CatchDifficultyCalculator_Calculate);
-    assert(status == napi_ok);
-
-    return __CatchDifficultyCalculator_Calculate;
-}
-
-// CatchDifficultyCalculator_CalculateMods
-static napi_value callback_function__CatchDifficultyCalculator_CalculateMods(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 4 || argc > 4)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto typecheck2;
-
-    goto error;
-
-typecheck2:
-    if (NAPI_IS_OBJECT(types[2]))
-        goto typecheck3;
-
-    goto error;
-
-typecheck3:
-    if (NAPI_IS_OBJECT(types[3]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode CatchDifficultyCalculator_CalculateMods(    ManagedObjectHandle calcHandle, ManagedObjectHandle rulesetHandle,    ManagedObjectHandle modsHandle,    NativeCatchDifficultyAttributes *nativeAttributesPtr)
-overload0:
-    {
-        ManagedObjectHandle* calcHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
-        auto __arg0 = *calcHandle_instance;
-
-        ManagedObjectHandle* rulesetHandle_instance;
-        status = napi_unwrap(env, args[1], (void**) &rulesetHandle_instance);
-        auto __arg1 = *rulesetHandle_instance;
-
-        ManagedObjectHandle* modsHandle_instance;
-        status = napi_unwrap(env, args[2], (void**) &modsHandle_instance);
-        auto __arg2 = *modsHandle_instance;
-
-        NativeCatchDifficultyAttributes* nativeAttributesPtr_instance;
-        status = napi_unwrap(env, args[3], (void**) &nativeAttributesPtr_instance);
-        auto __arg3 = nativeAttributesPtr_instance;
-
-        ErrorCode ___ret = ::CatchDifficultyCalculator_CalculateMods(__arg0, __arg1, __arg2, __arg3);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__CatchDifficultyCalculator_CalculateMods(napi_env env)
-{
-    napi_status status;
-    napi_value __CatchDifficultyCalculator_CalculateMods;
-    status = napi_create_function(env, "CatchDifficultyCalculator_CalculateMods", NAPI_AUTO_LENGTH, callback_function__CatchDifficultyCalculator_CalculateMods, 0, &__CatchDifficultyCalculator_CalculateMods);
-    assert(status == napi_ok);
-
-    return __CatchDifficultyCalculator_CalculateMods;
-}
-
-// CatchDifficultyCalculator_Destroy
-static napi_value callback_function__CatchDifficultyCalculator_Destroy(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 1 || argc > 1)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode CatchDifficultyCalculator_Destroy(ManagedObjectHandle handle)
-overload0:
-    {
-        ManagedObjectHandle* handle_instance;
-        status = napi_unwrap(env, args[0], (void**) &handle_instance);
-        auto __arg0 = *handle_instance;
-
-        ErrorCode ___ret = ::CatchDifficultyCalculator_Destroy(__arg0);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__CatchDifficultyCalculator_Destroy(napi_env env)
-{
-    napi_status status;
-    napi_value __CatchDifficultyCalculator_Destroy;
-    status = napi_create_function(env, "CatchDifficultyCalculator_Destroy", NAPI_AUTO_LENGTH, callback_function__CatchDifficultyCalculator_Destroy, 0, &__CatchDifficultyCalculator_Destroy);
-    assert(status == napi_ok);
-
-    return __CatchDifficultyCalculator_Destroy;
-}
-
-// ManiaDifficultyCalculator_Create
-static napi_value callback_function__ManiaDifficultyCalculator_Create(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 3 || argc > 3)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto typecheck2;
-
-    goto error;
-
-typecheck2:
-    if (NAPI_IS_OBJECT(types[2]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode ManiaDifficultyCalculator_Create(    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,    NativeManiaDifficultyCalculator *nativeManiaDifficultyCalculatorPtr)
-overload0:
-    {
-        ManagedObjectHandle* rulesetHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &rulesetHandle_instance);
-        auto __arg0 = *rulesetHandle_instance;
-
-        ManagedObjectHandle* beatmapHandle_instance;
-        status = napi_unwrap(env, args[1], (void**) &beatmapHandle_instance);
-        auto __arg1 = *beatmapHandle_instance;
-
-        NativeManiaDifficultyCalculator* nativeManiaDifficultyCalculatorPtr_instance;
-        status = napi_unwrap(env, args[2], (void**) &nativeManiaDifficultyCalculatorPtr_instance);
-        auto __arg2 = nativeManiaDifficultyCalculatorPtr_instance;
-
-        ErrorCode ___ret = ::ManiaDifficultyCalculator_Create(__arg0, __arg1, __arg2);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__ManiaDifficultyCalculator_Create(napi_env env)
-{
-    napi_status status;
-    napi_value __ManiaDifficultyCalculator_Create;
-    status = napi_create_function(env, "ManiaDifficultyCalculator_Create", NAPI_AUTO_LENGTH, callback_function__ManiaDifficultyCalculator_Create, 0, &__ManiaDifficultyCalculator_Create);
-    assert(status == napi_ok);
-
-    return __ManiaDifficultyCalculator_Create;
-}
-
-// ManiaDifficultyCalculator_Calculate
-static napi_value callback_function__ManiaDifficultyCalculator_Calculate(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 2 || argc > 2)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode ManiaDifficultyCalculator_Calculate(    ManagedObjectHandle calcHandle,    NativeManiaDifficultyAttributes *nativeAttributesPtr)
-overload0:
-    {
-        ManagedObjectHandle* calcHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
-        auto __arg0 = *calcHandle_instance;
-
-        NativeManiaDifficultyAttributes* nativeAttributesPtr_instance;
-        status = napi_unwrap(env, args[1], (void**) &nativeAttributesPtr_instance);
-        auto __arg1 = nativeAttributesPtr_instance;
-
-        ErrorCode ___ret = ::ManiaDifficultyCalculator_Calculate(__arg0, __arg1);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__ManiaDifficultyCalculator_Calculate(napi_env env)
-{
-    napi_status status;
-    napi_value __ManiaDifficultyCalculator_Calculate;
-    status = napi_create_function(env, "ManiaDifficultyCalculator_Calculate", NAPI_AUTO_LENGTH, callback_function__ManiaDifficultyCalculator_Calculate, 0, &__ManiaDifficultyCalculator_Calculate);
-    assert(status == napi_ok);
-
-    return __ManiaDifficultyCalculator_Calculate;
-}
-
-// ManiaDifficultyCalculator_CalculateMods
-static napi_value callback_function__ManiaDifficultyCalculator_CalculateMods(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 4 || argc > 4)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto typecheck2;
-
-    goto error;
-
-typecheck2:
-    if (NAPI_IS_OBJECT(types[2]))
-        goto typecheck3;
-
-    goto error;
-
-typecheck3:
-    if (NAPI_IS_OBJECT(types[3]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode ManiaDifficultyCalculator_CalculateMods(    ManagedObjectHandle calcHandle, ManagedObjectHandle rulesetHandle,    ManagedObjectHandle modsHandle,    NativeManiaDifficultyAttributes *nativeAttributesPtr)
-overload0:
-    {
-        ManagedObjectHandle* calcHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
-        auto __arg0 = *calcHandle_instance;
-
-        ManagedObjectHandle* rulesetHandle_instance;
-        status = napi_unwrap(env, args[1], (void**) &rulesetHandle_instance);
-        auto __arg1 = *rulesetHandle_instance;
-
-        ManagedObjectHandle* modsHandle_instance;
-        status = napi_unwrap(env, args[2], (void**) &modsHandle_instance);
-        auto __arg2 = *modsHandle_instance;
-
-        NativeManiaDifficultyAttributes* nativeAttributesPtr_instance;
-        status = napi_unwrap(env, args[3], (void**) &nativeAttributesPtr_instance);
-        auto __arg3 = nativeAttributesPtr_instance;
-
-        ErrorCode ___ret = ::ManiaDifficultyCalculator_CalculateMods(__arg0, __arg1, __arg2, __arg3);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__ManiaDifficultyCalculator_CalculateMods(napi_env env)
-{
-    napi_status status;
-    napi_value __ManiaDifficultyCalculator_CalculateMods;
-    status = napi_create_function(env, "ManiaDifficultyCalculator_CalculateMods", NAPI_AUTO_LENGTH, callback_function__ManiaDifficultyCalculator_CalculateMods, 0, &__ManiaDifficultyCalculator_CalculateMods);
-    assert(status == napi_ok);
-
-    return __ManiaDifficultyCalculator_CalculateMods;
-}
-
-// ManiaDifficultyCalculator_Destroy
-static napi_value callback_function__ManiaDifficultyCalculator_Destroy(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 1 || argc > 1)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode ManiaDifficultyCalculator_Destroy(ManagedObjectHandle handle)
-overload0:
-    {
-        ManagedObjectHandle* handle_instance;
-        status = napi_unwrap(env, args[0], (void**) &handle_instance);
-        auto __arg0 = *handle_instance;
-
-        ErrorCode ___ret = ::ManiaDifficultyCalculator_Destroy(__arg0);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__ManiaDifficultyCalculator_Destroy(napi_env env)
-{
-    napi_status status;
-    napi_value __ManiaDifficultyCalculator_Destroy;
-    status = napi_create_function(env, "ManiaDifficultyCalculator_Destroy", NAPI_AUTO_LENGTH, callback_function__ManiaDifficultyCalculator_Destroy, 0, &__ManiaDifficultyCalculator_Destroy);
-    assert(status == napi_ok);
-
-    return __ManiaDifficultyCalculator_Destroy;
-}
-
-// OsuDifficultyCalculator_Create
-static napi_value callback_function__OsuDifficultyCalculator_Create(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 3 || argc > 3)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto typecheck2;
-
-    goto error;
-
-typecheck2:
-    if (NAPI_IS_OBJECT(types[2]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode OsuDifficultyCalculator_Create(    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,    NativeOsuDifficultyCalculator *nativeOsuDifficultyCalculatorPtr)
-overload0:
-    {
-        ManagedObjectHandle* rulesetHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &rulesetHandle_instance);
-        auto __arg0 = *rulesetHandle_instance;
-
-        ManagedObjectHandle* beatmapHandle_instance;
-        status = napi_unwrap(env, args[1], (void**) &beatmapHandle_instance);
-        auto __arg1 = *beatmapHandle_instance;
-
-        NativeOsuDifficultyCalculator* nativeOsuDifficultyCalculatorPtr_instance;
-        status = napi_unwrap(env, args[2], (void**) &nativeOsuDifficultyCalculatorPtr_instance);
-        auto __arg2 = nativeOsuDifficultyCalculatorPtr_instance;
-
-        ErrorCode ___ret = ::OsuDifficultyCalculator_Create(__arg0, __arg1, __arg2);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__OsuDifficultyCalculator_Create(napi_env env)
-{
-    napi_status status;
-    napi_value __OsuDifficultyCalculator_Create;
-    status = napi_create_function(env, "OsuDifficultyCalculator_Create", NAPI_AUTO_LENGTH, callback_function__OsuDifficultyCalculator_Create, 0, &__OsuDifficultyCalculator_Create);
-    assert(status == napi_ok);
-
-    return __OsuDifficultyCalculator_Create;
-}
-
-// OsuDifficultyCalculator_Calculate
-static napi_value callback_function__OsuDifficultyCalculator_Calculate(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 2 || argc > 2)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode OsuDifficultyCalculator_Calculate(    ManagedObjectHandle calcHandle,    NativeOsuDifficultyAttributes *nativeAttributesPtr)
-overload0:
-    {
-        ManagedObjectHandle* calcHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
-        auto __arg0 = *calcHandle_instance;
-
-        NativeOsuDifficultyAttributes* nativeAttributesPtr_instance;
-        status = napi_unwrap(env, args[1], (void**) &nativeAttributesPtr_instance);
-        auto __arg1 = nativeAttributesPtr_instance;
-
-        ErrorCode ___ret = ::OsuDifficultyCalculator_Calculate(__arg0, __arg1);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__OsuDifficultyCalculator_Calculate(napi_env env)
-{
-    napi_status status;
-    napi_value __OsuDifficultyCalculator_Calculate;
-    status = napi_create_function(env, "OsuDifficultyCalculator_Calculate", NAPI_AUTO_LENGTH, callback_function__OsuDifficultyCalculator_Calculate, 0, &__OsuDifficultyCalculator_Calculate);
-    assert(status == napi_ok);
-
-    return __OsuDifficultyCalculator_Calculate;
-}
-
-// OsuDifficultyCalculator_CalculateMods
-static napi_value callback_function__OsuDifficultyCalculator_CalculateMods(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 4 || argc > 4)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto typecheck2;
-
-    goto error;
-
-typecheck2:
-    if (NAPI_IS_OBJECT(types[2]))
-        goto typecheck3;
-
-    goto error;
-
-typecheck3:
-    if (NAPI_IS_OBJECT(types[3]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode OsuDifficultyCalculator_CalculateMods(    ManagedObjectHandle calcHandle, ManagedObjectHandle rulesetHandle,    ManagedObjectHandle modsHandle,    NativeOsuDifficultyAttributes *nativeAttributesPtr)
-overload0:
-    {
-        ManagedObjectHandle* calcHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
-        auto __arg0 = *calcHandle_instance;
-
-        ManagedObjectHandle* rulesetHandle_instance;
-        status = napi_unwrap(env, args[1], (void**) &rulesetHandle_instance);
-        auto __arg1 = *rulesetHandle_instance;
-
-        ManagedObjectHandle* modsHandle_instance;
-        status = napi_unwrap(env, args[2], (void**) &modsHandle_instance);
-        auto __arg2 = *modsHandle_instance;
-
-        NativeOsuDifficultyAttributes* nativeAttributesPtr_instance;
-        status = napi_unwrap(env, args[3], (void**) &nativeAttributesPtr_instance);
-        auto __arg3 = nativeAttributesPtr_instance;
-
-        ErrorCode ___ret = ::OsuDifficultyCalculator_CalculateMods(__arg0, __arg1, __arg2, __arg3);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__OsuDifficultyCalculator_CalculateMods(napi_env env)
-{
-    napi_status status;
-    napi_value __OsuDifficultyCalculator_CalculateMods;
-    status = napi_create_function(env, "OsuDifficultyCalculator_CalculateMods", NAPI_AUTO_LENGTH, callback_function__OsuDifficultyCalculator_CalculateMods, 0, &__OsuDifficultyCalculator_CalculateMods);
-    assert(status == napi_ok);
-
-    return __OsuDifficultyCalculator_CalculateMods;
-}
-
-// OsuDifficultyCalculator_Destroy
-static napi_value callback_function__OsuDifficultyCalculator_Destroy(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 1 || argc > 1)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode OsuDifficultyCalculator_Destroy(ManagedObjectHandle handle)
-overload0:
-    {
-        ManagedObjectHandle* handle_instance;
-        status = napi_unwrap(env, args[0], (void**) &handle_instance);
-        auto __arg0 = *handle_instance;
-
-        ErrorCode ___ret = ::OsuDifficultyCalculator_Destroy(__arg0);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__OsuDifficultyCalculator_Destroy(napi_env env)
-{
-    napi_status status;
-    napi_value __OsuDifficultyCalculator_Destroy;
-    status = napi_create_function(env, "OsuDifficultyCalculator_Destroy", NAPI_AUTO_LENGTH, callback_function__OsuDifficultyCalculator_Destroy, 0, &__OsuDifficultyCalculator_Destroy);
-    assert(status == napi_ok);
-
-    return __OsuDifficultyCalculator_Destroy;
-}
-
-// TaikoDifficultyCalculator_Create
-static napi_value callback_function__TaikoDifficultyCalculator_Create(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 3 || argc > 3)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto typecheck2;
-
-    goto error;
-
-typecheck2:
-    if (NAPI_IS_OBJECT(types[2]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode TaikoDifficultyCalculator_Create(    ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle,    NativeTaikoDifficultyCalculator *nativeTaikoDifficultyCalculatorPtr)
-overload0:
-    {
-        ManagedObjectHandle* rulesetHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &rulesetHandle_instance);
-        auto __arg0 = *rulesetHandle_instance;
-
-        ManagedObjectHandle* beatmapHandle_instance;
-        status = napi_unwrap(env, args[1], (void**) &beatmapHandle_instance);
-        auto __arg1 = *beatmapHandle_instance;
-
-        NativeTaikoDifficultyCalculator* nativeTaikoDifficultyCalculatorPtr_instance;
-        status = napi_unwrap(env, args[2], (void**) &nativeTaikoDifficultyCalculatorPtr_instance);
-        auto __arg2 = nativeTaikoDifficultyCalculatorPtr_instance;
-
-        ErrorCode ___ret = ::TaikoDifficultyCalculator_Create(__arg0, __arg1, __arg2);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__TaikoDifficultyCalculator_Create(napi_env env)
-{
-    napi_status status;
-    napi_value __TaikoDifficultyCalculator_Create;
-    status = napi_create_function(env, "TaikoDifficultyCalculator_Create", NAPI_AUTO_LENGTH, callback_function__TaikoDifficultyCalculator_Create, 0, &__TaikoDifficultyCalculator_Create);
-    assert(status == napi_ok);
-
-    return __TaikoDifficultyCalculator_Create;
-}
-
-// TaikoDifficultyCalculator_Calculate
-static napi_value callback_function__TaikoDifficultyCalculator_Calculate(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 2 || argc > 2)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode TaikoDifficultyCalculator_Calculate(    ManagedObjectHandle calcHandle,    NativeTaikoDifficultyAttributes *nativeAttributesPtr)
-overload0:
-    {
-        ManagedObjectHandle* calcHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
-        auto __arg0 = *calcHandle_instance;
-
-        NativeTaikoDifficultyAttributes* nativeAttributesPtr_instance;
-        status = napi_unwrap(env, args[1], (void**) &nativeAttributesPtr_instance);
-        auto __arg1 = nativeAttributesPtr_instance;
-
-        ErrorCode ___ret = ::TaikoDifficultyCalculator_Calculate(__arg0, __arg1);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__TaikoDifficultyCalculator_Calculate(napi_env env)
-{
-    napi_status status;
-    napi_value __TaikoDifficultyCalculator_Calculate;
-    status = napi_create_function(env, "TaikoDifficultyCalculator_Calculate", NAPI_AUTO_LENGTH, callback_function__TaikoDifficultyCalculator_Calculate, 0, &__TaikoDifficultyCalculator_Calculate);
-    assert(status == napi_ok);
-
-    return __TaikoDifficultyCalculator_Calculate;
-}
-
-// TaikoDifficultyCalculator_CalculateMods
-static napi_value callback_function__TaikoDifficultyCalculator_CalculateMods(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 4 || argc > 4)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto typecheck1;
-
-    goto error;
-
-typecheck1:
-    if (NAPI_IS_OBJECT(types[1]))
-        goto typecheck2;
-
-    goto error;
-
-typecheck2:
-    if (NAPI_IS_OBJECT(types[2]))
-        goto typecheck3;
-
-    goto error;
-
-typecheck3:
-    if (NAPI_IS_OBJECT(types[3]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode TaikoDifficultyCalculator_CalculateMods(    ManagedObjectHandle calcHandle, ManagedObjectHandle rulesetHandle,    ManagedObjectHandle modsHandle,    NativeTaikoDifficultyAttributes *nativeAttributesPtr)
-overload0:
-    {
-        ManagedObjectHandle* calcHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
-        auto __arg0 = *calcHandle_instance;
-
-        ManagedObjectHandle* rulesetHandle_instance;
-        status = napi_unwrap(env, args[1], (void**) &rulesetHandle_instance);
-        auto __arg1 = *rulesetHandle_instance;
-
-        ManagedObjectHandle* modsHandle_instance;
-        status = napi_unwrap(env, args[2], (void**) &modsHandle_instance);
-        auto __arg2 = *modsHandle_instance;
-
-        NativeTaikoDifficultyAttributes* nativeAttributesPtr_instance;
-        status = napi_unwrap(env, args[3], (void**) &nativeAttributesPtr_instance);
-        auto __arg3 = nativeAttributesPtr_instance;
-
-        ErrorCode ___ret = ::TaikoDifficultyCalculator_CalculateMods(__arg0, __arg1, __arg2, __arg3);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__TaikoDifficultyCalculator_CalculateMods(napi_env env)
-{
-    napi_status status;
-    napi_value __TaikoDifficultyCalculator_CalculateMods;
-    status = napi_create_function(env, "TaikoDifficultyCalculator_CalculateMods", NAPI_AUTO_LENGTH, callback_function__TaikoDifficultyCalculator_CalculateMods, 0, &__TaikoDifficultyCalculator_CalculateMods);
-    assert(status == napi_ok);
-
-    return __TaikoDifficultyCalculator_CalculateMods;
-}
-
-// TaikoDifficultyCalculator_Destroy
-static napi_value callback_function__TaikoDifficultyCalculator_Destroy(napi_env env, napi_callback_info info)
-{
-    napi_status status;
-    napi_value _this;
-    size_t argc;
-    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
-    assert(status == napi_ok);
-
-    std::vector<napi_value> args(argc);
-    std::vector<napi_valuetype> types(argc);
-
-    if (argc < 1 || argc > 1)
-    {
-        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
-        assert(status == napi_ok);
-
-        return nullptr;
-    }
-
-    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
-    assert(status == napi_ok);
-
-    for (size_t i = 0; i < argc; i++)
-    {
-        status = napi_typeof(env, args[i], &types[i]);
-        assert(status == napi_ok);
-    }
-
-    if (NAPI_IS_OBJECT(types[0]))
-        goto overload0;
-
-    goto error;
-
-error:
-    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
-    assert(status == napi_ok);
-
-    return nullptr;
-
-    // ErrorCode TaikoDifficultyCalculator_Destroy(ManagedObjectHandle handle)
-overload0:
-    {
-        ManagedObjectHandle* handle_instance;
-        status = napi_unwrap(env, args[0], (void**) &handle_instance);
-        auto __arg0 = *handle_instance;
-
-        ErrorCode ___ret = ::TaikoDifficultyCalculator_Destroy(__arg0);
-
-        napi_value _____ret;
-        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
-        assert(status == napi_ok);
-
-        return _____ret;
-    }
-
-    return nullptr;
-}
-
-static napi_value register_function__TaikoDifficultyCalculator_Destroy(napi_env env)
-{
-    napi_status status;
-    napi_value __TaikoDifficultyCalculator_Destroy;
-    status = napi_create_function(env, "TaikoDifficultyCalculator_Destroy", NAPI_AUTO_LENGTH, callback_function__TaikoDifficultyCalculator_Destroy, 0, &__TaikoDifficultyCalculator_Destroy);
-    assert(status == napi_ok);
-
-    return __TaikoDifficultyCalculator_Destroy;
-}
-
 // Mod_Create
 static napi_value callback_function__Mod_Create(napi_env env, napi_callback_info info)
 {
@@ -6994,7 +6363,7 @@ static napi_value callback_function__Mod_Create(napi_env env, napi_callback_info
         assert(status == napi_ok);
     }
 
-    if (types[0] == napi_string)
+    if (NAPI_IS_NULL(types[0]) || types[0] == napi_string || NAPI_IS_BUFFER(args[0]))
         goto typecheck1;
 
     goto error;
@@ -7011,16 +6380,33 @@ error:
 
     return nullptr;
 
-    // ErrorCode Mod_Create(const char *acronymPtr, NativeMod *nativeModPtr)
+    // ErrorCode Mod_Create(uint8_t* acronymPtr, NativeMod* nativeModPtr)
 overload0:
     {
-        size_t _acronymPtr_size;
-        status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &_acronymPtr_size);
-
-        char* acronymPtr = (char*) malloc(_acronymPtr_size + 1);
-        status = napi_get_value_string_utf8(env, args[0], acronymPtr, _acronymPtr_size + 1, &_acronymPtr_size);
+        napi_valuetype __acronymPtr_type;
+        status = napi_typeof(env, args[0], &__acronymPtr_type);
         assert(status == napi_ok);
-        auto __arg0 = acronymPtr;
+        bool __acronymPtr_is_buffer = false;
+        status = napi_is_buffer(env, args[0], &__acronymPtr_is_buffer);
+        assert(status == napi_ok);
+        void* __acronymPtr_buffer_data = nullptr;
+        size_t __acronymPtr_buffer_size = 0;
+        if (__acronymPtr_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[0], &__acronymPtr_buffer_data, &__acronymPtr_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __acronymPtr_string_size = 0;
+        char* __acronymPtr_string = nullptr;
+        if (__acronymPtr_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &__acronymPtr_string_size);
+            assert(status == napi_ok);
+            __acronymPtr_string = (char*) malloc(__acronymPtr_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[0], __acronymPtr_string, __acronymPtr_string_size + 1, &__acronymPtr_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg0 = (uint8_t*)(__acronymPtr_type == napi_null ? nullptr : (__acronymPtr_is_buffer ? __acronymPtr_buffer_data : __acronymPtr_string));
 
         NativeMod* nativeModPtr_instance;
         status = napi_unwrap(env, args[1], (void**) &nativeModPtr_instance);
@@ -7028,7 +6414,7 @@ overload0:
 
         ErrorCode ___ret = ::Mod_Create(__arg0, __arg1);
 
-        free(acronymPtr);
+        if (__acronymPtr_string != nullptr) free(__acronymPtr_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -7085,7 +6471,7 @@ static napi_value callback_function__Mod_SetSettingBool(napi_env env, napi_callb
     goto error;
 
 typecheck1:
-    if (types[1] == napi_string)
+    if (NAPI_IS_NULL(types[1]) || types[1] == napi_string || NAPI_IS_BUFFER(args[1]))
         goto typecheck2;
 
     goto error;
@@ -7102,20 +6488,37 @@ error:
 
     return nullptr;
 
-    // ErrorCode Mod_SetSettingBool(ManagedObjectHandle modHandle,                                   const char *keyPtr, bool value)
+    // ErrorCode Mod_SetSettingBool(ManagedObjectHandle modHandle, uint8_t* keyPtr, bool value)
 overload0:
     {
         ManagedObjectHandle* modHandle_instance;
         status = napi_unwrap(env, args[0], (void**) &modHandle_instance);
         auto __arg0 = *modHandle_instance;
 
-        size_t _keyPtr_size;
-        status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &_keyPtr_size);
-
-        char* keyPtr = (char*) malloc(_keyPtr_size + 1);
-        status = napi_get_value_string_utf8(env, args[1], keyPtr, _keyPtr_size + 1, &_keyPtr_size);
+        napi_valuetype __keyPtr_type;
+        status = napi_typeof(env, args[1], &__keyPtr_type);
         assert(status == napi_ok);
-        auto __arg1 = keyPtr;
+        bool __keyPtr_is_buffer = false;
+        status = napi_is_buffer(env, args[1], &__keyPtr_is_buffer);
+        assert(status == napi_ok);
+        void* __keyPtr_buffer_data = nullptr;
+        size_t __keyPtr_buffer_size = 0;
+        if (__keyPtr_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[1], &__keyPtr_buffer_data, &__keyPtr_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __keyPtr_string_size = 0;
+        char* __keyPtr_string = nullptr;
+        if (__keyPtr_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &__keyPtr_string_size);
+            assert(status == napi_ok);
+            __keyPtr_string = (char*) malloc(__keyPtr_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[1], __keyPtr_string, __keyPtr_string_size + 1, &__keyPtr_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg1 = (uint8_t*)(__keyPtr_type == napi_null ? nullptr : (__keyPtr_is_buffer ? __keyPtr_buffer_data : __keyPtr_string));
 
         bool value;
         status = napi_get_value_bool(env, args[2], &value);
@@ -7123,7 +6526,7 @@ overload0:
 
         ErrorCode ___ret = ::Mod_SetSettingBool(__arg0, __arg1, __arg2);
 
-        free(keyPtr);
+        if (__keyPtr_string != nullptr) free(__keyPtr_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -7180,7 +6583,7 @@ static napi_value callback_function__Mod_SetSettingInteger(napi_env env, napi_ca
     goto error;
 
 typecheck1:
-    if (types[1] == napi_string)
+    if (NAPI_IS_NULL(types[1]) || types[1] == napi_string || NAPI_IS_BUFFER(args[1]))
         goto typecheck2;
 
     goto error;
@@ -7197,20 +6600,37 @@ error:
 
     return nullptr;
 
-    // ErrorCode Mod_SetSettingInteger(ManagedObjectHandle modHandle,                                      const char *keyPtr, int32_t value)
+    // ErrorCode Mod_SetSettingInteger(ManagedObjectHandle modHandle, uint8_t* keyPtr, int32_t value)
 overload0:
     {
         ManagedObjectHandle* modHandle_instance;
         status = napi_unwrap(env, args[0], (void**) &modHandle_instance);
         auto __arg0 = *modHandle_instance;
 
-        size_t _keyPtr_size;
-        status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &_keyPtr_size);
-
-        char* keyPtr = (char*) malloc(_keyPtr_size + 1);
-        status = napi_get_value_string_utf8(env, args[1], keyPtr, _keyPtr_size + 1, &_keyPtr_size);
+        napi_valuetype __keyPtr_type;
+        status = napi_typeof(env, args[1], &__keyPtr_type);
         assert(status == napi_ok);
-        auto __arg1 = keyPtr;
+        bool __keyPtr_is_buffer = false;
+        status = napi_is_buffer(env, args[1], &__keyPtr_is_buffer);
+        assert(status == napi_ok);
+        void* __keyPtr_buffer_data = nullptr;
+        size_t __keyPtr_buffer_size = 0;
+        if (__keyPtr_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[1], &__keyPtr_buffer_data, &__keyPtr_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __keyPtr_string_size = 0;
+        char* __keyPtr_string = nullptr;
+        if (__keyPtr_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &__keyPtr_string_size);
+            assert(status == napi_ok);
+            __keyPtr_string = (char*) malloc(__keyPtr_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[1], __keyPtr_string, __keyPtr_string_size + 1, &__keyPtr_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg1 = (uint8_t*)(__keyPtr_type == napi_null ? nullptr : (__keyPtr_is_buffer ? __keyPtr_buffer_data : __keyPtr_string));
 
         int32_t value;
         status = napi_get_value_int32(env, args[2], &value);
@@ -7218,7 +6638,7 @@ overload0:
 
         ErrorCode ___ret = ::Mod_SetSettingInteger(__arg0, __arg1, __arg2);
 
-        free(keyPtr);
+        if (__keyPtr_string != nullptr) free(__keyPtr_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -7275,7 +6695,7 @@ static napi_value callback_function__Mod_SetSettingFloat(napi_env env, napi_call
     goto error;
 
 typecheck1:
-    if (types[1] == napi_string)
+    if (NAPI_IS_NULL(types[1]) || types[1] == napi_string || NAPI_IS_BUFFER(args[1]))
         goto typecheck2;
 
     goto error;
@@ -7292,20 +6712,37 @@ error:
 
     return nullptr;
 
-    // ErrorCode Mod_SetSettingFloat(ManagedObjectHandle modHandle,                                    const char *keyPtr, float value)
+    // ErrorCode Mod_SetSettingFloat(ManagedObjectHandle modHandle, uint8_t* keyPtr, float value)
 overload0:
     {
         ManagedObjectHandle* modHandle_instance;
         status = napi_unwrap(env, args[0], (void**) &modHandle_instance);
         auto __arg0 = *modHandle_instance;
 
-        size_t _keyPtr_size;
-        status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &_keyPtr_size);
-
-        char* keyPtr = (char*) malloc(_keyPtr_size + 1);
-        status = napi_get_value_string_utf8(env, args[1], keyPtr, _keyPtr_size + 1, &_keyPtr_size);
+        napi_valuetype __keyPtr_type;
+        status = napi_typeof(env, args[1], &__keyPtr_type);
         assert(status == napi_ok);
-        auto __arg1 = keyPtr;
+        bool __keyPtr_is_buffer = false;
+        status = napi_is_buffer(env, args[1], &__keyPtr_is_buffer);
+        assert(status == napi_ok);
+        void* __keyPtr_buffer_data = nullptr;
+        size_t __keyPtr_buffer_size = 0;
+        if (__keyPtr_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[1], &__keyPtr_buffer_data, &__keyPtr_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __keyPtr_string_size = 0;
+        char* __keyPtr_string = nullptr;
+        if (__keyPtr_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &__keyPtr_string_size);
+            assert(status == napi_ok);
+            __keyPtr_string = (char*) malloc(__keyPtr_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[1], __keyPtr_string, __keyPtr_string_size + 1, &__keyPtr_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg1 = (uint8_t*)(__keyPtr_type == napi_null ? nullptr : (__keyPtr_is_buffer ? __keyPtr_buffer_data : __keyPtr_string));
 
         double value;
         status = napi_get_value_double(env, args[2], &value);
@@ -7313,7 +6750,7 @@ overload0:
 
         ErrorCode ___ret = ::Mod_SetSettingFloat(__arg0, __arg1, __arg2);
 
-        free(keyPtr);
+        if (__keyPtr_string != nullptr) free(__keyPtr_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -7513,7 +6950,7 @@ error:
 
     return nullptr;
 
-    // ErrorCodeModsCollection_Create(NativeModsCollection *nativeModsCollectionPtr)
+    // ErrorCode ModsCollection_Create(NativeModsCollection* nativeModsCollectionPtr)
 overload0:
     {
         NativeModsCollection* nativeModsCollectionPtr_instance;
@@ -7588,12 +7025,12 @@ error:
 
     return nullptr;
 
-    // ErrorCode ModsCollection_Add(ManagedObjectHandle modsHandle,                                   ManagedObjectHandle modHandle)
+    // ErrorCode ModsCollection_Add(ManagedObjectHandle modsCollectionHandle, ManagedObjectHandle modHandle)
 overload0:
     {
-        ManagedObjectHandle* modsHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &modsHandle_instance);
-        auto __arg0 = *modsHandle_instance;
+        ManagedObjectHandle* modsCollectionHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &modsCollectionHandle_instance);
+        auto __arg0 = *modsCollectionHandle_instance;
 
         ManagedObjectHandle* modHandle_instance;
         status = napi_unwrap(env, args[1], (void**) &modHandle_instance);
@@ -7667,12 +7104,12 @@ error:
 
     return nullptr;
 
-    // ErrorCode ModsCollection_Remove(ManagedObjectHandle modsHandle,                                      ManagedObjectHandle modHandle)
+    // ErrorCode ModsCollection_Remove(ManagedObjectHandle modsCollectionHandle, ManagedObjectHandle modHandle)
 overload0:
     {
-        ManagedObjectHandle* modsHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &modsHandle_instance);
-        auto __arg0 = *modsHandle_instance;
+        ManagedObjectHandle* modsCollectionHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &modsCollectionHandle_instance);
+        auto __arg0 = *modsCollectionHandle_instance;
 
         ManagedObjectHandle* modHandle_instance;
         status = napi_unwrap(env, args[1], (void**) &modHandle_instance);
@@ -7740,12 +7177,12 @@ error:
 
     return nullptr;
 
-    // ErrorCode ModsCollection_Debug(ManagedObjectHandle modsHandle)
+    // ErrorCode ModsCollection_Debug(ManagedObjectHandle modsCollectionHandle)
 overload0:
     {
-        ManagedObjectHandle* modsHandle_instance;
-        status = napi_unwrap(env, args[0], (void**) &modsHandle_instance);
-        auto __arg0 = *modsHandle_instance;
+        ManagedObjectHandle* modsCollectionHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &modsCollectionHandle_instance);
+        auto __arg0 = *modsCollectionHandle_instance;
 
         ErrorCode ___ret = ::ModsCollection_Debug(__arg0);
 
@@ -7884,7 +7321,7 @@ error:
 
     return nullptr;
 
-    // ErrorCode Ruleset_CreateFromId(int32_t rulesetId,                                     NativeRuleset *rulesetPtr)
+    // ErrorCode Ruleset_CreateFromId(int32_t rulesetId, NativeRuleset* rulesetPtr)
 overload0:
     {
         int32_t rulesetId;
@@ -7946,7 +7383,7 @@ static napi_value callback_function__Ruleset_CreateFromShortName(napi_env env, n
         assert(status == napi_ok);
     }
 
-    if (types[0] == napi_string)
+    if (NAPI_IS_NULL(types[0]) || types[0] == napi_string || NAPI_IS_BUFFER(args[0]))
         goto typecheck1;
 
     goto error;
@@ -7963,16 +7400,33 @@ error:
 
     return nullptr;
 
-    // ErrorCode Ruleset_CreateFromShortName(const char *shortName,                                            NativeRuleset *rulesetPtr)
+    // ErrorCode Ruleset_CreateFromShortName(uint8_t* shortName, NativeRuleset* rulesetPtr)
 overload0:
     {
-        size_t _shortName_size;
-        status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &_shortName_size);
-
-        char* shortName = (char*) malloc(_shortName_size + 1);
-        status = napi_get_value_string_utf8(env, args[0], shortName, _shortName_size + 1, &_shortName_size);
+        napi_valuetype __shortName_type;
+        status = napi_typeof(env, args[0], &__shortName_type);
         assert(status == napi_ok);
-        auto __arg0 = shortName;
+        bool __shortName_is_buffer = false;
+        status = napi_is_buffer(env, args[0], &__shortName_is_buffer);
+        assert(status == napi_ok);
+        void* __shortName_buffer_data = nullptr;
+        size_t __shortName_buffer_size = 0;
+        if (__shortName_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[0], &__shortName_buffer_data, &__shortName_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __shortName_string_size = 0;
+        char* __shortName_string = nullptr;
+        if (__shortName_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &__shortName_string_size);
+            assert(status == napi_ok);
+            __shortName_string = (char*) malloc(__shortName_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[0], __shortName_string, __shortName_string_size + 1, &__shortName_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg0 = (uint8_t*)(__shortName_type == napi_null ? nullptr : (__shortName_is_buffer ? __shortName_buffer_data : __shortName_string));
 
         NativeRuleset* rulesetPtr_instance;
         status = napi_unwrap(env, args[1], (void**) &rulesetPtr_instance);
@@ -7980,7 +7434,7 @@ overload0:
 
         ErrorCode ___ret = ::Ruleset_CreateFromShortName(__arg0, __arg1);
 
-        free(shortName);
+        if (__shortName_string != nullptr) free(__shortName_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -8037,7 +7491,7 @@ static napi_value callback_function__Ruleset_GetShortName(napi_env env, napi_cal
     goto error;
 
 typecheck1:
-    if (types[1] == napi_string)
+    if (NAPI_IS_NULL(types[1]) || types[1] == napi_string || NAPI_IS_BUFFER(args[1]))
         goto typecheck2;
 
     goto error;
@@ -8054,20 +7508,37 @@ error:
 
     return nullptr;
 
-    // ErrorCode Ruleset_GetShortName(ManagedObjectHandle rulesetHandle,                                     const char *buffer, int32_t *bufferSize)
+    // ErrorCode Ruleset_GetShortName(ManagedObjectHandle rulesetHandle, uint8_t* buffer, int32_t* bufferSize)
 overload0:
     {
         ManagedObjectHandle* rulesetHandle_instance;
         status = napi_unwrap(env, args[0], (void**) &rulesetHandle_instance);
         auto __arg0 = *rulesetHandle_instance;
 
-        size_t _buffer_size;
-        status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &_buffer_size);
-
-        char* buffer = (char*) malloc(_buffer_size + 1);
-        status = napi_get_value_string_utf8(env, args[1], buffer, _buffer_size + 1, &_buffer_size);
+        napi_valuetype __buffer_type;
+        status = napi_typeof(env, args[1], &__buffer_type);
         assert(status == napi_ok);
-        auto __arg1 = buffer;
+        bool __buffer_is_buffer = false;
+        status = napi_is_buffer(env, args[1], &__buffer_is_buffer);
+        assert(status == napi_ok);
+        void* __buffer_buffer_data = nullptr;
+        size_t __buffer_buffer_size = 0;
+        if (__buffer_is_buffer)
+        {
+            status = napi_get_buffer_info(env, args[1], &__buffer_buffer_data, &__buffer_buffer_size);
+            assert(status == napi_ok);
+        }
+        size_t __buffer_string_size = 0;
+        char* __buffer_string = nullptr;
+        if (__buffer_type == napi_string)
+        {
+            status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &__buffer_string_size);
+            assert(status == napi_ok);
+            __buffer_string = (char*) malloc(__buffer_string_size + 1);
+            status = napi_get_value_string_utf8(env, args[1], __buffer_string, __buffer_string_size + 1, &__buffer_string_size);
+            assert(status == napi_ok);
+        }
+        auto __arg1 = (uint8_t*)(__buffer_type == napi_null ? nullptr : (__buffer_is_buffer ? __buffer_buffer_data : __buffer_string));
 
         napi_typedarray_type __bufferSize_typedarray_type;
         size_t __bufferSize_typedarray_length;
@@ -8081,7 +7552,7 @@ overload0:
         int32_t* __arg2 = (int32_t*)__bufferSize_typedarray_data;
         ErrorCode ___ret = ::Ruleset_GetShortName(__arg0, __arg1, __arg2);
 
-        free(buffer);
+        if (__buffer_string != nullptr) free(__buffer_string);
 
         napi_value _____ret;
         status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
@@ -8212,7 +7683,7 @@ error:
 
     return nullptr;
 
-    // ErrorCode CatchPerformanceCalculator_Create(    NativeCatchPerformanceCalculator *nativeCatchPerformanceCalculatorPtr)
+    // ErrorCode CatchPerformanceCalculator_Create(NativeCatchPerformanceCalculator* nativeCatchPerformanceCalculatorPtr)
 overload0:
     {
         NativeCatchPerformanceCalculator* nativeCatchPerformanceCalculatorPtr_instance;
@@ -8299,7 +7770,7 @@ error:
 
     return nullptr;
 
-    // ErrorCode CatchPerformanceCalculator_Calculate(    ManagedObjectHandle calcHandle, NativeScoreInfo nativeScoreInfo,    NativeCatchDifficultyAttributes nativeDifficultyAttributes,    NativeCatchPerformanceAttributes *nativeAttributesPtr)
+    // ErrorCode CatchPerformanceCalculator_Calculate(ManagedObjectHandle calcHandle, NativeScoreInfo nativeScoreInfo, NativeCatchDifficultyAttributes nativeDifficultyAttributes, NativeCatchPerformanceAttributes* nativeAttributesPtr)
 overload0:
     {
         ManagedObjectHandle* calcHandle_instance;
@@ -8449,7 +7920,7 @@ error:
 
     return nullptr;
 
-    // ErrorCode ManiaPerformanceCalculator_Create(    NativeManiaPerformanceCalculator *nativeManiaPerformanceCalculatorPtr)
+    // ErrorCode ManiaPerformanceCalculator_Create(NativeManiaPerformanceCalculator* nativeManiaPerformanceCalculatorPtr)
 overload0:
     {
         NativeManiaPerformanceCalculator* nativeManiaPerformanceCalculatorPtr_instance;
@@ -8536,7 +8007,7 @@ error:
 
     return nullptr;
 
-    // ErrorCode ManiaPerformanceCalculator_Calculate(    ManagedObjectHandle calcHandle, NativeScoreInfo nativeScoreInfo,    NativeManiaDifficultyAttributes nativeDifficultyAttributes,    NativeManiaPerformanceAttributes *nativeAttributesPtr)
+    // ErrorCode ManiaPerformanceCalculator_Calculate(ManagedObjectHandle calcHandle, NativeScoreInfo nativeScoreInfo, NativeManiaDifficultyAttributes nativeDifficultyAttributes, NativeManiaPerformanceAttributes* nativeAttributesPtr)
 overload0:
     {
         ManagedObjectHandle* calcHandle_instance;
@@ -8686,7 +8157,7 @@ error:
 
     return nullptr;
 
-    // ErrorCode OsuPerformanceCalculator_Create(    NativeOsuPerformanceCalculator *nativeOsuPerformanceCalculatorPtr)
+    // ErrorCode OsuPerformanceCalculator_Create(NativeOsuPerformanceCalculator* nativeOsuPerformanceCalculatorPtr)
 overload0:
     {
         NativeOsuPerformanceCalculator* nativeOsuPerformanceCalculatorPtr_instance;
@@ -8773,7 +8244,7 @@ error:
 
     return nullptr;
 
-    // ErrorCode OsuPerformanceCalculator_Calculate(    ManagedObjectHandle calcHandle, NativeScoreInfo nativeScoreInfo,    NativeOsuDifficultyAttributes nativeDifficultyAttributes,    NativeOsuPerformanceAttributes *nativeAttributesPtr)
+    // ErrorCode OsuPerformanceCalculator_Calculate(ManagedObjectHandle calcHandle, NativeScoreInfo nativeScoreInfo, NativeOsuDifficultyAttributes nativeDifficultyAttributes, NativeOsuPerformanceAttributes* nativeAttributesPtr)
 overload0:
     {
         ManagedObjectHandle* calcHandle_instance;
@@ -8923,7 +8394,7 @@ error:
 
     return nullptr;
 
-    // ErrorCode TaikoPerformanceCalculator_Create(    NativeTaikoPerformanceCalculator *nativeTaikoPerformanceCalculatorPtr)
+    // ErrorCode TaikoPerformanceCalculator_Create(NativeTaikoPerformanceCalculator* nativeTaikoPerformanceCalculatorPtr)
 overload0:
     {
         NativeTaikoPerformanceCalculator* nativeTaikoPerformanceCalculatorPtr_instance;
@@ -9010,7 +8481,7 @@ error:
 
     return nullptr;
 
-    // ErrorCode TaikoPerformanceCalculator_Calculate(    ManagedObjectHandle calcHandle, NativeScoreInfo nativeScoreInfo,    NativeTaikoDifficultyAttributes nativeDifficultyAttributes,    NativeTaikoPerformanceAttributes *nativeAttributesPtr)
+    // ErrorCode TaikoPerformanceCalculator_Calculate(ManagedObjectHandle calcHandle, NativeScoreInfo nativeScoreInfo, NativeTaikoDifficultyAttributes nativeDifficultyAttributes, NativeTaikoPerformanceAttributes* nativeAttributesPtr)
 overload0:
     {
         ManagedObjectHandle* calcHandle_instance;
@@ -9120,6 +8591,2542 @@ static napi_value register_function__TaikoPerformanceCalculator_Destroy(napi_env
     return __TaikoPerformanceCalculator_Destroy;
 }
 
+// CatchDifficultyCalculator_Create
+static napi_value callback_function__CatchDifficultyCalculator_Create(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode CatchDifficultyCalculator_Create(ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle, NativeCatchDifficultyCalculator* nativeCatchDifficultyCalculatorPtr)
+overload0:
+    {
+        ManagedObjectHandle* rulesetHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &rulesetHandle_instance);
+        auto __arg0 = *rulesetHandle_instance;
+
+        ManagedObjectHandle* beatmapHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &beatmapHandle_instance);
+        auto __arg1 = *beatmapHandle_instance;
+
+        NativeCatchDifficultyCalculator* nativeCatchDifficultyCalculatorPtr_instance;
+        status = napi_unwrap(env, args[2], (void**) &nativeCatchDifficultyCalculatorPtr_instance);
+        auto __arg2 = nativeCatchDifficultyCalculatorPtr_instance;
+
+        ErrorCode ___ret = ::CatchDifficultyCalculator_Create(__arg0, __arg1, __arg2);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__CatchDifficultyCalculator_Create(napi_env env)
+{
+    napi_status status;
+    napi_value __CatchDifficultyCalculator_Create;
+    status = napi_create_function(env, "CatchDifficultyCalculator_Create", NAPI_AUTO_LENGTH, callback_function__CatchDifficultyCalculator_Create, 0, &__CatchDifficultyCalculator_Create);
+    assert(status == napi_ok);
+
+    return __CatchDifficultyCalculator_Create;
+}
+
+// CatchDifficultyCalculator_Calculate
+static napi_value callback_function__CatchDifficultyCalculator_Calculate(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 2 || argc > 2)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode CatchDifficultyCalculator_Calculate(ManagedObjectHandle calcHandle, NativeCatchDifficultyAttributes* nativeAttributesPtr)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        NativeCatchDifficultyAttributes* nativeAttributesPtr_instance;
+        status = napi_unwrap(env, args[1], (void**) &nativeAttributesPtr_instance);
+        auto __arg1 = nativeAttributesPtr_instance;
+
+        ErrorCode ___ret = ::CatchDifficultyCalculator_Calculate(__arg0, __arg1);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__CatchDifficultyCalculator_Calculate(napi_env env)
+{
+    napi_status status;
+    napi_value __CatchDifficultyCalculator_Calculate;
+    status = napi_create_function(env, "CatchDifficultyCalculator_Calculate", NAPI_AUTO_LENGTH, callback_function__CatchDifficultyCalculator_Calculate, 0, &__CatchDifficultyCalculator_Calculate);
+    assert(status == napi_ok);
+
+    return __CatchDifficultyCalculator_Calculate;
+}
+
+// CatchDifficultyCalculator_CalculateMods
+static napi_value callback_function__CatchDifficultyCalculator_CalculateMods(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode CatchDifficultyCalculator_CalculateMods(ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle, NativeCatchDifficultyAttributes* nativeAttributesPtr)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        ManagedObjectHandle* modsHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &modsHandle_instance);
+        auto __arg1 = *modsHandle_instance;
+
+        NativeCatchDifficultyAttributes* nativeAttributesPtr_instance;
+        status = napi_unwrap(env, args[2], (void**) &nativeAttributesPtr_instance);
+        auto __arg2 = nativeAttributesPtr_instance;
+
+        ErrorCode ___ret = ::CatchDifficultyCalculator_CalculateMods(__arg0, __arg1, __arg2);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__CatchDifficultyCalculator_CalculateMods(napi_env env)
+{
+    napi_status status;
+    napi_value __CatchDifficultyCalculator_CalculateMods;
+    status = napi_create_function(env, "CatchDifficultyCalculator_CalculateMods", NAPI_AUTO_LENGTH, callback_function__CatchDifficultyCalculator_CalculateMods, 0, &__CatchDifficultyCalculator_CalculateMods);
+    assert(status == napi_ok);
+
+    return __CatchDifficultyCalculator_CalculateMods;
+}
+
+// CatchDifficultyCalculator_CalculateTimed
+static napi_value callback_function__CatchDifficultyCalculator_CalculateTimed(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_NULL(types[1]) || NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode CatchDifficultyCalculator_CalculateTimed(ManagedObjectHandle calcHandle, NativeTimedCatchDifficultyAttributes* nativeTimedAttributesBuffer, int32_t* bufferSize)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        napi_valuetype __nativeTimedAttributesBuffer_type;
+        status = napi_typeof(env, args[1], &__nativeTimedAttributesBuffer_type);
+        assert(status == napi_ok);
+        bool __nativeTimedAttributesBuffer_is_null = __nativeTimedAttributesBuffer_type == napi_null;
+
+        int32_t* __nativeTimedAttributesBuffer_bufferSize_ptr = nullptr;
+        int32_t __nativeTimedAttributesBuffer_buffer_count = 0;
+        std::vector<NativeTimedCatchDifficultyAttributes> __nativeTimedAttributesBuffer_buffer;
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            napi_typedarray_type __nativeTimedAttributesBuffer_bufferSize_typedarray_type;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_length;
+            void* __nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            napi_value __nativeTimedAttributesBuffer_bufferSize_typedarray_buffer;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_offset;
+            status = napi_get_typedarray_info(env, args[2], &__nativeTimedAttributesBuffer_bufferSize_typedarray_type, &__nativeTimedAttributesBuffer_bufferSize_typedarray_length, &__nativeTimedAttributesBuffer_bufferSize_typedarray_data, &__nativeTimedAttributesBuffer_bufferSize_typedarray_buffer, &__nativeTimedAttributesBuffer_bufferSize_typedarray_offset);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_type == napi_int32_array);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_length >= 1);
+            __nativeTimedAttributesBuffer_bufferSize_ptr = (int32_t*)__nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            __nativeTimedAttributesBuffer_buffer_count = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            assert(__nativeTimedAttributesBuffer_buffer_count >= 0);
+
+            bool __nativeTimedAttributesBuffer_is_array = false;
+            status = napi_is_array(env, args[1], &__nativeTimedAttributesBuffer_is_array);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_is_array);
+
+            __nativeTimedAttributesBuffer_buffer.resize((size_t)__nativeTimedAttributesBuffer_buffer_count);
+        }
+
+        auto __arg1 = (NativeTimedCatchDifficultyAttributes*)(__nativeTimedAttributesBuffer_is_null || __nativeTimedAttributesBuffer_buffer_count == 0 ? nullptr : __nativeTimedAttributesBuffer_buffer.data());
+
+        napi_typedarray_type __bufferSize_typedarray_type;
+        size_t __bufferSize_typedarray_length;
+        void* __bufferSize_typedarray_data;
+        napi_value __bufferSize_typedarray_buffer;
+        size_t __bufferSize_typedarray_offset;
+        status = napi_get_typedarray_info(env, args[2], &__bufferSize_typedarray_type, &__bufferSize_typedarray_length, &__bufferSize_typedarray_data, &__bufferSize_typedarray_buffer, &__bufferSize_typedarray_offset);
+        assert(status == napi_ok);
+        assert(__bufferSize_typedarray_type == napi_int32_array);
+        assert(__bufferSize_typedarray_length >= 1);
+        int32_t* __arg2 = (int32_t*)__bufferSize_typedarray_data;
+        ErrorCode ___ret = ::CatchDifficultyCalculator_CalculateTimed(__arg0, __arg1, __arg2);
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            int32_t __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            if (__nativeTimedAttributesBuffer_written < 0) __nativeTimedAttributesBuffer_written = 0;
+            if (__nativeTimedAttributesBuffer_written > __nativeTimedAttributesBuffer_buffer_count) __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_buffer_count;
+
+            napi_value __nativeTimedAttributesBuffer_ctor;
+            status = napi_get_reference_value(env, ctor_NativeTimedCatchDifficultyAttributes_NativeTimedCatchDifficultyAttributes, &__nativeTimedAttributesBuffer_ctor);
+            assert(status == napi_ok);
+
+            for (int32_t i = 0; i < __nativeTimedAttributesBuffer_written; i++)
+            {
+                napi_value __nativeTimedAttributesBuffer_instance;
+                status = napi_new_instance(env, __nativeTimedAttributesBuffer_ctor, 0, nullptr, &__nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+                NativeTimedCatchDifficultyAttributes* __nativeTimedAttributesBuffer_native;
+                status = napi_unwrap(env, __nativeTimedAttributesBuffer_instance, (void**) &__nativeTimedAttributesBuffer_native);
+                assert(status == napi_ok);
+                *__nativeTimedAttributesBuffer_native = __nativeTimedAttributesBuffer_buffer[(size_t)i];
+                status = napi_set_element(env, args[1], (uint32_t)i, __nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+            }
+        }
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__CatchDifficultyCalculator_CalculateTimed(napi_env env)
+{
+    napi_status status;
+    napi_value __CatchDifficultyCalculator_CalculateTimed;
+    status = napi_create_function(env, "CatchDifficultyCalculator_CalculateTimed", NAPI_AUTO_LENGTH, callback_function__CatchDifficultyCalculator_CalculateTimed, 0, &__CatchDifficultyCalculator_CalculateTimed);
+    assert(status == napi_ok);
+
+    return __CatchDifficultyCalculator_CalculateTimed;
+}
+
+// CatchDifficultyCalculator_CalculateModsTimed
+static napi_value callback_function__CatchDifficultyCalculator_CalculateModsTimed(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 4 || argc > 4)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_NULL(types[2]) || NAPI_IS_OBJECT(types[2]))
+        goto typecheck3;
+
+    goto error;
+
+typecheck3:
+    if (NAPI_IS_OBJECT(types[3]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode CatchDifficultyCalculator_CalculateModsTimed(ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle, NativeTimedCatchDifficultyAttributes* nativeTimedAttributesBuffer, int32_t* bufferSize)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        ManagedObjectHandle* modsHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &modsHandle_instance);
+        auto __arg1 = *modsHandle_instance;
+
+        napi_valuetype __nativeTimedAttributesBuffer_type;
+        status = napi_typeof(env, args[2], &__nativeTimedAttributesBuffer_type);
+        assert(status == napi_ok);
+        bool __nativeTimedAttributesBuffer_is_null = __nativeTimedAttributesBuffer_type == napi_null;
+
+        int32_t* __nativeTimedAttributesBuffer_bufferSize_ptr = nullptr;
+        int32_t __nativeTimedAttributesBuffer_buffer_count = 0;
+        std::vector<NativeTimedCatchDifficultyAttributes> __nativeTimedAttributesBuffer_buffer;
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            napi_typedarray_type __nativeTimedAttributesBuffer_bufferSize_typedarray_type;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_length;
+            void* __nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            napi_value __nativeTimedAttributesBuffer_bufferSize_typedarray_buffer;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_offset;
+            status = napi_get_typedarray_info(env, args[3], &__nativeTimedAttributesBuffer_bufferSize_typedarray_type, &__nativeTimedAttributesBuffer_bufferSize_typedarray_length, &__nativeTimedAttributesBuffer_bufferSize_typedarray_data, &__nativeTimedAttributesBuffer_bufferSize_typedarray_buffer, &__nativeTimedAttributesBuffer_bufferSize_typedarray_offset);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_type == napi_int32_array);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_length >= 1);
+            __nativeTimedAttributesBuffer_bufferSize_ptr = (int32_t*)__nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            __nativeTimedAttributesBuffer_buffer_count = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            assert(__nativeTimedAttributesBuffer_buffer_count >= 0);
+
+            bool __nativeTimedAttributesBuffer_is_array = false;
+            status = napi_is_array(env, args[2], &__nativeTimedAttributesBuffer_is_array);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_is_array);
+
+            __nativeTimedAttributesBuffer_buffer.resize((size_t)__nativeTimedAttributesBuffer_buffer_count);
+        }
+
+        auto __arg2 = (NativeTimedCatchDifficultyAttributes*)(__nativeTimedAttributesBuffer_is_null || __nativeTimedAttributesBuffer_buffer_count == 0 ? nullptr : __nativeTimedAttributesBuffer_buffer.data());
+
+        napi_typedarray_type __bufferSize_typedarray_type;
+        size_t __bufferSize_typedarray_length;
+        void* __bufferSize_typedarray_data;
+        napi_value __bufferSize_typedarray_buffer;
+        size_t __bufferSize_typedarray_offset;
+        status = napi_get_typedarray_info(env, args[3], &__bufferSize_typedarray_type, &__bufferSize_typedarray_length, &__bufferSize_typedarray_data, &__bufferSize_typedarray_buffer, &__bufferSize_typedarray_offset);
+        assert(status == napi_ok);
+        assert(__bufferSize_typedarray_type == napi_int32_array);
+        assert(__bufferSize_typedarray_length >= 1);
+        int32_t* __arg3 = (int32_t*)__bufferSize_typedarray_data;
+        ErrorCode ___ret = ::CatchDifficultyCalculator_CalculateModsTimed(__arg0, __arg1, __arg2, __arg3);
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            int32_t __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            if (__nativeTimedAttributesBuffer_written < 0) __nativeTimedAttributesBuffer_written = 0;
+            if (__nativeTimedAttributesBuffer_written > __nativeTimedAttributesBuffer_buffer_count) __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_buffer_count;
+
+            napi_value __nativeTimedAttributesBuffer_ctor;
+            status = napi_get_reference_value(env, ctor_NativeTimedCatchDifficultyAttributes_NativeTimedCatchDifficultyAttributes, &__nativeTimedAttributesBuffer_ctor);
+            assert(status == napi_ok);
+
+            for (int32_t i = 0; i < __nativeTimedAttributesBuffer_written; i++)
+            {
+                napi_value __nativeTimedAttributesBuffer_instance;
+                status = napi_new_instance(env, __nativeTimedAttributesBuffer_ctor, 0, nullptr, &__nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+                NativeTimedCatchDifficultyAttributes* __nativeTimedAttributesBuffer_native;
+                status = napi_unwrap(env, __nativeTimedAttributesBuffer_instance, (void**) &__nativeTimedAttributesBuffer_native);
+                assert(status == napi_ok);
+                *__nativeTimedAttributesBuffer_native = __nativeTimedAttributesBuffer_buffer[(size_t)i];
+                status = napi_set_element(env, args[2], (uint32_t)i, __nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+            }
+        }
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__CatchDifficultyCalculator_CalculateModsTimed(napi_env env)
+{
+    napi_status status;
+    napi_value __CatchDifficultyCalculator_CalculateModsTimed;
+    status = napi_create_function(env, "CatchDifficultyCalculator_CalculateModsTimed", NAPI_AUTO_LENGTH, callback_function__CatchDifficultyCalculator_CalculateModsTimed, 0, &__CatchDifficultyCalculator_CalculateModsTimed);
+    assert(status == napi_ok);
+
+    return __CatchDifficultyCalculator_CalculateModsTimed;
+}
+
+// CatchDifficultyCalculator_Destroy
+static napi_value callback_function__CatchDifficultyCalculator_Destroy(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 1 || argc > 1)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode CatchDifficultyCalculator_Destroy(ManagedObjectHandle handle)
+overload0:
+    {
+        ManagedObjectHandle* handle_instance;
+        status = napi_unwrap(env, args[0], (void**) &handle_instance);
+        auto __arg0 = *handle_instance;
+
+        ErrorCode ___ret = ::CatchDifficultyCalculator_Destroy(__arg0);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__CatchDifficultyCalculator_Destroy(napi_env env)
+{
+    napi_status status;
+    napi_value __CatchDifficultyCalculator_Destroy;
+    status = napi_create_function(env, "CatchDifficultyCalculator_Destroy", NAPI_AUTO_LENGTH, callback_function__CatchDifficultyCalculator_Destroy, 0, &__CatchDifficultyCalculator_Destroy);
+    assert(status == napi_ok);
+
+    return __CatchDifficultyCalculator_Destroy;
+}
+
+// ManiaDifficultyCalculator_Create
+static napi_value callback_function__ManiaDifficultyCalculator_Create(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode ManiaDifficultyCalculator_Create(ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle, NativeManiaDifficultyCalculator* nativeManiaDifficultyCalculatorPtr)
+overload0:
+    {
+        ManagedObjectHandle* rulesetHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &rulesetHandle_instance);
+        auto __arg0 = *rulesetHandle_instance;
+
+        ManagedObjectHandle* beatmapHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &beatmapHandle_instance);
+        auto __arg1 = *beatmapHandle_instance;
+
+        NativeManiaDifficultyCalculator* nativeManiaDifficultyCalculatorPtr_instance;
+        status = napi_unwrap(env, args[2], (void**) &nativeManiaDifficultyCalculatorPtr_instance);
+        auto __arg2 = nativeManiaDifficultyCalculatorPtr_instance;
+
+        ErrorCode ___ret = ::ManiaDifficultyCalculator_Create(__arg0, __arg1, __arg2);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__ManiaDifficultyCalculator_Create(napi_env env)
+{
+    napi_status status;
+    napi_value __ManiaDifficultyCalculator_Create;
+    status = napi_create_function(env, "ManiaDifficultyCalculator_Create", NAPI_AUTO_LENGTH, callback_function__ManiaDifficultyCalculator_Create, 0, &__ManiaDifficultyCalculator_Create);
+    assert(status == napi_ok);
+
+    return __ManiaDifficultyCalculator_Create;
+}
+
+// ManiaDifficultyCalculator_Calculate
+static napi_value callback_function__ManiaDifficultyCalculator_Calculate(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 2 || argc > 2)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode ManiaDifficultyCalculator_Calculate(ManagedObjectHandle calcHandle, NativeManiaDifficultyAttributes* nativeAttributesPtr)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        NativeManiaDifficultyAttributes* nativeAttributesPtr_instance;
+        status = napi_unwrap(env, args[1], (void**) &nativeAttributesPtr_instance);
+        auto __arg1 = nativeAttributesPtr_instance;
+
+        ErrorCode ___ret = ::ManiaDifficultyCalculator_Calculate(__arg0, __arg1);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__ManiaDifficultyCalculator_Calculate(napi_env env)
+{
+    napi_status status;
+    napi_value __ManiaDifficultyCalculator_Calculate;
+    status = napi_create_function(env, "ManiaDifficultyCalculator_Calculate", NAPI_AUTO_LENGTH, callback_function__ManiaDifficultyCalculator_Calculate, 0, &__ManiaDifficultyCalculator_Calculate);
+    assert(status == napi_ok);
+
+    return __ManiaDifficultyCalculator_Calculate;
+}
+
+// ManiaDifficultyCalculator_CalculateMods
+static napi_value callback_function__ManiaDifficultyCalculator_CalculateMods(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode ManiaDifficultyCalculator_CalculateMods(ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle, NativeManiaDifficultyAttributes* nativeAttributesPtr)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        ManagedObjectHandle* modsHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &modsHandle_instance);
+        auto __arg1 = *modsHandle_instance;
+
+        NativeManiaDifficultyAttributes* nativeAttributesPtr_instance;
+        status = napi_unwrap(env, args[2], (void**) &nativeAttributesPtr_instance);
+        auto __arg2 = nativeAttributesPtr_instance;
+
+        ErrorCode ___ret = ::ManiaDifficultyCalculator_CalculateMods(__arg0, __arg1, __arg2);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__ManiaDifficultyCalculator_CalculateMods(napi_env env)
+{
+    napi_status status;
+    napi_value __ManiaDifficultyCalculator_CalculateMods;
+    status = napi_create_function(env, "ManiaDifficultyCalculator_CalculateMods", NAPI_AUTO_LENGTH, callback_function__ManiaDifficultyCalculator_CalculateMods, 0, &__ManiaDifficultyCalculator_CalculateMods);
+    assert(status == napi_ok);
+
+    return __ManiaDifficultyCalculator_CalculateMods;
+}
+
+// ManiaDifficultyCalculator_CalculateTimed
+static napi_value callback_function__ManiaDifficultyCalculator_CalculateTimed(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_NULL(types[1]) || NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode ManiaDifficultyCalculator_CalculateTimed(ManagedObjectHandle calcHandle, NativeTimedManiaDifficultyAttributes* nativeTimedAttributesBuffer, int32_t* bufferSize)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        napi_valuetype __nativeTimedAttributesBuffer_type;
+        status = napi_typeof(env, args[1], &__nativeTimedAttributesBuffer_type);
+        assert(status == napi_ok);
+        bool __nativeTimedAttributesBuffer_is_null = __nativeTimedAttributesBuffer_type == napi_null;
+
+        int32_t* __nativeTimedAttributesBuffer_bufferSize_ptr = nullptr;
+        int32_t __nativeTimedAttributesBuffer_buffer_count = 0;
+        std::vector<NativeTimedManiaDifficultyAttributes> __nativeTimedAttributesBuffer_buffer;
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            napi_typedarray_type __nativeTimedAttributesBuffer_bufferSize_typedarray_type;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_length;
+            void* __nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            napi_value __nativeTimedAttributesBuffer_bufferSize_typedarray_buffer;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_offset;
+            status = napi_get_typedarray_info(env, args[2], &__nativeTimedAttributesBuffer_bufferSize_typedarray_type, &__nativeTimedAttributesBuffer_bufferSize_typedarray_length, &__nativeTimedAttributesBuffer_bufferSize_typedarray_data, &__nativeTimedAttributesBuffer_bufferSize_typedarray_buffer, &__nativeTimedAttributesBuffer_bufferSize_typedarray_offset);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_type == napi_int32_array);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_length >= 1);
+            __nativeTimedAttributesBuffer_bufferSize_ptr = (int32_t*)__nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            __nativeTimedAttributesBuffer_buffer_count = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            assert(__nativeTimedAttributesBuffer_buffer_count >= 0);
+
+            bool __nativeTimedAttributesBuffer_is_array = false;
+            status = napi_is_array(env, args[1], &__nativeTimedAttributesBuffer_is_array);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_is_array);
+
+            __nativeTimedAttributesBuffer_buffer.resize((size_t)__nativeTimedAttributesBuffer_buffer_count);
+        }
+
+        auto __arg1 = (NativeTimedManiaDifficultyAttributes*)(__nativeTimedAttributesBuffer_is_null || __nativeTimedAttributesBuffer_buffer_count == 0 ? nullptr : __nativeTimedAttributesBuffer_buffer.data());
+
+        napi_typedarray_type __bufferSize_typedarray_type;
+        size_t __bufferSize_typedarray_length;
+        void* __bufferSize_typedarray_data;
+        napi_value __bufferSize_typedarray_buffer;
+        size_t __bufferSize_typedarray_offset;
+        status = napi_get_typedarray_info(env, args[2], &__bufferSize_typedarray_type, &__bufferSize_typedarray_length, &__bufferSize_typedarray_data, &__bufferSize_typedarray_buffer, &__bufferSize_typedarray_offset);
+        assert(status == napi_ok);
+        assert(__bufferSize_typedarray_type == napi_int32_array);
+        assert(__bufferSize_typedarray_length >= 1);
+        int32_t* __arg2 = (int32_t*)__bufferSize_typedarray_data;
+        ErrorCode ___ret = ::ManiaDifficultyCalculator_CalculateTimed(__arg0, __arg1, __arg2);
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            int32_t __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            if (__nativeTimedAttributesBuffer_written < 0) __nativeTimedAttributesBuffer_written = 0;
+            if (__nativeTimedAttributesBuffer_written > __nativeTimedAttributesBuffer_buffer_count) __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_buffer_count;
+
+            napi_value __nativeTimedAttributesBuffer_ctor;
+            status = napi_get_reference_value(env, ctor_NativeTimedManiaDifficultyAttributes_NativeTimedManiaDifficultyAttributes, &__nativeTimedAttributesBuffer_ctor);
+            assert(status == napi_ok);
+
+            for (int32_t i = 0; i < __nativeTimedAttributesBuffer_written; i++)
+            {
+                napi_value __nativeTimedAttributesBuffer_instance;
+                status = napi_new_instance(env, __nativeTimedAttributesBuffer_ctor, 0, nullptr, &__nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+                NativeTimedManiaDifficultyAttributes* __nativeTimedAttributesBuffer_native;
+                status = napi_unwrap(env, __nativeTimedAttributesBuffer_instance, (void**) &__nativeTimedAttributesBuffer_native);
+                assert(status == napi_ok);
+                *__nativeTimedAttributesBuffer_native = __nativeTimedAttributesBuffer_buffer[(size_t)i];
+                status = napi_set_element(env, args[1], (uint32_t)i, __nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+            }
+        }
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__ManiaDifficultyCalculator_CalculateTimed(napi_env env)
+{
+    napi_status status;
+    napi_value __ManiaDifficultyCalculator_CalculateTimed;
+    status = napi_create_function(env, "ManiaDifficultyCalculator_CalculateTimed", NAPI_AUTO_LENGTH, callback_function__ManiaDifficultyCalculator_CalculateTimed, 0, &__ManiaDifficultyCalculator_CalculateTimed);
+    assert(status == napi_ok);
+
+    return __ManiaDifficultyCalculator_CalculateTimed;
+}
+
+// ManiaDifficultyCalculator_CalculateModsTimed
+static napi_value callback_function__ManiaDifficultyCalculator_CalculateModsTimed(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 4 || argc > 4)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_NULL(types[2]) || NAPI_IS_OBJECT(types[2]))
+        goto typecheck3;
+
+    goto error;
+
+typecheck3:
+    if (NAPI_IS_OBJECT(types[3]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode ManiaDifficultyCalculator_CalculateModsTimed(ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle, NativeTimedManiaDifficultyAttributes* nativeTimedAttributesBuffer, int32_t* bufferSize)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        ManagedObjectHandle* modsHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &modsHandle_instance);
+        auto __arg1 = *modsHandle_instance;
+
+        napi_valuetype __nativeTimedAttributesBuffer_type;
+        status = napi_typeof(env, args[2], &__nativeTimedAttributesBuffer_type);
+        assert(status == napi_ok);
+        bool __nativeTimedAttributesBuffer_is_null = __nativeTimedAttributesBuffer_type == napi_null;
+
+        int32_t* __nativeTimedAttributesBuffer_bufferSize_ptr = nullptr;
+        int32_t __nativeTimedAttributesBuffer_buffer_count = 0;
+        std::vector<NativeTimedManiaDifficultyAttributes> __nativeTimedAttributesBuffer_buffer;
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            napi_typedarray_type __nativeTimedAttributesBuffer_bufferSize_typedarray_type;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_length;
+            void* __nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            napi_value __nativeTimedAttributesBuffer_bufferSize_typedarray_buffer;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_offset;
+            status = napi_get_typedarray_info(env, args[3], &__nativeTimedAttributesBuffer_bufferSize_typedarray_type, &__nativeTimedAttributesBuffer_bufferSize_typedarray_length, &__nativeTimedAttributesBuffer_bufferSize_typedarray_data, &__nativeTimedAttributesBuffer_bufferSize_typedarray_buffer, &__nativeTimedAttributesBuffer_bufferSize_typedarray_offset);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_type == napi_int32_array);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_length >= 1);
+            __nativeTimedAttributesBuffer_bufferSize_ptr = (int32_t*)__nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            __nativeTimedAttributesBuffer_buffer_count = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            assert(__nativeTimedAttributesBuffer_buffer_count >= 0);
+
+            bool __nativeTimedAttributesBuffer_is_array = false;
+            status = napi_is_array(env, args[2], &__nativeTimedAttributesBuffer_is_array);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_is_array);
+
+            __nativeTimedAttributesBuffer_buffer.resize((size_t)__nativeTimedAttributesBuffer_buffer_count);
+        }
+
+        auto __arg2 = (NativeTimedManiaDifficultyAttributes*)(__nativeTimedAttributesBuffer_is_null || __nativeTimedAttributesBuffer_buffer_count == 0 ? nullptr : __nativeTimedAttributesBuffer_buffer.data());
+
+        napi_typedarray_type __bufferSize_typedarray_type;
+        size_t __bufferSize_typedarray_length;
+        void* __bufferSize_typedarray_data;
+        napi_value __bufferSize_typedarray_buffer;
+        size_t __bufferSize_typedarray_offset;
+        status = napi_get_typedarray_info(env, args[3], &__bufferSize_typedarray_type, &__bufferSize_typedarray_length, &__bufferSize_typedarray_data, &__bufferSize_typedarray_buffer, &__bufferSize_typedarray_offset);
+        assert(status == napi_ok);
+        assert(__bufferSize_typedarray_type == napi_int32_array);
+        assert(__bufferSize_typedarray_length >= 1);
+        int32_t* __arg3 = (int32_t*)__bufferSize_typedarray_data;
+        ErrorCode ___ret = ::ManiaDifficultyCalculator_CalculateModsTimed(__arg0, __arg1, __arg2, __arg3);
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            int32_t __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            if (__nativeTimedAttributesBuffer_written < 0) __nativeTimedAttributesBuffer_written = 0;
+            if (__nativeTimedAttributesBuffer_written > __nativeTimedAttributesBuffer_buffer_count) __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_buffer_count;
+
+            napi_value __nativeTimedAttributesBuffer_ctor;
+            status = napi_get_reference_value(env, ctor_NativeTimedManiaDifficultyAttributes_NativeTimedManiaDifficultyAttributes, &__nativeTimedAttributesBuffer_ctor);
+            assert(status == napi_ok);
+
+            for (int32_t i = 0; i < __nativeTimedAttributesBuffer_written; i++)
+            {
+                napi_value __nativeTimedAttributesBuffer_instance;
+                status = napi_new_instance(env, __nativeTimedAttributesBuffer_ctor, 0, nullptr, &__nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+                NativeTimedManiaDifficultyAttributes* __nativeTimedAttributesBuffer_native;
+                status = napi_unwrap(env, __nativeTimedAttributesBuffer_instance, (void**) &__nativeTimedAttributesBuffer_native);
+                assert(status == napi_ok);
+                *__nativeTimedAttributesBuffer_native = __nativeTimedAttributesBuffer_buffer[(size_t)i];
+                status = napi_set_element(env, args[2], (uint32_t)i, __nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+            }
+        }
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__ManiaDifficultyCalculator_CalculateModsTimed(napi_env env)
+{
+    napi_status status;
+    napi_value __ManiaDifficultyCalculator_CalculateModsTimed;
+    status = napi_create_function(env, "ManiaDifficultyCalculator_CalculateModsTimed", NAPI_AUTO_LENGTH, callback_function__ManiaDifficultyCalculator_CalculateModsTimed, 0, &__ManiaDifficultyCalculator_CalculateModsTimed);
+    assert(status == napi_ok);
+
+    return __ManiaDifficultyCalculator_CalculateModsTimed;
+}
+
+// ManiaDifficultyCalculator_Destroy
+static napi_value callback_function__ManiaDifficultyCalculator_Destroy(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 1 || argc > 1)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode ManiaDifficultyCalculator_Destroy(ManagedObjectHandle handle)
+overload0:
+    {
+        ManagedObjectHandle* handle_instance;
+        status = napi_unwrap(env, args[0], (void**) &handle_instance);
+        auto __arg0 = *handle_instance;
+
+        ErrorCode ___ret = ::ManiaDifficultyCalculator_Destroy(__arg0);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__ManiaDifficultyCalculator_Destroy(napi_env env)
+{
+    napi_status status;
+    napi_value __ManiaDifficultyCalculator_Destroy;
+    status = napi_create_function(env, "ManiaDifficultyCalculator_Destroy", NAPI_AUTO_LENGTH, callback_function__ManiaDifficultyCalculator_Destroy, 0, &__ManiaDifficultyCalculator_Destroy);
+    assert(status == napi_ok);
+
+    return __ManiaDifficultyCalculator_Destroy;
+}
+
+// OsuDifficultyCalculator_Create
+static napi_value callback_function__OsuDifficultyCalculator_Create(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode OsuDifficultyCalculator_Create(ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle, NativeOsuDifficultyCalculator* nativeOsuDifficultyCalculatorPtr)
+overload0:
+    {
+        ManagedObjectHandle* rulesetHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &rulesetHandle_instance);
+        auto __arg0 = *rulesetHandle_instance;
+
+        ManagedObjectHandle* beatmapHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &beatmapHandle_instance);
+        auto __arg1 = *beatmapHandle_instance;
+
+        NativeOsuDifficultyCalculator* nativeOsuDifficultyCalculatorPtr_instance;
+        status = napi_unwrap(env, args[2], (void**) &nativeOsuDifficultyCalculatorPtr_instance);
+        auto __arg2 = nativeOsuDifficultyCalculatorPtr_instance;
+
+        ErrorCode ___ret = ::OsuDifficultyCalculator_Create(__arg0, __arg1, __arg2);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__OsuDifficultyCalculator_Create(napi_env env)
+{
+    napi_status status;
+    napi_value __OsuDifficultyCalculator_Create;
+    status = napi_create_function(env, "OsuDifficultyCalculator_Create", NAPI_AUTO_LENGTH, callback_function__OsuDifficultyCalculator_Create, 0, &__OsuDifficultyCalculator_Create);
+    assert(status == napi_ok);
+
+    return __OsuDifficultyCalculator_Create;
+}
+
+// OsuDifficultyCalculator_Calculate
+static napi_value callback_function__OsuDifficultyCalculator_Calculate(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 2 || argc > 2)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode OsuDifficultyCalculator_Calculate(ManagedObjectHandle calcHandle, NativeOsuDifficultyAttributes* nativeAttributesPtr)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        NativeOsuDifficultyAttributes* nativeAttributesPtr_instance;
+        status = napi_unwrap(env, args[1], (void**) &nativeAttributesPtr_instance);
+        auto __arg1 = nativeAttributesPtr_instance;
+
+        ErrorCode ___ret = ::OsuDifficultyCalculator_Calculate(__arg0, __arg1);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__OsuDifficultyCalculator_Calculate(napi_env env)
+{
+    napi_status status;
+    napi_value __OsuDifficultyCalculator_Calculate;
+    status = napi_create_function(env, "OsuDifficultyCalculator_Calculate", NAPI_AUTO_LENGTH, callback_function__OsuDifficultyCalculator_Calculate, 0, &__OsuDifficultyCalculator_Calculate);
+    assert(status == napi_ok);
+
+    return __OsuDifficultyCalculator_Calculate;
+}
+
+// OsuDifficultyCalculator_CalculateMods
+static napi_value callback_function__OsuDifficultyCalculator_CalculateMods(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode OsuDifficultyCalculator_CalculateMods(ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle, NativeOsuDifficultyAttributes* nativeAttributesPtr)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        ManagedObjectHandle* modsHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &modsHandle_instance);
+        auto __arg1 = *modsHandle_instance;
+
+        NativeOsuDifficultyAttributes* nativeAttributesPtr_instance;
+        status = napi_unwrap(env, args[2], (void**) &nativeAttributesPtr_instance);
+        auto __arg2 = nativeAttributesPtr_instance;
+
+        ErrorCode ___ret = ::OsuDifficultyCalculator_CalculateMods(__arg0, __arg1, __arg2);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__OsuDifficultyCalculator_CalculateMods(napi_env env)
+{
+    napi_status status;
+    napi_value __OsuDifficultyCalculator_CalculateMods;
+    status = napi_create_function(env, "OsuDifficultyCalculator_CalculateMods", NAPI_AUTO_LENGTH, callback_function__OsuDifficultyCalculator_CalculateMods, 0, &__OsuDifficultyCalculator_CalculateMods);
+    assert(status == napi_ok);
+
+    return __OsuDifficultyCalculator_CalculateMods;
+}
+
+// OsuDifficultyCalculator_CalculateTimed
+static napi_value callback_function__OsuDifficultyCalculator_CalculateTimed(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_NULL(types[1]) || NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode OsuDifficultyCalculator_CalculateTimed(ManagedObjectHandle calcHandle, NativeTimedOsuDifficultyAttributes* nativeTimedAttributesBuffer, int32_t* bufferSize)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        napi_valuetype __nativeTimedAttributesBuffer_type;
+        status = napi_typeof(env, args[1], &__nativeTimedAttributesBuffer_type);
+        assert(status == napi_ok);
+        bool __nativeTimedAttributesBuffer_is_null = __nativeTimedAttributesBuffer_type == napi_null;
+
+        int32_t* __nativeTimedAttributesBuffer_bufferSize_ptr = nullptr;
+        int32_t __nativeTimedAttributesBuffer_buffer_count = 0;
+        std::vector<NativeTimedOsuDifficultyAttributes> __nativeTimedAttributesBuffer_buffer;
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            napi_typedarray_type __nativeTimedAttributesBuffer_bufferSize_typedarray_type;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_length;
+            void* __nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            napi_value __nativeTimedAttributesBuffer_bufferSize_typedarray_buffer;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_offset;
+            status = napi_get_typedarray_info(env, args[2], &__nativeTimedAttributesBuffer_bufferSize_typedarray_type, &__nativeTimedAttributesBuffer_bufferSize_typedarray_length, &__nativeTimedAttributesBuffer_bufferSize_typedarray_data, &__nativeTimedAttributesBuffer_bufferSize_typedarray_buffer, &__nativeTimedAttributesBuffer_bufferSize_typedarray_offset);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_type == napi_int32_array);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_length >= 1);
+            __nativeTimedAttributesBuffer_bufferSize_ptr = (int32_t*)__nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            __nativeTimedAttributesBuffer_buffer_count = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            assert(__nativeTimedAttributesBuffer_buffer_count >= 0);
+
+            bool __nativeTimedAttributesBuffer_is_array = false;
+            status = napi_is_array(env, args[1], &__nativeTimedAttributesBuffer_is_array);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_is_array);
+
+            __nativeTimedAttributesBuffer_buffer.resize((size_t)__nativeTimedAttributesBuffer_buffer_count);
+        }
+
+        auto __arg1 = (NativeTimedOsuDifficultyAttributes*)(__nativeTimedAttributesBuffer_is_null || __nativeTimedAttributesBuffer_buffer_count == 0 ? nullptr : __nativeTimedAttributesBuffer_buffer.data());
+
+        napi_typedarray_type __bufferSize_typedarray_type;
+        size_t __bufferSize_typedarray_length;
+        void* __bufferSize_typedarray_data;
+        napi_value __bufferSize_typedarray_buffer;
+        size_t __bufferSize_typedarray_offset;
+        status = napi_get_typedarray_info(env, args[2], &__bufferSize_typedarray_type, &__bufferSize_typedarray_length, &__bufferSize_typedarray_data, &__bufferSize_typedarray_buffer, &__bufferSize_typedarray_offset);
+        assert(status == napi_ok);
+        assert(__bufferSize_typedarray_type == napi_int32_array);
+        assert(__bufferSize_typedarray_length >= 1);
+        int32_t* __arg2 = (int32_t*)__bufferSize_typedarray_data;
+        ErrorCode ___ret = ::OsuDifficultyCalculator_CalculateTimed(__arg0, __arg1, __arg2);
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            int32_t __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            if (__nativeTimedAttributesBuffer_written < 0) __nativeTimedAttributesBuffer_written = 0;
+            if (__nativeTimedAttributesBuffer_written > __nativeTimedAttributesBuffer_buffer_count) __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_buffer_count;
+
+            napi_value __nativeTimedAttributesBuffer_ctor;
+            status = napi_get_reference_value(env, ctor_NativeTimedOsuDifficultyAttributes_NativeTimedOsuDifficultyAttributes, &__nativeTimedAttributesBuffer_ctor);
+            assert(status == napi_ok);
+
+            for (int32_t i = 0; i < __nativeTimedAttributesBuffer_written; i++)
+            {
+                napi_value __nativeTimedAttributesBuffer_instance;
+                status = napi_new_instance(env, __nativeTimedAttributesBuffer_ctor, 0, nullptr, &__nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+                NativeTimedOsuDifficultyAttributes* __nativeTimedAttributesBuffer_native;
+                status = napi_unwrap(env, __nativeTimedAttributesBuffer_instance, (void**) &__nativeTimedAttributesBuffer_native);
+                assert(status == napi_ok);
+                *__nativeTimedAttributesBuffer_native = __nativeTimedAttributesBuffer_buffer[(size_t)i];
+                status = napi_set_element(env, args[1], (uint32_t)i, __nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+            }
+        }
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__OsuDifficultyCalculator_CalculateTimed(napi_env env)
+{
+    napi_status status;
+    napi_value __OsuDifficultyCalculator_CalculateTimed;
+    status = napi_create_function(env, "OsuDifficultyCalculator_CalculateTimed", NAPI_AUTO_LENGTH, callback_function__OsuDifficultyCalculator_CalculateTimed, 0, &__OsuDifficultyCalculator_CalculateTimed);
+    assert(status == napi_ok);
+
+    return __OsuDifficultyCalculator_CalculateTimed;
+}
+
+// OsuDifficultyCalculator_CalculateModsTimed
+static napi_value callback_function__OsuDifficultyCalculator_CalculateModsTimed(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 4 || argc > 4)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_NULL(types[2]) || NAPI_IS_OBJECT(types[2]))
+        goto typecheck3;
+
+    goto error;
+
+typecheck3:
+    if (NAPI_IS_OBJECT(types[3]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode OsuDifficultyCalculator_CalculateModsTimed(ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle, NativeTimedOsuDifficultyAttributes* nativeTimedAttributesBuffer, int32_t* bufferSize)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        ManagedObjectHandle* modsHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &modsHandle_instance);
+        auto __arg1 = *modsHandle_instance;
+
+        napi_valuetype __nativeTimedAttributesBuffer_type;
+        status = napi_typeof(env, args[2], &__nativeTimedAttributesBuffer_type);
+        assert(status == napi_ok);
+        bool __nativeTimedAttributesBuffer_is_null = __nativeTimedAttributesBuffer_type == napi_null;
+
+        int32_t* __nativeTimedAttributesBuffer_bufferSize_ptr = nullptr;
+        int32_t __nativeTimedAttributesBuffer_buffer_count = 0;
+        std::vector<NativeTimedOsuDifficultyAttributes> __nativeTimedAttributesBuffer_buffer;
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            napi_typedarray_type __nativeTimedAttributesBuffer_bufferSize_typedarray_type;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_length;
+            void* __nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            napi_value __nativeTimedAttributesBuffer_bufferSize_typedarray_buffer;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_offset;
+            status = napi_get_typedarray_info(env, args[3], &__nativeTimedAttributesBuffer_bufferSize_typedarray_type, &__nativeTimedAttributesBuffer_bufferSize_typedarray_length, &__nativeTimedAttributesBuffer_bufferSize_typedarray_data, &__nativeTimedAttributesBuffer_bufferSize_typedarray_buffer, &__nativeTimedAttributesBuffer_bufferSize_typedarray_offset);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_type == napi_int32_array);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_length >= 1);
+            __nativeTimedAttributesBuffer_bufferSize_ptr = (int32_t*)__nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            __nativeTimedAttributesBuffer_buffer_count = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            assert(__nativeTimedAttributesBuffer_buffer_count >= 0);
+
+            bool __nativeTimedAttributesBuffer_is_array = false;
+            status = napi_is_array(env, args[2], &__nativeTimedAttributesBuffer_is_array);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_is_array);
+
+            __nativeTimedAttributesBuffer_buffer.resize((size_t)__nativeTimedAttributesBuffer_buffer_count);
+        }
+
+        auto __arg2 = (NativeTimedOsuDifficultyAttributes*)(__nativeTimedAttributesBuffer_is_null || __nativeTimedAttributesBuffer_buffer_count == 0 ? nullptr : __nativeTimedAttributesBuffer_buffer.data());
+
+        napi_typedarray_type __bufferSize_typedarray_type;
+        size_t __bufferSize_typedarray_length;
+        void* __bufferSize_typedarray_data;
+        napi_value __bufferSize_typedarray_buffer;
+        size_t __bufferSize_typedarray_offset;
+        status = napi_get_typedarray_info(env, args[3], &__bufferSize_typedarray_type, &__bufferSize_typedarray_length, &__bufferSize_typedarray_data, &__bufferSize_typedarray_buffer, &__bufferSize_typedarray_offset);
+        assert(status == napi_ok);
+        assert(__bufferSize_typedarray_type == napi_int32_array);
+        assert(__bufferSize_typedarray_length >= 1);
+        int32_t* __arg3 = (int32_t*)__bufferSize_typedarray_data;
+        ErrorCode ___ret = ::OsuDifficultyCalculator_CalculateModsTimed(__arg0, __arg1, __arg2, __arg3);
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            int32_t __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            if (__nativeTimedAttributesBuffer_written < 0) __nativeTimedAttributesBuffer_written = 0;
+            if (__nativeTimedAttributesBuffer_written > __nativeTimedAttributesBuffer_buffer_count) __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_buffer_count;
+
+            napi_value __nativeTimedAttributesBuffer_ctor;
+            status = napi_get_reference_value(env, ctor_NativeTimedOsuDifficultyAttributes_NativeTimedOsuDifficultyAttributes, &__nativeTimedAttributesBuffer_ctor);
+            assert(status == napi_ok);
+
+            for (int32_t i = 0; i < __nativeTimedAttributesBuffer_written; i++)
+            {
+                napi_value __nativeTimedAttributesBuffer_instance;
+                status = napi_new_instance(env, __nativeTimedAttributesBuffer_ctor, 0, nullptr, &__nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+                NativeTimedOsuDifficultyAttributes* __nativeTimedAttributesBuffer_native;
+                status = napi_unwrap(env, __nativeTimedAttributesBuffer_instance, (void**) &__nativeTimedAttributesBuffer_native);
+                assert(status == napi_ok);
+                *__nativeTimedAttributesBuffer_native = __nativeTimedAttributesBuffer_buffer[(size_t)i];
+                status = napi_set_element(env, args[2], (uint32_t)i, __nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+            }
+        }
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__OsuDifficultyCalculator_CalculateModsTimed(napi_env env)
+{
+    napi_status status;
+    napi_value __OsuDifficultyCalculator_CalculateModsTimed;
+    status = napi_create_function(env, "OsuDifficultyCalculator_CalculateModsTimed", NAPI_AUTO_LENGTH, callback_function__OsuDifficultyCalculator_CalculateModsTimed, 0, &__OsuDifficultyCalculator_CalculateModsTimed);
+    assert(status == napi_ok);
+
+    return __OsuDifficultyCalculator_CalculateModsTimed;
+}
+
+// OsuDifficultyCalculator_Destroy
+static napi_value callback_function__OsuDifficultyCalculator_Destroy(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 1 || argc > 1)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode OsuDifficultyCalculator_Destroy(ManagedObjectHandle handle)
+overload0:
+    {
+        ManagedObjectHandle* handle_instance;
+        status = napi_unwrap(env, args[0], (void**) &handle_instance);
+        auto __arg0 = *handle_instance;
+
+        ErrorCode ___ret = ::OsuDifficultyCalculator_Destroy(__arg0);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__OsuDifficultyCalculator_Destroy(napi_env env)
+{
+    napi_status status;
+    napi_value __OsuDifficultyCalculator_Destroy;
+    status = napi_create_function(env, "OsuDifficultyCalculator_Destroy", NAPI_AUTO_LENGTH, callback_function__OsuDifficultyCalculator_Destroy, 0, &__OsuDifficultyCalculator_Destroy);
+    assert(status == napi_ok);
+
+    return __OsuDifficultyCalculator_Destroy;
+}
+
+// TaikoDifficultyCalculator_Create
+static napi_value callback_function__TaikoDifficultyCalculator_Create(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode TaikoDifficultyCalculator_Create(ManagedObjectHandle rulesetHandle, ManagedObjectHandle beatmapHandle, NativeTaikoDifficultyCalculator* nativeTaikoDifficultyCalculatorPtr)
+overload0:
+    {
+        ManagedObjectHandle* rulesetHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &rulesetHandle_instance);
+        auto __arg0 = *rulesetHandle_instance;
+
+        ManagedObjectHandle* beatmapHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &beatmapHandle_instance);
+        auto __arg1 = *beatmapHandle_instance;
+
+        NativeTaikoDifficultyCalculator* nativeTaikoDifficultyCalculatorPtr_instance;
+        status = napi_unwrap(env, args[2], (void**) &nativeTaikoDifficultyCalculatorPtr_instance);
+        auto __arg2 = nativeTaikoDifficultyCalculatorPtr_instance;
+
+        ErrorCode ___ret = ::TaikoDifficultyCalculator_Create(__arg0, __arg1, __arg2);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__TaikoDifficultyCalculator_Create(napi_env env)
+{
+    napi_status status;
+    napi_value __TaikoDifficultyCalculator_Create;
+    status = napi_create_function(env, "TaikoDifficultyCalculator_Create", NAPI_AUTO_LENGTH, callback_function__TaikoDifficultyCalculator_Create, 0, &__TaikoDifficultyCalculator_Create);
+    assert(status == napi_ok);
+
+    return __TaikoDifficultyCalculator_Create;
+}
+
+// TaikoDifficultyCalculator_Calculate
+static napi_value callback_function__TaikoDifficultyCalculator_Calculate(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 2 || argc > 2)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode TaikoDifficultyCalculator_Calculate(ManagedObjectHandle calcHandle, NativeTaikoDifficultyAttributes* nativeAttributesPtr)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        NativeTaikoDifficultyAttributes* nativeAttributesPtr_instance;
+        status = napi_unwrap(env, args[1], (void**) &nativeAttributesPtr_instance);
+        auto __arg1 = nativeAttributesPtr_instance;
+
+        ErrorCode ___ret = ::TaikoDifficultyCalculator_Calculate(__arg0, __arg1);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__TaikoDifficultyCalculator_Calculate(napi_env env)
+{
+    napi_status status;
+    napi_value __TaikoDifficultyCalculator_Calculate;
+    status = napi_create_function(env, "TaikoDifficultyCalculator_Calculate", NAPI_AUTO_LENGTH, callback_function__TaikoDifficultyCalculator_Calculate, 0, &__TaikoDifficultyCalculator_Calculate);
+    assert(status == napi_ok);
+
+    return __TaikoDifficultyCalculator_Calculate;
+}
+
+// TaikoDifficultyCalculator_CalculateMods
+static napi_value callback_function__TaikoDifficultyCalculator_CalculateMods(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode TaikoDifficultyCalculator_CalculateMods(ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle, NativeTaikoDifficultyAttributes* nativeAttributesPtr)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        ManagedObjectHandle* modsHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &modsHandle_instance);
+        auto __arg1 = *modsHandle_instance;
+
+        NativeTaikoDifficultyAttributes* nativeAttributesPtr_instance;
+        status = napi_unwrap(env, args[2], (void**) &nativeAttributesPtr_instance);
+        auto __arg2 = nativeAttributesPtr_instance;
+
+        ErrorCode ___ret = ::TaikoDifficultyCalculator_CalculateMods(__arg0, __arg1, __arg2);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__TaikoDifficultyCalculator_CalculateMods(napi_env env)
+{
+    napi_status status;
+    napi_value __TaikoDifficultyCalculator_CalculateMods;
+    status = napi_create_function(env, "TaikoDifficultyCalculator_CalculateMods", NAPI_AUTO_LENGTH, callback_function__TaikoDifficultyCalculator_CalculateMods, 0, &__TaikoDifficultyCalculator_CalculateMods);
+    assert(status == napi_ok);
+
+    return __TaikoDifficultyCalculator_CalculateMods;
+}
+
+// TaikoDifficultyCalculator_CalculateTimed
+static napi_value callback_function__TaikoDifficultyCalculator_CalculateTimed(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 3 || argc > 3)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_NULL(types[1]) || NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_OBJECT(types[2]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode TaikoDifficultyCalculator_CalculateTimed(ManagedObjectHandle calcHandle, NativeTimedTaikoDifficultyAttributes* nativeTimedAttributesBuffer, int32_t* bufferSize)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        napi_valuetype __nativeTimedAttributesBuffer_type;
+        status = napi_typeof(env, args[1], &__nativeTimedAttributesBuffer_type);
+        assert(status == napi_ok);
+        bool __nativeTimedAttributesBuffer_is_null = __nativeTimedAttributesBuffer_type == napi_null;
+
+        int32_t* __nativeTimedAttributesBuffer_bufferSize_ptr = nullptr;
+        int32_t __nativeTimedAttributesBuffer_buffer_count = 0;
+        std::vector<NativeTimedTaikoDifficultyAttributes> __nativeTimedAttributesBuffer_buffer;
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            napi_typedarray_type __nativeTimedAttributesBuffer_bufferSize_typedarray_type;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_length;
+            void* __nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            napi_value __nativeTimedAttributesBuffer_bufferSize_typedarray_buffer;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_offset;
+            status = napi_get_typedarray_info(env, args[2], &__nativeTimedAttributesBuffer_bufferSize_typedarray_type, &__nativeTimedAttributesBuffer_bufferSize_typedarray_length, &__nativeTimedAttributesBuffer_bufferSize_typedarray_data, &__nativeTimedAttributesBuffer_bufferSize_typedarray_buffer, &__nativeTimedAttributesBuffer_bufferSize_typedarray_offset);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_type == napi_int32_array);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_length >= 1);
+            __nativeTimedAttributesBuffer_bufferSize_ptr = (int32_t*)__nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            __nativeTimedAttributesBuffer_buffer_count = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            assert(__nativeTimedAttributesBuffer_buffer_count >= 0);
+
+            bool __nativeTimedAttributesBuffer_is_array = false;
+            status = napi_is_array(env, args[1], &__nativeTimedAttributesBuffer_is_array);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_is_array);
+
+            __nativeTimedAttributesBuffer_buffer.resize((size_t)__nativeTimedAttributesBuffer_buffer_count);
+        }
+
+        auto __arg1 = (NativeTimedTaikoDifficultyAttributes*)(__nativeTimedAttributesBuffer_is_null || __nativeTimedAttributesBuffer_buffer_count == 0 ? nullptr : __nativeTimedAttributesBuffer_buffer.data());
+
+        napi_typedarray_type __bufferSize_typedarray_type;
+        size_t __bufferSize_typedarray_length;
+        void* __bufferSize_typedarray_data;
+        napi_value __bufferSize_typedarray_buffer;
+        size_t __bufferSize_typedarray_offset;
+        status = napi_get_typedarray_info(env, args[2], &__bufferSize_typedarray_type, &__bufferSize_typedarray_length, &__bufferSize_typedarray_data, &__bufferSize_typedarray_buffer, &__bufferSize_typedarray_offset);
+        assert(status == napi_ok);
+        assert(__bufferSize_typedarray_type == napi_int32_array);
+        assert(__bufferSize_typedarray_length >= 1);
+        int32_t* __arg2 = (int32_t*)__bufferSize_typedarray_data;
+        ErrorCode ___ret = ::TaikoDifficultyCalculator_CalculateTimed(__arg0, __arg1, __arg2);
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            int32_t __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            if (__nativeTimedAttributesBuffer_written < 0) __nativeTimedAttributesBuffer_written = 0;
+            if (__nativeTimedAttributesBuffer_written > __nativeTimedAttributesBuffer_buffer_count) __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_buffer_count;
+
+            napi_value __nativeTimedAttributesBuffer_ctor;
+            status = napi_get_reference_value(env, ctor_NativeTimedTaikoDifficultyAttributes_NativeTimedTaikoDifficultyAttributes, &__nativeTimedAttributesBuffer_ctor);
+            assert(status == napi_ok);
+
+            for (int32_t i = 0; i < __nativeTimedAttributesBuffer_written; i++)
+            {
+                napi_value __nativeTimedAttributesBuffer_instance;
+                status = napi_new_instance(env, __nativeTimedAttributesBuffer_ctor, 0, nullptr, &__nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+                NativeTimedTaikoDifficultyAttributes* __nativeTimedAttributesBuffer_native;
+                status = napi_unwrap(env, __nativeTimedAttributesBuffer_instance, (void**) &__nativeTimedAttributesBuffer_native);
+                assert(status == napi_ok);
+                *__nativeTimedAttributesBuffer_native = __nativeTimedAttributesBuffer_buffer[(size_t)i];
+                status = napi_set_element(env, args[1], (uint32_t)i, __nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+            }
+        }
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__TaikoDifficultyCalculator_CalculateTimed(napi_env env)
+{
+    napi_status status;
+    napi_value __TaikoDifficultyCalculator_CalculateTimed;
+    status = napi_create_function(env, "TaikoDifficultyCalculator_CalculateTimed", NAPI_AUTO_LENGTH, callback_function__TaikoDifficultyCalculator_CalculateTimed, 0, &__TaikoDifficultyCalculator_CalculateTimed);
+    assert(status == napi_ok);
+
+    return __TaikoDifficultyCalculator_CalculateTimed;
+}
+
+// TaikoDifficultyCalculator_CalculateModsTimed
+static napi_value callback_function__TaikoDifficultyCalculator_CalculateModsTimed(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 4 || argc > 4)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto typecheck1;
+
+    goto error;
+
+typecheck1:
+    if (NAPI_IS_OBJECT(types[1]))
+        goto typecheck2;
+
+    goto error;
+
+typecheck2:
+    if (NAPI_IS_NULL(types[2]) || NAPI_IS_OBJECT(types[2]))
+        goto typecheck3;
+
+    goto error;
+
+typecheck3:
+    if (NAPI_IS_OBJECT(types[3]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode TaikoDifficultyCalculator_CalculateModsTimed(ManagedObjectHandle calcHandle, ManagedObjectHandle modsHandle, NativeTimedTaikoDifficultyAttributes* nativeTimedAttributesBuffer, int32_t* bufferSize)
+overload0:
+    {
+        ManagedObjectHandle* calcHandle_instance;
+        status = napi_unwrap(env, args[0], (void**) &calcHandle_instance);
+        auto __arg0 = *calcHandle_instance;
+
+        ManagedObjectHandle* modsHandle_instance;
+        status = napi_unwrap(env, args[1], (void**) &modsHandle_instance);
+        auto __arg1 = *modsHandle_instance;
+
+        napi_valuetype __nativeTimedAttributesBuffer_type;
+        status = napi_typeof(env, args[2], &__nativeTimedAttributesBuffer_type);
+        assert(status == napi_ok);
+        bool __nativeTimedAttributesBuffer_is_null = __nativeTimedAttributesBuffer_type == napi_null;
+
+        int32_t* __nativeTimedAttributesBuffer_bufferSize_ptr = nullptr;
+        int32_t __nativeTimedAttributesBuffer_buffer_count = 0;
+        std::vector<NativeTimedTaikoDifficultyAttributes> __nativeTimedAttributesBuffer_buffer;
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            napi_typedarray_type __nativeTimedAttributesBuffer_bufferSize_typedarray_type;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_length;
+            void* __nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            napi_value __nativeTimedAttributesBuffer_bufferSize_typedarray_buffer;
+            size_t __nativeTimedAttributesBuffer_bufferSize_typedarray_offset;
+            status = napi_get_typedarray_info(env, args[3], &__nativeTimedAttributesBuffer_bufferSize_typedarray_type, &__nativeTimedAttributesBuffer_bufferSize_typedarray_length, &__nativeTimedAttributesBuffer_bufferSize_typedarray_data, &__nativeTimedAttributesBuffer_bufferSize_typedarray_buffer, &__nativeTimedAttributesBuffer_bufferSize_typedarray_offset);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_type == napi_int32_array);
+            assert(__nativeTimedAttributesBuffer_bufferSize_typedarray_length >= 1);
+            __nativeTimedAttributesBuffer_bufferSize_ptr = (int32_t*)__nativeTimedAttributesBuffer_bufferSize_typedarray_data;
+            __nativeTimedAttributesBuffer_buffer_count = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            assert(__nativeTimedAttributesBuffer_buffer_count >= 0);
+
+            bool __nativeTimedAttributesBuffer_is_array = false;
+            status = napi_is_array(env, args[2], &__nativeTimedAttributesBuffer_is_array);
+            assert(status == napi_ok);
+            assert(__nativeTimedAttributesBuffer_is_array);
+
+            __nativeTimedAttributesBuffer_buffer.resize((size_t)__nativeTimedAttributesBuffer_buffer_count);
+        }
+
+        auto __arg2 = (NativeTimedTaikoDifficultyAttributes*)(__nativeTimedAttributesBuffer_is_null || __nativeTimedAttributesBuffer_buffer_count == 0 ? nullptr : __nativeTimedAttributesBuffer_buffer.data());
+
+        napi_typedarray_type __bufferSize_typedarray_type;
+        size_t __bufferSize_typedarray_length;
+        void* __bufferSize_typedarray_data;
+        napi_value __bufferSize_typedarray_buffer;
+        size_t __bufferSize_typedarray_offset;
+        status = napi_get_typedarray_info(env, args[3], &__bufferSize_typedarray_type, &__bufferSize_typedarray_length, &__bufferSize_typedarray_data, &__bufferSize_typedarray_buffer, &__bufferSize_typedarray_offset);
+        assert(status == napi_ok);
+        assert(__bufferSize_typedarray_type == napi_int32_array);
+        assert(__bufferSize_typedarray_length >= 1);
+        int32_t* __arg3 = (int32_t*)__bufferSize_typedarray_data;
+        ErrorCode ___ret = ::TaikoDifficultyCalculator_CalculateModsTimed(__arg0, __arg1, __arg2, __arg3);
+
+        if (!__nativeTimedAttributesBuffer_is_null)
+        {
+            int32_t __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_bufferSize_ptr[0];
+            if (__nativeTimedAttributesBuffer_written < 0) __nativeTimedAttributesBuffer_written = 0;
+            if (__nativeTimedAttributesBuffer_written > __nativeTimedAttributesBuffer_buffer_count) __nativeTimedAttributesBuffer_written = __nativeTimedAttributesBuffer_buffer_count;
+
+            napi_value __nativeTimedAttributesBuffer_ctor;
+            status = napi_get_reference_value(env, ctor_NativeTimedTaikoDifficultyAttributes_NativeTimedTaikoDifficultyAttributes, &__nativeTimedAttributesBuffer_ctor);
+            assert(status == napi_ok);
+
+            for (int32_t i = 0; i < __nativeTimedAttributesBuffer_written; i++)
+            {
+                napi_value __nativeTimedAttributesBuffer_instance;
+                status = napi_new_instance(env, __nativeTimedAttributesBuffer_ctor, 0, nullptr, &__nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+                NativeTimedTaikoDifficultyAttributes* __nativeTimedAttributesBuffer_native;
+                status = napi_unwrap(env, __nativeTimedAttributesBuffer_instance, (void**) &__nativeTimedAttributesBuffer_native);
+                assert(status == napi_ok);
+                *__nativeTimedAttributesBuffer_native = __nativeTimedAttributesBuffer_buffer[(size_t)i];
+                status = napi_set_element(env, args[2], (uint32_t)i, __nativeTimedAttributesBuffer_instance);
+                assert(status == napi_ok);
+            }
+        }
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__TaikoDifficultyCalculator_CalculateModsTimed(napi_env env)
+{
+    napi_status status;
+    napi_value __TaikoDifficultyCalculator_CalculateModsTimed;
+    status = napi_create_function(env, "TaikoDifficultyCalculator_CalculateModsTimed", NAPI_AUTO_LENGTH, callback_function__TaikoDifficultyCalculator_CalculateModsTimed, 0, &__TaikoDifficultyCalculator_CalculateModsTimed);
+    assert(status == napi_ok);
+
+    return __TaikoDifficultyCalculator_CalculateModsTimed;
+}
+
+// TaikoDifficultyCalculator_Destroy
+static napi_value callback_function__TaikoDifficultyCalculator_Destroy(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    std::vector<napi_value> args(argc);
+    std::vector<napi_valuetype> types(argc);
+
+    if (argc < 1 || argc > 1)
+    {
+        status = napi_throw_type_error(env, nullptr, "Unsupported number of arguments");
+        assert(status == napi_ok);
+
+        return nullptr;
+    }
+
+    status = napi_get_cb_info(env, info, &argc, argc > 0 ? args.data() : nullptr, nullptr, nullptr);
+    assert(status == napi_ok);
+
+    for (size_t i = 0; i < argc; i++)
+    {
+        status = napi_typeof(env, args[i], &types[i]);
+        assert(status == napi_ok);
+    }
+
+    if (NAPI_IS_OBJECT(types[0]))
+        goto overload0;
+
+    goto error;
+
+error:
+    status = napi_throw_type_error(env, nullptr, "Unsupported argument type");
+    assert(status == napi_ok);
+
+    return nullptr;
+
+    // ErrorCode TaikoDifficultyCalculator_Destroy(ManagedObjectHandle handle)
+overload0:
+    {
+        ManagedObjectHandle* handle_instance;
+        status = napi_unwrap(env, args[0], (void**) &handle_instance);
+        auto __arg0 = *handle_instance;
+
+        ErrorCode ___ret = ::TaikoDifficultyCalculator_Destroy(__arg0);
+
+        napi_value _____ret;
+        status = napi_create_int32(env, (int32_t) ___ret, &_____ret);
+        assert(status == napi_ok);
+
+        return _____ret;
+    }
+
+    return nullptr;
+}
+
+static napi_value register_function__TaikoDifficultyCalculator_Destroy(napi_env env)
+{
+    napi_status status;
+    napi_value __TaikoDifficultyCalculator_Destroy;
+    status = napi_create_function(env, "TaikoDifficultyCalculator_Destroy", NAPI_AUTO_LENGTH, callback_function__TaikoDifficultyCalculator_Destroy, 0, &__TaikoDifficultyCalculator_Destroy);
+    assert(status == napi_ok);
+
+    return __TaikoDifficultyCalculator_Destroy;
+}
+
 void register_cabinet(napi_env env, napi_value exports)
 {
     napi_value value;
@@ -9130,50 +11137,8 @@ void register_cabinet(napi_env env, napi_value exports)
     value = register_class__ManagedObjectHandle(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManagedObjectHandle", value));
 
-    value = register_class__NativeScoreInfo(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeScoreInfo", value));
-
-    value = register_class__NativeCatchPerformanceAttributes(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeCatchPerformanceAttributes", value));
-
-    value = register_class__NativeManiaPerformanceAttributes(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeManiaPerformanceAttributes", value));
-
-    value = register_class__Cabinet__Nullable_double(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "Cabinet__Nullable_double", value));
-
-    value = register_class__NativeOsuPerformanceAttributes(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeOsuPerformanceAttributes", value));
-
-    value = register_class__NativeTaikoPerformanceAttributes(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTaikoPerformanceAttributes", value));
-
-    value = register_class__NativeCatchDifficultyAttributes(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeCatchDifficultyAttributes", value));
-
-    value = register_class__NativeManiaDifficultyAttributes(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeManiaDifficultyAttributes", value));
-
-    value = register_class__NativeOsuDifficultyAttributes(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeOsuDifficultyAttributes", value));
-
-    value = register_class__NativeTaikoDifficultyAttributes(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTaikoDifficultyAttributes", value));
-
     value = register_class__NativeBeatmap(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeBeatmap", value));
-
-    value = register_class__NativeCatchDifficultyCalculator(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeCatchDifficultyCalculator", value));
-
-    value = register_class__NativeManiaDifficultyCalculator(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeManiaDifficultyCalculator", value));
-
-    value = register_class__NativeOsuDifficultyCalculator(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeOsuDifficultyCalculator", value));
-
-    value = register_class__NativeTaikoDifficultyCalculator(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTaikoDifficultyCalculator", value));
 
     value = register_class__NativeMod(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeMod", value));
@@ -9184,42 +11149,100 @@ void register_cabinet(napi_env env, napi_value exports)
     value = register_class__NativeRuleset(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeRuleset", value));
 
+    value = register_class__NativeScoreInfo(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeScoreInfo", value));
+
+    value = register_class__NativeCatchPerformanceAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeCatchPerformanceAttributes", value));
+
     value = register_class__NativeCatchPerformanceCalculator(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeCatchPerformanceCalculator", value));
+
+    value = register_class__NativeManiaPerformanceAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeManiaPerformanceAttributes", value));
 
     value = register_class__NativeManiaPerformanceCalculator(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeManiaPerformanceCalculator", value));
 
+    value = register_class__Cabinet__Nullable_double(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "Cabinet__Nullable_double", value));
+
+    value = register_class__NativeOsuPerformanceAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeOsuPerformanceAttributes", value));
+
     value = register_class__NativeOsuPerformanceCalculator(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeOsuPerformanceCalculator", value));
+
+    value = register_class__NativeTaikoPerformanceAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTaikoPerformanceAttributes", value));
 
     value = register_class__NativeTaikoPerformanceCalculator(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTaikoPerformanceCalculator", value));
 
+    value = register_class__NativeCatchDifficultyAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeCatchDifficultyAttributes", value));
+
+    value = register_class__NativeCatchDifficultyCalculator(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeCatchDifficultyCalculator", value));
+
+    value = register_class__NativeManiaDifficultyAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeManiaDifficultyAttributes", value));
+
+    value = register_class__NativeManiaDifficultyCalculator(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeManiaDifficultyCalculator", value));
+
+    value = register_class__NativeOsuDifficultyAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeOsuDifficultyAttributes", value));
+
+    value = register_class__NativeOsuDifficultyCalculator(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeOsuDifficultyCalculator", value));
+
+    value = register_class__NativeTaikoDifficultyAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTaikoDifficultyAttributes", value));
+
+    value = register_class__NativeTaikoDifficultyCalculator(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTaikoDifficultyCalculator", value));
+
+    value = register_class__NativeTimedCatchDifficultyAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTimedCatchDifficultyAttributes", value));
+
+    value = register_class__NativeTimedManiaDifficultyAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTimedManiaDifficultyAttributes", value));
+
+    value = register_class__NativeTimedOsuDifficultyAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTimedOsuDifficultyAttributes", value));
+
+    value = register_class__NativeTimedTaikoDifficultyAttributes(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "NativeTimedTaikoDifficultyAttributes", value));
+
     typedef ::ErrorCode ErrorCode;
     typedef ::ManagedObjectHandle ManagedObjectHandle;
-    typedef ::NativeScoreInfo NativeScoreInfo;
-    typedef ::NativeCatchPerformanceAttributes NativeCatchPerformanceAttributes;
-    typedef ::NativeManiaPerformanceAttributes NativeManiaPerformanceAttributes;
-    typedef ::Cabinet__Nullable_double Cabinet__Nullable_double;
-    typedef ::NativeOsuPerformanceAttributes NativeOsuPerformanceAttributes;
-    typedef ::NativeTaikoPerformanceAttributes NativeTaikoPerformanceAttributes;
-    typedef ::NativeCatchDifficultyAttributes NativeCatchDifficultyAttributes;
-    typedef ::NativeManiaDifficultyAttributes NativeManiaDifficultyAttributes;
-    typedef ::NativeOsuDifficultyAttributes NativeOsuDifficultyAttributes;
-    typedef ::NativeTaikoDifficultyAttributes NativeTaikoDifficultyAttributes;
     typedef ::NativeBeatmap NativeBeatmap;
-    typedef ::NativeCatchDifficultyCalculator NativeCatchDifficultyCalculator;
-    typedef ::NativeManiaDifficultyCalculator NativeManiaDifficultyCalculator;
-    typedef ::NativeOsuDifficultyCalculator NativeOsuDifficultyCalculator;
-    typedef ::NativeTaikoDifficultyCalculator NativeTaikoDifficultyCalculator;
     typedef ::NativeMod NativeMod;
     typedef ::NativeModsCollection NativeModsCollection;
     typedef ::NativeRuleset NativeRuleset;
+    typedef ::NativeScoreInfo NativeScoreInfo;
+    typedef ::NativeCatchPerformanceAttributes NativeCatchPerformanceAttributes;
     typedef ::NativeCatchPerformanceCalculator NativeCatchPerformanceCalculator;
+    typedef ::NativeManiaPerformanceAttributes NativeManiaPerformanceAttributes;
     typedef ::NativeManiaPerformanceCalculator NativeManiaPerformanceCalculator;
+    typedef ::Cabinet__Nullable_double Cabinet__Nullable_double;
+    typedef ::NativeOsuPerformanceAttributes NativeOsuPerformanceAttributes;
     typedef ::NativeOsuPerformanceCalculator NativeOsuPerformanceCalculator;
+    typedef ::NativeTaikoPerformanceAttributes NativeTaikoPerformanceAttributes;
     typedef ::NativeTaikoPerformanceCalculator NativeTaikoPerformanceCalculator;
+    typedef ::NativeCatchDifficultyAttributes NativeCatchDifficultyAttributes;
+    typedef ::NativeCatchDifficultyCalculator NativeCatchDifficultyCalculator;
+    typedef ::NativeManiaDifficultyAttributes NativeManiaDifficultyAttributes;
+    typedef ::NativeManiaDifficultyCalculator NativeManiaDifficultyCalculator;
+    typedef ::NativeOsuDifficultyAttributes NativeOsuDifficultyAttributes;
+    typedef ::NativeOsuDifficultyCalculator NativeOsuDifficultyCalculator;
+    typedef ::NativeTaikoDifficultyAttributes NativeTaikoDifficultyAttributes;
+    typedef ::NativeTaikoDifficultyCalculator NativeTaikoDifficultyCalculator;
+    typedef ::NativeTimedCatchDifficultyAttributes NativeTimedCatchDifficultyAttributes;
+    typedef ::NativeTimedManiaDifficultyAttributes NativeTimedManiaDifficultyAttributes;
+    typedef ::NativeTimedOsuDifficultyAttributes NativeTimedOsuDifficultyAttributes;
+    typedef ::NativeTimedTaikoDifficultyAttributes NativeTimedTaikoDifficultyAttributes;
 
     value = register_function__ErrorHandler_GetLastMessage(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ErrorHandler_GetLastMessage", value));
@@ -9241,54 +11264,6 @@ void register_cabinet(napi_env env, napi_value exports)
 
     value = register_function__Beatmap_Destroy(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "Beatmap_Destroy", value));
-
-    value = register_function__CatchDifficultyCalculator_Create(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "CatchDifficultyCalculator_Create", value));
-
-    value = register_function__CatchDifficultyCalculator_Calculate(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "CatchDifficultyCalculator_Calculate", value));
-
-    value = register_function__CatchDifficultyCalculator_CalculateMods(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "CatchDifficultyCalculator_CalculateMods", value));
-
-    value = register_function__CatchDifficultyCalculator_Destroy(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "CatchDifficultyCalculator_Destroy", value));
-
-    value = register_function__ManiaDifficultyCalculator_Create(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManiaDifficultyCalculator_Create", value));
-
-    value = register_function__ManiaDifficultyCalculator_Calculate(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManiaDifficultyCalculator_Calculate", value));
-
-    value = register_function__ManiaDifficultyCalculator_CalculateMods(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManiaDifficultyCalculator_CalculateMods", value));
-
-    value = register_function__ManiaDifficultyCalculator_Destroy(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManiaDifficultyCalculator_Destroy", value));
-
-    value = register_function__OsuDifficultyCalculator_Create(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "OsuDifficultyCalculator_Create", value));
-
-    value = register_function__OsuDifficultyCalculator_Calculate(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "OsuDifficultyCalculator_Calculate", value));
-
-    value = register_function__OsuDifficultyCalculator_CalculateMods(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "OsuDifficultyCalculator_CalculateMods", value));
-
-    value = register_function__OsuDifficultyCalculator_Destroy(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "OsuDifficultyCalculator_Destroy", value));
-
-    value = register_function__TaikoDifficultyCalculator_Create(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoDifficultyCalculator_Create", value));
-
-    value = register_function__TaikoDifficultyCalculator_Calculate(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoDifficultyCalculator_Calculate", value));
-
-    value = register_function__TaikoDifficultyCalculator_CalculateMods(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoDifficultyCalculator_CalculateMods", value));
-
-    value = register_function__TaikoDifficultyCalculator_Destroy(env);
-    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoDifficultyCalculator_Destroy", value));
 
     value = register_function__Mod_Create(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "Mod_Create", value));
@@ -9370,4 +11345,76 @@ void register_cabinet(napi_env env, napi_value exports)
 
     value = register_function__TaikoPerformanceCalculator_Destroy(env);
     NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoPerformanceCalculator_Destroy", value));
+
+    value = register_function__CatchDifficultyCalculator_Create(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "CatchDifficultyCalculator_Create", value));
+
+    value = register_function__CatchDifficultyCalculator_Calculate(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "CatchDifficultyCalculator_Calculate", value));
+
+    value = register_function__CatchDifficultyCalculator_CalculateMods(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "CatchDifficultyCalculator_CalculateMods", value));
+
+    value = register_function__CatchDifficultyCalculator_CalculateTimed(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "CatchDifficultyCalculator_CalculateTimed", value));
+
+    value = register_function__CatchDifficultyCalculator_CalculateModsTimed(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "CatchDifficultyCalculator_CalculateModsTimed", value));
+
+    value = register_function__CatchDifficultyCalculator_Destroy(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "CatchDifficultyCalculator_Destroy", value));
+
+    value = register_function__ManiaDifficultyCalculator_Create(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManiaDifficultyCalculator_Create", value));
+
+    value = register_function__ManiaDifficultyCalculator_Calculate(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManiaDifficultyCalculator_Calculate", value));
+
+    value = register_function__ManiaDifficultyCalculator_CalculateMods(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManiaDifficultyCalculator_CalculateMods", value));
+
+    value = register_function__ManiaDifficultyCalculator_CalculateTimed(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManiaDifficultyCalculator_CalculateTimed", value));
+
+    value = register_function__ManiaDifficultyCalculator_CalculateModsTimed(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManiaDifficultyCalculator_CalculateModsTimed", value));
+
+    value = register_function__ManiaDifficultyCalculator_Destroy(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "ManiaDifficultyCalculator_Destroy", value));
+
+    value = register_function__OsuDifficultyCalculator_Create(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "OsuDifficultyCalculator_Create", value));
+
+    value = register_function__OsuDifficultyCalculator_Calculate(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "OsuDifficultyCalculator_Calculate", value));
+
+    value = register_function__OsuDifficultyCalculator_CalculateMods(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "OsuDifficultyCalculator_CalculateMods", value));
+
+    value = register_function__OsuDifficultyCalculator_CalculateTimed(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "OsuDifficultyCalculator_CalculateTimed", value));
+
+    value = register_function__OsuDifficultyCalculator_CalculateModsTimed(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "OsuDifficultyCalculator_CalculateModsTimed", value));
+
+    value = register_function__OsuDifficultyCalculator_Destroy(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "OsuDifficultyCalculator_Destroy", value));
+
+    value = register_function__TaikoDifficultyCalculator_Create(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoDifficultyCalculator_Create", value));
+
+    value = register_function__TaikoDifficultyCalculator_Calculate(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoDifficultyCalculator_Calculate", value));
+
+    value = register_function__TaikoDifficultyCalculator_CalculateMods(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoDifficultyCalculator_CalculateMods", value));
+
+    value = register_function__TaikoDifficultyCalculator_CalculateTimed(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoDifficultyCalculator_CalculateTimed", value));
+
+    value = register_function__TaikoDifficultyCalculator_CalculateModsTimed(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoDifficultyCalculator_CalculateModsTimed", value));
+
+    value = register_function__TaikoDifficultyCalculator_Destroy(env);
+    NAPI_CALL_NORET(env, napi_set_named_property(env, exports, "TaikoDifficultyCalculator_Destroy", value));
 }

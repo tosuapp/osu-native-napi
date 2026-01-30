@@ -8,7 +8,7 @@
 export enum ErrorCode {
   BUFFER_SIZE_QUERY = -1,
   SUCCESS = 0,
-  OBJECT_NOT_FOUND = 1,
+  OBJECT_NOT_RESOLVED = 1,
   RULESET_UNAVAILABLE = 2,
   UNEXPECTED_RULESET = 3,
   FAILURE = 127,
@@ -20,6 +20,47 @@ export class ManagedObjectHandle {
   constructor(_0: ManagedObjectHandle);
 
   id: number;
+}
+
+export class NativeBeatmap {
+  constructor();
+
+  constructor(_0: NativeBeatmap);
+
+  handle: ManagedObjectHandle;
+  rulesetId: number;
+  beatmapId: number;
+  approachRate: number;
+  drainRate: number;
+  overallDifficulty: number;
+  circleSize: number;
+  sliderMultiplier: number;
+  sliderTickRate: number;
+}
+
+export class NativeMod {
+  constructor();
+
+  constructor(_0: NativeMod);
+
+  handle: ManagedObjectHandle;
+}
+
+export class NativeModsCollection {
+  constructor();
+
+  constructor(_0: NativeModsCollection);
+
+  handle: ManagedObjectHandle;
+}
+
+export class NativeRuleset {
+  constructor();
+
+  constructor(_0: NativeRuleset);
+
+  handle: ManagedObjectHandle;
+  rulesetId: number;
 }
 
 export class NativeScoreInfo {
@@ -50,6 +91,14 @@ export class NativeCatchPerformanceAttributes {
   total: number;
 }
 
+export class NativeCatchPerformanceCalculator {
+  constructor();
+
+  constructor(_0: NativeCatchPerformanceCalculator);
+
+  handle: ManagedObjectHandle;
+}
+
 export class NativeManiaPerformanceAttributes {
   constructor();
 
@@ -57,6 +106,14 @@ export class NativeManiaPerformanceAttributes {
 
   total: number;
   difficulty: number;
+}
+
+export class NativeManiaPerformanceCalculator {
+  constructor();
+
+  constructor(_0: NativeManiaPerformanceCalculator);
+
+  handle: ManagedObjectHandle;
 }
 
 export class Cabinet__Nullable_double {
@@ -86,6 +143,14 @@ export class NativeOsuPerformanceAttributes {
   speedEstimatedSliderBreaks: number;
 }
 
+export class NativeOsuPerformanceCalculator {
+  constructor();
+
+  constructor(_0: NativeOsuPerformanceCalculator);
+
+  handle: ManagedObjectHandle;
+}
+
 export class NativeTaikoPerformanceAttributes {
   constructor();
 
@@ -97,6 +162,14 @@ export class NativeTaikoPerformanceAttributes {
   estimatedUnstableRate: Cabinet__Nullable_double;
 }
 
+export class NativeTaikoPerformanceCalculator {
+  constructor();
+
+  constructor(_0: NativeTaikoPerformanceCalculator);
+
+  handle: ManagedObjectHandle;
+}
+
 export class NativeCatchDifficultyAttributes {
   constructor();
 
@@ -106,6 +179,14 @@ export class NativeCatchDifficultyAttributes {
   maxCombo: number;
 }
 
+export class NativeCatchDifficultyCalculator {
+  constructor();
+
+  constructor(_0: NativeCatchDifficultyCalculator);
+
+  handle: ManagedObjectHandle;
+}
+
 export class NativeManiaDifficultyAttributes {
   constructor();
 
@@ -113,6 +194,14 @@ export class NativeManiaDifficultyAttributes {
 
   starRating: number;
   maxCombo: number;
+}
+
+export class NativeManiaDifficultyCalculator {
+  constructor();
+
+  constructor(_0: NativeManiaDifficultyCalculator);
+
+  handle: ManagedObjectHandle;
 }
 
 export class NativeOsuDifficultyAttributes {
@@ -141,6 +230,14 @@ export class NativeOsuDifficultyAttributes {
   spinnerCount: number;
 }
 
+export class NativeOsuDifficultyCalculator {
+  constructor();
+
+  constructor(_0: NativeOsuDifficultyCalculator);
+
+  handle: ManagedObjectHandle;
+}
+
 export class NativeTaikoDifficultyAttributes {
   constructor();
 
@@ -158,45 +255,6 @@ export class NativeTaikoDifficultyAttributes {
   staminaTopStrains: number;
 }
 
-export class NativeBeatmap {
-  constructor();
-
-  constructor(_0: NativeBeatmap);
-
-  handle: ManagedObjectHandle;
-  rulesetId: number;
-  approachRate: number;
-  drainRate: number;
-  overallDifficulty: number;
-  circleSize: number;
-  sliderMultiplier: number;
-  sliderTickRate: number;
-}
-
-export class NativeCatchDifficultyCalculator {
-  constructor();
-
-  constructor(_0: NativeCatchDifficultyCalculator);
-
-  handle: ManagedObjectHandle;
-}
-
-export class NativeManiaDifficultyCalculator {
-  constructor();
-
-  constructor(_0: NativeManiaDifficultyCalculator);
-
-  handle: ManagedObjectHandle;
-}
-
-export class NativeOsuDifficultyCalculator {
-  constructor();
-
-  constructor(_0: NativeOsuDifficultyCalculator);
-
-  handle: ManagedObjectHandle;
-}
-
 export class NativeTaikoDifficultyCalculator {
   constructor();
 
@@ -205,177 +263,84 @@ export class NativeTaikoDifficultyCalculator {
   handle: ManagedObjectHandle;
 }
 
-export class NativeMod {
+export class NativeTimedCatchDifficultyAttributes {
   constructor();
 
-  constructor(_0: NativeMod);
+  constructor(_0: NativeTimedCatchDifficultyAttributes);
 
-  handle: ManagedObjectHandle;
+  time: number;
+  attributes: NativeCatchDifficultyAttributes;
 }
 
-export class NativeModsCollection {
+export class NativeTimedManiaDifficultyAttributes {
   constructor();
 
-  constructor(_0: NativeModsCollection);
+  constructor(_0: NativeTimedManiaDifficultyAttributes);
 
-  handle: ManagedObjectHandle;
+  time: number;
+  attributes: NativeManiaDifficultyAttributes;
 }
 
-export class NativeRuleset {
+export class NativeTimedOsuDifficultyAttributes {
   constructor();
 
-  constructor(_0: NativeRuleset);
+  constructor(_0: NativeTimedOsuDifficultyAttributes);
 
-  handle: ManagedObjectHandle;
-  rulesetId: number;
+  time: number;
+  attributes: NativeOsuDifficultyAttributes;
 }
 
-export class NativeCatchPerformanceCalculator {
+export class NativeTimedTaikoDifficultyAttributes {
   constructor();
 
-  constructor(_0: NativeCatchPerformanceCalculator);
+  constructor(_0: NativeTimedTaikoDifficultyAttributes);
 
-  handle: ManagedObjectHandle;
-}
-
-export class NativeManiaPerformanceCalculator {
-  constructor();
-
-  constructor(_0: NativeManiaPerformanceCalculator);
-
-  handle: ManagedObjectHandle;
-}
-
-export class NativeOsuPerformanceCalculator {
-  constructor();
-
-  constructor(_0: NativeOsuPerformanceCalculator);
-
-  handle: ManagedObjectHandle;
-}
-
-export class NativeTaikoPerformanceCalculator {
-  constructor();
-
-  constructor(_0: NativeTaikoPerformanceCalculator);
-
-  handle: ManagedObjectHandle;
+  time: number;
+  attributes: NativeTaikoDifficultyAttributes;
 }
 
 export function ErrorHandler_GetLastMessage(): string;
 export function Beatmap_CreateFromFile(
-  filePathPtr: string,
+  filePathPtr: null | Buffer | string,
   nativeBeatmapPtr: NativeBeatmap,
 ): ErrorCode;
 export function Beatmap_CreateFromText(
-  beatmapTextPtr: string,
+  beatmapTextPtr: null | Buffer | string,
   nativeBeatmapPtr: NativeBeatmap,
 ): ErrorCode;
 export function Beatmap_GetTitle(
   beatmapHandle: ManagedObjectHandle,
-  buffer: string,
+  buffer: null | Buffer | string,
   bufferSize: Int32Array,
 ): ErrorCode;
 export function Beatmap_GetArtist(
   beatmapHandle: ManagedObjectHandle,
-  buffer: string,
+  buffer: null | Buffer | string,
   bufferSize: Int32Array,
 ): ErrorCode;
 export function Beatmap_GetVersion(
   beatmapHandle: ManagedObjectHandle,
-  buffer: string,
+  buffer: null | Buffer | string,
   bufferSize: Int32Array,
 ): ErrorCode;
 export function Beatmap_Destroy(handle: ManagedObjectHandle): ErrorCode;
-export function CatchDifficultyCalculator_Create(
-  rulesetHandle: ManagedObjectHandle,
-  beatmapHandle: ManagedObjectHandle,
-  nativeCatchDifficultyCalculatorPtr: NativeCatchDifficultyCalculator,
-): ErrorCode;
-export function CatchDifficultyCalculator_Calculate(
-  calcHandle: ManagedObjectHandle,
-  nativeAttributesPtr: NativeCatchDifficultyAttributes,
-): ErrorCode;
-export function CatchDifficultyCalculator_CalculateMods(
-  calcHandle: ManagedObjectHandle,
-  rulesetHandle: ManagedObjectHandle,
-  modsHandle: ManagedObjectHandle,
-  nativeAttributesPtr: NativeCatchDifficultyAttributes,
-): ErrorCode;
-export function CatchDifficultyCalculator_Destroy(
-  handle: ManagedObjectHandle,
-): ErrorCode;
-export function ManiaDifficultyCalculator_Create(
-  rulesetHandle: ManagedObjectHandle,
-  beatmapHandle: ManagedObjectHandle,
-  nativeManiaDifficultyCalculatorPtr: NativeManiaDifficultyCalculator,
-): ErrorCode;
-export function ManiaDifficultyCalculator_Calculate(
-  calcHandle: ManagedObjectHandle,
-  nativeAttributesPtr: NativeManiaDifficultyAttributes,
-): ErrorCode;
-export function ManiaDifficultyCalculator_CalculateMods(
-  calcHandle: ManagedObjectHandle,
-  rulesetHandle: ManagedObjectHandle,
-  modsHandle: ManagedObjectHandle,
-  nativeAttributesPtr: NativeManiaDifficultyAttributes,
-): ErrorCode;
-export function ManiaDifficultyCalculator_Destroy(
-  handle: ManagedObjectHandle,
-): ErrorCode;
-export function OsuDifficultyCalculator_Create(
-  rulesetHandle: ManagedObjectHandle,
-  beatmapHandle: ManagedObjectHandle,
-  nativeOsuDifficultyCalculatorPtr: NativeOsuDifficultyCalculator,
-): ErrorCode;
-export function OsuDifficultyCalculator_Calculate(
-  calcHandle: ManagedObjectHandle,
-  nativeAttributesPtr: NativeOsuDifficultyAttributes,
-): ErrorCode;
-export function OsuDifficultyCalculator_CalculateMods(
-  calcHandle: ManagedObjectHandle,
-  rulesetHandle: ManagedObjectHandle,
-  modsHandle: ManagedObjectHandle,
-  nativeAttributesPtr: NativeOsuDifficultyAttributes,
-): ErrorCode;
-export function OsuDifficultyCalculator_Destroy(
-  handle: ManagedObjectHandle,
-): ErrorCode;
-export function TaikoDifficultyCalculator_Create(
-  rulesetHandle: ManagedObjectHandle,
-  beatmapHandle: ManagedObjectHandle,
-  nativeTaikoDifficultyCalculatorPtr: NativeTaikoDifficultyCalculator,
-): ErrorCode;
-export function TaikoDifficultyCalculator_Calculate(
-  calcHandle: ManagedObjectHandle,
-  nativeAttributesPtr: NativeTaikoDifficultyAttributes,
-): ErrorCode;
-export function TaikoDifficultyCalculator_CalculateMods(
-  calcHandle: ManagedObjectHandle,
-  rulesetHandle: ManagedObjectHandle,
-  modsHandle: ManagedObjectHandle,
-  nativeAttributesPtr: NativeTaikoDifficultyAttributes,
-): ErrorCode;
-export function TaikoDifficultyCalculator_Destroy(
-  handle: ManagedObjectHandle,
-): ErrorCode;
 export function Mod_Create(
-  acronymPtr: string,
+  acronymPtr: null | Buffer | string,
   nativeModPtr: NativeMod,
 ): ErrorCode;
 export function Mod_SetSettingBool(
   modHandle: ManagedObjectHandle,
-  keyPtr: string,
+  keyPtr: null | Buffer | string,
   value: boolean,
 ): ErrorCode;
 export function Mod_SetSettingInteger(
   modHandle: ManagedObjectHandle,
-  keyPtr: string,
+  keyPtr: null | Buffer | string,
   value: number,
 ): ErrorCode;
 export function Mod_SetSettingFloat(
   modHandle: ManagedObjectHandle,
-  keyPtr: string,
+  keyPtr: null | Buffer | string,
   value: number,
 ): ErrorCode;
 export function Mod_Debug(modHandle: ManagedObjectHandle): ErrorCode;
@@ -384,15 +349,15 @@ export function ModsCollection_Create(
   nativeModsCollectionPtr: NativeModsCollection,
 ): ErrorCode;
 export function ModsCollection_Add(
-  modsHandle: ManagedObjectHandle,
+  modsCollectionHandle: ManagedObjectHandle,
   modHandle: ManagedObjectHandle,
 ): ErrorCode;
 export function ModsCollection_Remove(
-  modsHandle: ManagedObjectHandle,
+  modsCollectionHandle: ManagedObjectHandle,
   modHandle: ManagedObjectHandle,
 ): ErrorCode;
 export function ModsCollection_Debug(
-  modsHandle: ManagedObjectHandle,
+  modsCollectionHandle: ManagedObjectHandle,
 ): ErrorCode;
 export function ModsCollection_Destroy(handle: ManagedObjectHandle): ErrorCode;
 export function Ruleset_CreateFromId(
@@ -400,12 +365,12 @@ export function Ruleset_CreateFromId(
   rulesetPtr: NativeRuleset,
 ): ErrorCode;
 export function Ruleset_CreateFromShortName(
-  shortName: string,
+  shortName: null | Buffer | string,
   rulesetPtr: NativeRuleset,
 ): ErrorCode;
 export function Ruleset_GetShortName(
   rulesetHandle: ManagedObjectHandle,
-  buffer: string,
+  buffer: null | Buffer | string,
   bufferSize: Int32Array,
 ): ErrorCode;
 export function Ruleset_Destroy(handle: ManagedObjectHandle): ErrorCode;
@@ -455,5 +420,117 @@ export function TaikoPerformanceCalculator_Calculate(
   nativeAttributesPtr: NativeTaikoPerformanceAttributes,
 ): ErrorCode;
 export function TaikoPerformanceCalculator_Destroy(
+  handle: ManagedObjectHandle,
+): ErrorCode;
+export function CatchDifficultyCalculator_Create(
+  rulesetHandle: ManagedObjectHandle,
+  beatmapHandle: ManagedObjectHandle,
+  nativeCatchDifficultyCalculatorPtr: NativeCatchDifficultyCalculator,
+): ErrorCode;
+export function CatchDifficultyCalculator_Calculate(
+  calcHandle: ManagedObjectHandle,
+  nativeAttributesPtr: NativeCatchDifficultyAttributes,
+): ErrorCode;
+export function CatchDifficultyCalculator_CalculateMods(
+  calcHandle: ManagedObjectHandle,
+  modsHandle: ManagedObjectHandle,
+  nativeAttributesPtr: NativeCatchDifficultyAttributes,
+): ErrorCode;
+export function CatchDifficultyCalculator_CalculateTimed(
+  calcHandle: ManagedObjectHandle,
+  nativeTimedAttributesBuffer: null | NativeTimedCatchDifficultyAttributes[],
+  bufferSize: Int32Array,
+): ErrorCode;
+export function CatchDifficultyCalculator_CalculateModsTimed(
+  calcHandle: ManagedObjectHandle,
+  modsHandle: ManagedObjectHandle,
+  nativeTimedAttributesBuffer: null | NativeTimedCatchDifficultyAttributes[],
+  bufferSize: Int32Array,
+): ErrorCode;
+export function CatchDifficultyCalculator_Destroy(
+  handle: ManagedObjectHandle,
+): ErrorCode;
+export function ManiaDifficultyCalculator_Create(
+  rulesetHandle: ManagedObjectHandle,
+  beatmapHandle: ManagedObjectHandle,
+  nativeManiaDifficultyCalculatorPtr: NativeManiaDifficultyCalculator,
+): ErrorCode;
+export function ManiaDifficultyCalculator_Calculate(
+  calcHandle: ManagedObjectHandle,
+  nativeAttributesPtr: NativeManiaDifficultyAttributes,
+): ErrorCode;
+export function ManiaDifficultyCalculator_CalculateMods(
+  calcHandle: ManagedObjectHandle,
+  modsHandle: ManagedObjectHandle,
+  nativeAttributesPtr: NativeManiaDifficultyAttributes,
+): ErrorCode;
+export function ManiaDifficultyCalculator_CalculateTimed(
+  calcHandle: ManagedObjectHandle,
+  nativeTimedAttributesBuffer: null | NativeTimedManiaDifficultyAttributes[],
+  bufferSize: Int32Array,
+): ErrorCode;
+export function ManiaDifficultyCalculator_CalculateModsTimed(
+  calcHandle: ManagedObjectHandle,
+  modsHandle: ManagedObjectHandle,
+  nativeTimedAttributesBuffer: null | NativeTimedManiaDifficultyAttributes[],
+  bufferSize: Int32Array,
+): ErrorCode;
+export function ManiaDifficultyCalculator_Destroy(
+  handle: ManagedObjectHandle,
+): ErrorCode;
+export function OsuDifficultyCalculator_Create(
+  rulesetHandle: ManagedObjectHandle,
+  beatmapHandle: ManagedObjectHandle,
+  nativeOsuDifficultyCalculatorPtr: NativeOsuDifficultyCalculator,
+): ErrorCode;
+export function OsuDifficultyCalculator_Calculate(
+  calcHandle: ManagedObjectHandle,
+  nativeAttributesPtr: NativeOsuDifficultyAttributes,
+): ErrorCode;
+export function OsuDifficultyCalculator_CalculateMods(
+  calcHandle: ManagedObjectHandle,
+  modsHandle: ManagedObjectHandle,
+  nativeAttributesPtr: NativeOsuDifficultyAttributes,
+): ErrorCode;
+export function OsuDifficultyCalculator_CalculateTimed(
+  calcHandle: ManagedObjectHandle,
+  nativeTimedAttributesBuffer: null | NativeTimedOsuDifficultyAttributes[],
+  bufferSize: Int32Array,
+): ErrorCode;
+export function OsuDifficultyCalculator_CalculateModsTimed(
+  calcHandle: ManagedObjectHandle,
+  modsHandle: ManagedObjectHandle,
+  nativeTimedAttributesBuffer: null | NativeTimedOsuDifficultyAttributes[],
+  bufferSize: Int32Array,
+): ErrorCode;
+export function OsuDifficultyCalculator_Destroy(
+  handle: ManagedObjectHandle,
+): ErrorCode;
+export function TaikoDifficultyCalculator_Create(
+  rulesetHandle: ManagedObjectHandle,
+  beatmapHandle: ManagedObjectHandle,
+  nativeTaikoDifficultyCalculatorPtr: NativeTaikoDifficultyCalculator,
+): ErrorCode;
+export function TaikoDifficultyCalculator_Calculate(
+  calcHandle: ManagedObjectHandle,
+  nativeAttributesPtr: NativeTaikoDifficultyAttributes,
+): ErrorCode;
+export function TaikoDifficultyCalculator_CalculateMods(
+  calcHandle: ManagedObjectHandle,
+  modsHandle: ManagedObjectHandle,
+  nativeAttributesPtr: NativeTaikoDifficultyAttributes,
+): ErrorCode;
+export function TaikoDifficultyCalculator_CalculateTimed(
+  calcHandle: ManagedObjectHandle,
+  nativeTimedAttributesBuffer: null | NativeTimedTaikoDifficultyAttributes[],
+  bufferSize: Int32Array,
+): ErrorCode;
+export function TaikoDifficultyCalculator_CalculateModsTimed(
+  calcHandle: ManagedObjectHandle,
+  modsHandle: ManagedObjectHandle,
+  nativeTimedAttributesBuffer: null | NativeTimedTaikoDifficultyAttributes[],
+  bufferSize: Int32Array,
+): ErrorCode;
+export function TaikoDifficultyCalculator_Destroy(
   handle: ManagedObjectHandle,
 ): ErrorCode;

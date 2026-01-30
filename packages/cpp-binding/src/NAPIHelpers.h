@@ -88,6 +88,13 @@ static int napi_is_uint32(napi_env env, napi_value value, int *integer) {
   return 1;
 }
 
+static int napi_is_buffer_value(napi_env env, napi_value value) {
+  bool is_buffer = false;
+  if (napi_is_buffer(env, value, &is_buffer) != napi_ok)
+    return 0;
+  return is_buffer ? 1 : 0;
+}
+
 #define NAPI_IS_BOOL(valuetype) (valuetype == napi_boolean)
 #define NAPI_IS_NULL(valuetype) (valuetype == napi_null)
 #define NAPI_IS_NUMBER(valuetype) (valuetype == napi_number)
@@ -98,5 +105,6 @@ static int napi_is_uint32(napi_env env, napi_value value, int *integer) {
   (NAPI_IS_NUMBER(valuetype) && napi_is_uint32(env, value, nullptr))
 #define NAPI_IS_INT64(valuetype, value) (NAPI_IS_BIGINT(valuetype))
 #define NAPI_IS_UINT64(valuetype, value) (NAPI_IS_BIGINT(valuetype))
+#define NAPI_IS_BUFFER(value) (napi_is_buffer_value(env, value))
 #define NAPI_IS_ARRAY(valuetype) (valuetype == napi_object)
 #define NAPI_IS_OBJECT(valuetype) (valuetype == napi_object)
