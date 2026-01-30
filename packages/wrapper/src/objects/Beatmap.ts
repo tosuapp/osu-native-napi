@@ -1,8 +1,8 @@
-import type { NativeBeatmap } from "@tosuapp/osu-native-napi-raw";
+import type { NativeBeatmap } from "@tosuapp/osu-native-napi";
 
 import { OsuNative } from "../core/OsuNative";
 import { NativeHandleOwner } from "../internal/NativeHandleOwner";
-import raw from "@tosuapp/osu-native-napi-raw";
+import raw from "@tosuapp/osu-native-napi";
 
 export class Beatmap extends NativeHandleOwner<NativeBeatmap> {
   static fromFile(filePath: string): Beatmap {

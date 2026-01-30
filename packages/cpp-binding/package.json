@@ -1,5 +1,5 @@
 {
-  "name": "@tosuapp/osu-native-napi-raw",
+  "name": "@tosuapp/osu-native-napi",
   "version": "1.0.0",
   "author": "Cherry",
   "main": "index.js",

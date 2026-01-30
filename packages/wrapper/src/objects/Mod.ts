@@ -1,8 +1,8 @@
-import type { NativeMod } from "@tosuapp/osu-native-napi-raw";
+import type { NativeMod } from "@tosuapp/osu-native-napi";
 
 import { OsuNative } from "../core/OsuNative";
 import { NativeHandleOwner } from "../internal/NativeHandleOwner";
-import raw from "@tosuapp/osu-native-napi-raw";
+import raw from "@tosuapp/osu-native-napi";
 
 export class Mod extends NativeHandleOwner<NativeMod> {
   static create(acronym: string): Mod {

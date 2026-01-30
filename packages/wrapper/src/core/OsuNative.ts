@@ -1,9 +1,9 @@
 import { OsuNativeError } from "./OsuNativeError";
 
-import raw from "@tosuapp/osu-native-napi-raw";
+import raw from "@tosuapp/osu-native-napi";
 
-import type OsuNativeRaw from "@tosuapp/osu-native-napi-raw";
-import type { ManagedObjectHandle } from "@tosuapp/osu-native-napi-raw";
+import type OsuNativeRaw from "@tosuapp/osu-native-napi";
+import type { ManagedObjectHandle } from "@tosuapp/osu-native-napi";
 
 type ErrorCodeMap = (typeof OsuNativeRaw)["ErrorCode"];
 type ErrorCodeValue = Extract<ErrorCodeMap[keyof ErrorCodeMap], number>;

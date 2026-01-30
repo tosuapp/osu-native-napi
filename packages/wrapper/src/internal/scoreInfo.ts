@@ -1,11 +1,11 @@
 import { OsuNative } from "../core/OsuNative";
-import type { NativeScoreInfo } from "@tosuapp/osu-native-napi-raw";
+import type { NativeScoreInfo } from "@tosuapp/osu-native-napi";
 
 import type { Beatmap } from "../objects/Beatmap";
 import type { ModsCollection } from "../objects/ModsCollection";
 import type { Ruleset } from "../objects/Ruleset";
 
-import raw from "@tosuapp/osu-native-napi-raw";
+import raw from "@tosuapp/osu-native-napi";
 
 export type ScoreInfoInput = Partial<
   Omit<NativeScoreInfo, "rulesetHandle" | "beatmapHandle" | "modsHandle">

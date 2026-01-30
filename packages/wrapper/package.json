@@ -1,16 +1,33 @@
 {
-  "name": "osu-native-ts-example",
-  "version": "1.0.0",
+  "name": "@tosuapp/osu-native-wrapper",
+  "version": "1.0.1",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dev": "tsx examples/usage.ts"
+    "dev": "tsx examples/usage.ts",
+    "build": "tsup",
+    "prepack": "pnpm run build"
   },
   "dependencies": {
-    "@tosuapp/osu-native-napi-raw": "workspace:*",
-    "tsx": "^4.21.0"
+    "@tosuapp/osu-native-napi": "1.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.1"
+    "@swc/core": "^1.15.11",
+    "@types/node": "^20.11.1",
+    "tsup": "^8.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

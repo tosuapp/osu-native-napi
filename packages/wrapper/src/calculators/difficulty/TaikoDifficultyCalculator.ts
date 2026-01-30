@@ -2,8 +2,8 @@ import type {
   NativeTaikoDifficultyAttributes,
   NativeTaikoDifficultyCalculator,
   NativeTimedTaikoDifficultyAttributes,
-} from "@tosuapp/osu-native-napi-raw";
-import raw from "@tosuapp/osu-native-napi-raw";
+} from "@tosuapp/osu-native-napi";
+import raw from "@tosuapp/osu-native-napi";
 
 import { OsuNative } from "../../core/OsuNative";
 import { NativeHandleOwner } from "../../internal/NativeHandleOwner";

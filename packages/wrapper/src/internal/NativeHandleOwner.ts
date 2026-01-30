@@ -1,4 +1,4 @@
-import type { ManagedObjectHandle } from "@tosuapp/osu-native-napi-raw";
+import type { ManagedObjectHandle } from "@tosuapp/osu-native-napi";
 
 export abstract class NativeHandleOwner<
   TNative extends { handle: ManagedObjectHandle },

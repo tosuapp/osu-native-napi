@@ -1,12 +1,12 @@
 import {
   ManagedObjectHandle,
   NativeModsCollection,
-} from "@tosuapp/osu-native-napi-raw";
+} from "@tosuapp/osu-native-napi";
 
 import { OsuNative } from "../core/OsuNative";
 import { NativeHandleOwner } from "../internal/NativeHandleOwner";
 import type { Mod } from "./Mod";
-import raw from "@tosuapp/osu-native-napi-raw";
+import raw from "@tosuapp/osu-native-napi";
 
 export class ModsCollection extends NativeHandleOwner<NativeModsCollection> {
   private mods: ManagedObjectHandle[] = [];

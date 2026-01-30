@@ -1,10 +1,10 @@
-import type { NativeRuleset } from "@tosuapp/osu-native-napi-raw";
+import type { NativeRuleset } from "@tosuapp/osu-native-napi";
 
 import { OsuNative } from "../core/OsuNative";
 import { NativeHandleOwner } from "../internal/NativeHandleOwner";
 import { RULESET_SHORT_NAME_BY_ID } from "../internal/rulesetShortName";
 
-import raw from "@tosuapp/osu-native-napi-raw";
+import raw from "@tosuapp/osu-native-napi";
 
 export class Ruleset extends NativeHandleOwner<NativeRuleset> {
   static fromId(rulesetId: number): Ruleset {
