@@ -21,7 +21,7 @@
     "prepack": "pnpm run build"
   },
   "dependencies": {
-    "@tosuapp/osu-native-napi": "workspace:*"
+    "@tosuapp/osu-native-napi": "1.0.1"
   },
   "devDependencies": {
     "@swc/core": "^1.15.11",
