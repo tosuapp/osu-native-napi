@@ -1,0 +1,104 @@
+name: Custom Osu Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_id:
+        description: "osu PR id"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    env:
+      PR_ID: ${{ inputs.pr_id }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup npm auth
+        shell: bash
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.11.1"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: "10.10.0"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Checkout osu-native
+        uses: actions/checkout@v4
+        with:
+          repository: minisbett/osu-native
+          path: .work/osu-native
+          fetch-depth: 1
+
+      - name: Checkout osu
+        uses: actions/checkout@v4
+        with:
+          repository: ppy/osu
+          path: .work/osu-native/vendor
+          ref: refs/pull/${{ inputs.pr_id }}/head
+          fetch-depth: 1
+
+      - name: Apply osu-native patch
+        shell: bash
+        run: |
+          git -C ".work/osu-native" apply "$GITHUB_WORKSPACE/patches/local-osu-native.patch"
+
+      - name: Build osu-native
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE
+          dotnet publish ".work/osu-native/osu.Native/osu.Native.csproj" -c Release -r win-x64
+
+      - name: Copy osu.Native.dll
+        shell: bash
+        run: |
+          DLL_PATH="$(find ".work/osu-native/Artifacts/publish/osu.Native/release_win-x64" -name "osu.Native.dll" -print -quit)"
+          cp "$DLL_PATH" "packages/cpp-binding/osu.Native.dll"
+
+      - name: Bump versions
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE/packages/cpp-binding
+          BASE_BINDING_VERSION="$(node -p "require('./package.json').version")"
+          NEW_BINDING_VERSION="${BASE_BINDING_VERSION}-${PR_ID}"
+          npm version "$NEW_BINDING_VERSION" --no-git-tag-version
+
+          cd $GITHUB_WORKSPACE/packages/wrapper
+          BASE_WRAPPER_VERSION="$(node -p "require('./package.json').version")"
+          NEW_WRAPPER_VERSION="${BASE_WRAPPER_VERSION}-${PR_ID}"
+          npm version "$NEW_WRAPPER_VERSION" --no-git-tag-version
+          npm pkg set "dependencies.@tosuapp/osu-native-napi=$NEW_BINDING_VERSION"
+
+      - name: Publish binding
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE/packages/cpp-binding
+          npm publish --access public
+
+      - name: Publish wrapper
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE/packages/wrapper
+          npm publish --access public

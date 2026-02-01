@@ -1,0 +1,30 @@
+diff --git a/osu.Native/osu.Native.csproj b/osu.Native/osu.Native.csproj
+index 25cbad6..46c38b8 100644
+--- a/osu.Native/osu.Native.csproj
++++ b/osu.Native/osu.Native.csproj
+@@ -28,7 +28,7 @@
+     <ProjectReference Include="..\osu.Native.Analyzers\osu.Native.Analyzers.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+   </ItemGroup>
+ 
+-  <ItemGroup>
++  <ItemGroup Condition="!Exists('../vendor')">
+     <PackageReference Include="cabi.net" Version="0.0.5" />
+     <PackageReference Include="ppy.osu.Game" Version="2025.1029.0" />
+     <PackageReference Include="ppy.osu.Game.Rulesets.Catch" Version="2025.1029.0" />
+@@ -39,4 +39,16 @@
+       <ExcludeAssets>all</ExcludeAssets>
+     </PackageReference>
+   </ItemGroup>
++
++  <ItemGroup Condition="Exists('../vendor')">
++    <PackageReference Include="cabi.net" Version="0.0.5" />
++    <ProjectReference Include="../vendor/osu.Game/osu.Game.csproj" />
++    <ProjectReference Include="../vendor/osu.Game.Rulesets.Catch/osu.Game.Rulesets.Catch.csproj" />
++    <ProjectReference Include="../vendor/osu.Game.Rulesets.Mania/osu.Game.Rulesets.Mania.csproj" />
++    <ProjectReference Include="../vendor/osu.Game.Rulesets.Osu/osu.Game.Rulesets.Osu.csproj" />
++    <ProjectReference Include="../vendor/osu.Game.Rulesets.Taiko/osu.Game.Rulesets.Taiko.csproj" />
++    <PackageReference Include="ppy.osu.Game.Resources" Version="*">
++      <ExcludeAssets>all</ExcludeAssets>
++    </PackageReference>
++  </ItemGroup>
+ </Project>
