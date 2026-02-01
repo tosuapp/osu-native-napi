@@ -18,11 +18,7 @@ jobs:
     uses: ./.github/workflows/publish-custom-osu.yml
     with:
       pr_id: ${{ inputs.pr_id }}
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-standard:
     if: ${{ inputs.pr_id == '' }}
     uses: ./.github/workflows/publish-standard.yml
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
