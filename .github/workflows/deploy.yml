@@ -2,34 +2,27 @@ name: Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      pr_id:
+        description: "osu PR id (optional for custom build)"
+        required: false
+        type: string
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
-  publish:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  publish-custom-osu:
+    if: ${{ inputs.pr_id != '' }}
+    uses: ./.github/workflows/publish-custom-osu.yml
+    with:
+      pr_id: ${{ inputs.pr_id }}
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20.11.1"
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: "10.10.0"
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build packages
-        run: pnpm -r --filter "./packages/*" build
-
-      - name: Publish packages
-        run: pnpm -r --filter "./packages/*" publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  publish-standard:
+    if: ${{ inputs.pr_id == '' }}
+    uses: ./.github/workflows/publish-standard.yml
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -5,6 +5,9 @@
   "main": "index.js",
   "types": "osu-native.d.ts",
   "license": "GPL-3.0",
+  "repository": {
+    "url": "https://github.com/tosuapp/osu-native-napi"
+  },
   "os": [
     "win32"
   ],

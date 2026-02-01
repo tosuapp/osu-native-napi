@@ -1,15 +1,19 @@
-name: Custom Osu Build
+name: Publish Custom Osu
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       pr_id:
         description: "osu PR id"
         required: true
         type: string
+    secrets:
+      NPM_TOKEN:
+        required: true
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   publish:
@@ -20,13 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup npm auth
-        shell: bash
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -35,7 +32,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.11.1"
+          node-version: "22.22.0"
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup npm 11
+        shell: bash
+        run: |
+          npm install -g npm@11
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -80,25 +83,34 @@ jobs:
       - name: Bump versions
         shell: bash
         run: |
+          PR_SHA8="$(git -C "$GITHUB_WORKSPACE/.work/osu-native/vendor" rev-parse --short=8 HEAD)"
+          PR_VERSION_SUFFIX="${PR_ID}.${PR_SHA8}"
+
           cd $GITHUB_WORKSPACE/packages/cpp-binding
           BASE_BINDING_VERSION="$(node -p "require('./package.json').version")"
-          NEW_BINDING_VERSION="${BASE_BINDING_VERSION}-${PR_ID}"
+          NEW_BINDING_VERSION="${BASE_BINDING_VERSION}-${PR_VERSION_SUFFIX}"
           npm version "$NEW_BINDING_VERSION" --no-git-tag-version
 
           cd $GITHUB_WORKSPACE/packages/wrapper
           BASE_WRAPPER_VERSION="$(node -p "require('./package.json').version")"
-          NEW_WRAPPER_VERSION="${BASE_WRAPPER_VERSION}-${PR_ID}"
+          NEW_WRAPPER_VERSION="${BASE_WRAPPER_VERSION}-${PR_VERSION_SUFFIX}"
           npm version "$NEW_WRAPPER_VERSION" --no-git-tag-version
           npm pkg set "dependencies.@tosuapp/osu-native-napi=$NEW_BINDING_VERSION"
 
       - name: Publish binding
         shell: bash
+        env:
+          # NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
         run: |
           cd $GITHUB_WORKSPACE/packages/cpp-binding
-          npm publish --access public
+          npm publish --access public --provenance --tag=dev
 
       - name: Publish wrapper
         shell: bash
+        env:
+          # NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
         run: |
           cd $GITHUB_WORKSPACE/packages/wrapper
-          npm publish --access public
+          npm publish --access public --provenance --tag=dev

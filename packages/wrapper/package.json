@@ -23,6 +23,9 @@
   "dependencies": {
     "@tosuapp/osu-native-napi": "1.0.2"
   },
+  "repository": {
+    "url": "https://github.com/tosuapp/osu-native-napi"
+  },
   "devDependencies": {
     "@swc/core": "^1.15.11",
     "@types/node": "^20.11.1",
