@@ -3,13 +3,10 @@ name: Publish Custom Osu
 on:
   workflow_call:
     inputs:
-      pr_id:
-        description: "osu PR id"
+      branch_name:
+        description: "tosuapp/osu branch name"
         required: true
         type: string
-    secrets:
-      NPM_TOKEN:
-        required: true
 
 permissions:
   contents: read
@@ -19,7 +16,7 @@ jobs:
   publish:
     runs-on: windows-latest
     env:
-      PR_ID: ${{ inputs.pr_id }}
+      BRANCH_NAME: ${{ inputs.branch_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -51,22 +48,17 @@ jobs:
       - name: Checkout osu-native
         uses: actions/checkout@v4
         with:
-          repository: minisbett/osu-native
+          repository: tosuapp/osu-native
           path: .work/osu-native
           fetch-depth: 1
+          submodules: recursive
 
-      - name: Checkout osu
-        uses: actions/checkout@v4
-        with:
-          repository: ppy/osu
-          path: .work/osu-native/vendor
-          ref: refs/pull/${{ inputs.pr_id }}/head
-          fetch-depth: 1
-
-      - name: Apply osu-native patch
+      - name: Checkout osu PR branch
         shell: bash
         run: |
-          git -C ".work/osu-native" apply "$GITHUB_WORKSPACE/patches/local-osu-native.patch"
+          cd .work/osu-native/osu.Game
+          git fetch origin "${BRANCH_NAME}:${BRANCH_NAME}"
+          git checkout "${BRANCH_NAME}"
 
       - name: Build osu-native
         shell: bash
@@ -83,8 +75,8 @@ jobs:
       - name: Bump versions
         shell: bash
         run: |
-          PR_SHA8="$(git -C "$GITHUB_WORKSPACE/.work/osu-native/vendor" rev-parse --short=8 HEAD)"
-          PR_VERSION_SUFFIX="${PR_ID}.${PR_SHA8}"
+          PR_SHA8="$(git -C "$GITHUB_WORKSPACE/.work/osu-native/osu.Game" rev-parse --short=8 HEAD)"
+          PR_VERSION_SUFFIX="${BRANCH_NAME}.${PR_SHA8}"
 
           cd $GITHUB_WORKSPACE/packages/cpp-binding
           BASE_BINDING_VERSION="$(node -p "require('./package.json').version")"

@@ -3,8 +3,8 @@ name: Deploy
 on:
   workflow_dispatch:
     inputs:
-      pr_id:
-        description: "osu PR id (optional for custom build)"
+      branch_name:
+        description: "tosuapp/osu branch name"
         required: false
         type: string
 
@@ -14,11 +14,11 @@ permissions:
 
 jobs:
   publish-custom-osu:
-    if: ${{ inputs.pr_id != '' }}
+    if: ${{ inputs.branch_name != '' }}
     uses: ./.github/workflows/publish-custom-osu.yml
     with:
-      pr_id: ${{ inputs.pr_id }}
+      branch_name: ${{ inputs.branch_name }}
 
   publish-standard:
-    if: ${{ inputs.pr_id == '' }}
+    if: ${{ inputs.branch_name == '' }}
     uses: ./.github/workflows/publish-standard.yml
