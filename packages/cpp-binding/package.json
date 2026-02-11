@@ -1,6 +1,6 @@
 {
   "name": "@tosuapp/osu-native-napi",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "author": "Cherry",
   "main": "index.js",
   "types": "osu-native.d.ts",
