@@ -14,6 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -32,6 +37,26 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Checkout osu-native
+        uses: actions/checkout@v4
+        with:
+          repository: tosuapp/osu-native
+          path: .work/osu-native
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Build osu-native
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE
+          dotnet publish ".work/osu-native/osu.Native/osu.Native.csproj" -c Release -r win-x64
+
+      - name: Copy osu.Native.dll
+        shell: bash
+        run: |
+          DLL_PATH="$(find ".work/osu-native/Artifacts/publish/osu.Native/release_win-x64" -name "osu.Native.dll" -print -quit)"
+          cp "$DLL_PATH" "packages/cpp-binding/osu.Native.dll"
 
       - name: Build packages
         run: pnpm -r --filter "./packages/*" build
