@@ -3,13 +3,14 @@ import type {
   NativeCatchDifficultyCalculator,
   NativeTimedCatchDifficultyAttributes,
 } from "@tosuapp/osu-native-napi";
-import raw from "@tosuapp/osu-native-napi";
+import raw, { ManagedObjectHandle } from "@tosuapp/osu-native-napi";
 
 import { OsuNative } from "../../core/OsuNative";
 import { NativeHandleOwner } from "../../internal/NativeHandleOwner";
 import type { Beatmap } from "../../objects/Beatmap";
 import type { ModsCollection } from "../../objects/ModsCollection";
 import type { Ruleset } from "../../objects/Ruleset";
+import { TimedLazy } from "../../types/calculator";
 
 export class CatchDifficultyCalculator extends NativeHandleOwner<NativeCatchDifficultyCalculator> {
   constructor(
@@ -33,31 +34,17 @@ export class CatchDifficultyCalculator extends NativeHandleOwner<NativeCatchDiff
     return new CatchDifficultyCalculator(native, ruleset, beatmap);
   }
 
-  calculate(): NativeCatchDifficultyAttributes {
+  calculate(mods: ModsCollection): NativeCatchDifficultyAttributes {
     this.ensureAlive();
     const attrs = new raw.NativeCatchDifficultyAttributes();
     OsuNative.assertOk(
       "CatchDifficultyCalculator_Calculate",
-      raw.CatchDifficultyCalculator_Calculate(this.handle, attrs),
+      raw.CatchDifficultyCalculator_Calculate(this.handle, mods.handle, attrs),
     );
     return attrs;
   }
 
-  calculateWithMods(mods: ModsCollection): NativeCatchDifficultyAttributes {
-    this.ensureAlive();
-    const attrs = new raw.NativeCatchDifficultyAttributes();
-    OsuNative.assertOk(
-      "CatchDifficultyCalculator_CalculateMods",
-      raw.CatchDifficultyCalculator_CalculateMods(
-        this.handle,
-        mods.handle,
-        attrs,
-      ),
-    );
-    return attrs;
-  }
-
-  calculateTimed(): NativeTimedCatchDifficultyAttributes[] {
+  calculateTimed(mods: ModsCollection): NativeTimedCatchDifficultyAttributes[] {
     this.ensureAlive();
 
     const bufferSize = new Int32Array(1);
@@ -65,6 +52,7 @@ export class CatchDifficultyCalculator extends NativeHandleOwner<NativeCatchDiff
       "CatchDifficultyCalculator_CalculateTimed",
       raw.CatchDifficultyCalculator_CalculateTimed(
         this.handle,
+        mods.handle,
         null,
         bufferSize,
       ),
@@ -81,6 +69,7 @@ export class CatchDifficultyCalculator extends NativeHandleOwner<NativeCatchDiff
       "CatchDifficultyCalculator_CalculateTimed",
       raw.CatchDifficultyCalculator_CalculateTimed(
         this.handle,
+        mods.handle,
         outAttrs,
         bufferSize,
       ),
@@ -89,40 +78,48 @@ export class CatchDifficultyCalculator extends NativeHandleOwner<NativeCatchDiff
     return outAttrs;
   }
 
-  calculateWithModsTimed(
-    mods: ModsCollection,
-  ): NativeTimedCatchDifficultyAttributes[] {
+  calculateTimedLazy(mods: ModsCollection): TimedLazy<NativeTimedCatchDifficultyAttributes> {
     this.ensureAlive();
 
-    const bufferSize = new Int32Array(1);
-    OsuNative.assertSizeQuery(
-      "CatchDifficultyCalculator_CalculateModsTimed",
-      raw.CatchDifficultyCalculator_CalculateModsTimed(
-        this.handle,
-        mods.handle,
-        null,
-        bufferSize,
-      ),
-    );
-
-    if (bufferSize[0] <= 0) {
-      return [];
-    }
-
-    const outAttrs = new Array<NativeTimedCatchDifficultyAttributes>(
-      bufferSize[0],
-    );
+    const enumerator = new ManagedObjectHandle();
     OsuNative.assertOk(
-      "CatchDifficultyCalculator_CalculateModsTimed",
-      raw.CatchDifficultyCalculator_CalculateModsTimed(
+      "CatchDifficultyCalculator_CalculateTimedLazy",
+      raw.CatchDifficultyCalculator_CalculateTimedLazy(
         this.handle,
         mods.handle,
-        outAttrs,
-        bufferSize,
+        enumerator
       ),
     );
 
-    return outAttrs;
+    const attrs = new raw.NativeTimedCatchDifficultyAttributes();
+    let destroyed = false;
+    return {
+      enumerator,
+      next: () => {
+        if (destroyed == true) return null;
+        OsuNative.assertOk(
+          "CatchDifficultyCalculator_CalculateTimedLazy_Next",
+          raw.CatchDifficultyCalculator_CalculateTimedLazy_Next(
+            enumerator,
+            attrs
+          ),
+        );
+
+        return attrs;
+      },
+      destroy: () => {
+        destroyed = true;
+
+        OsuNative.assertOk(
+          "CatchDifficultyCalculator_CalculateTimedLazy_Destroy",
+          raw.CatchDifficultyCalculator_CalculateTimedLazy_Destroy(
+            enumerator
+          ),
+        );
+
+        return true;
+      }
+    }
   }
 
   destroy(): void {

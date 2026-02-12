@@ -20,3 +20,6 @@ export type { ScoreInfoInput } from "./src/internal/scoreInfo";
 
 export { DifficultyCalculatorFactory } from "./src/factories/DifficultyCalculatorFactory";
 export { PerformanceCalculatorFactory } from "./src/factories/PerformanceCalculatorFactory";
+
+
+export type { TimedLazy } from './src/types/calculator';

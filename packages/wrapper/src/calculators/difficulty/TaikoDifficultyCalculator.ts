@@ -3,13 +3,14 @@ import type {
   NativeTaikoDifficultyCalculator,
   NativeTimedTaikoDifficultyAttributes,
 } from "@tosuapp/osu-native-napi";
-import raw from "@tosuapp/osu-native-napi";
+import raw, { ManagedObjectHandle } from "@tosuapp/osu-native-napi";
 
 import { OsuNative } from "../../core/OsuNative";
 import { NativeHandleOwner } from "../../internal/NativeHandleOwner";
 import type { Beatmap } from "../../objects/Beatmap";
 import type { ModsCollection } from "../../objects/ModsCollection";
 import type { Ruleset } from "../../objects/Ruleset";
+import { TimedLazy } from "../../types/calculator";
 
 export class TaikoDifficultyCalculator extends NativeHandleOwner<NativeTaikoDifficultyCalculator> {
   constructor(
@@ -33,22 +34,12 @@ export class TaikoDifficultyCalculator extends NativeHandleOwner<NativeTaikoDiff
     return new TaikoDifficultyCalculator(native, ruleset, beatmap);
   }
 
-  calculate(): NativeTaikoDifficultyAttributes {
+  calculate(mods: ModsCollection): NativeTaikoDifficultyAttributes {
     this.ensureAlive();
     const attrs = new raw.NativeTaikoDifficultyAttributes();
     OsuNative.assertOk(
       "TaikoDifficultyCalculator_Calculate",
-      raw.TaikoDifficultyCalculator_Calculate(this.handle, attrs),
-    );
-    return attrs;
-  }
-
-  calculateWithMods(mods: ModsCollection): NativeTaikoDifficultyAttributes {
-    this.ensureAlive();
-    const attrs = new raw.NativeTaikoDifficultyAttributes();
-    OsuNative.assertOk(
-      "TaikoDifficultyCalculator_CalculateMods",
-      raw.TaikoDifficultyCalculator_CalculateMods(
+      raw.TaikoDifficultyCalculator_Calculate(
         this.handle,
         mods.handle,
         attrs,
@@ -57,7 +48,9 @@ export class TaikoDifficultyCalculator extends NativeHandleOwner<NativeTaikoDiff
     return attrs;
   }
 
-  calculateTimed(): NativeTimedTaikoDifficultyAttributes[] {
+  calculateTimed(
+    mods: ModsCollection,
+  ): NativeTimedTaikoDifficultyAttributes[] {
     this.ensureAlive();
 
     const bufferSize = new Int32Array(1);
@@ -65,6 +58,7 @@ export class TaikoDifficultyCalculator extends NativeHandleOwner<NativeTaikoDiff
       "TaikoDifficultyCalculator_CalculateTimed",
       raw.TaikoDifficultyCalculator_CalculateTimed(
         this.handle,
+        mods.handle,
         null,
         bufferSize,
       ),
@@ -81,6 +75,7 @@ export class TaikoDifficultyCalculator extends NativeHandleOwner<NativeTaikoDiff
       "TaikoDifficultyCalculator_CalculateTimed",
       raw.TaikoDifficultyCalculator_CalculateTimed(
         this.handle,
+        mods.handle,
         outAttrs,
         bufferSize,
       ),
@@ -89,40 +84,48 @@ export class TaikoDifficultyCalculator extends NativeHandleOwner<NativeTaikoDiff
     return outAttrs;
   }
 
-  calculateWithModsTimed(
-    mods: ModsCollection,
-  ): NativeTimedTaikoDifficultyAttributes[] {
+  calculateTimedLazy(mods: ModsCollection): TimedLazy<NativeTimedTaikoDifficultyAttributes> {
     this.ensureAlive();
 
-    const bufferSize = new Int32Array(1);
-    OsuNative.assertSizeQuery(
-      "TaikoDifficultyCalculator_CalculateModsTimed",
-      raw.TaikoDifficultyCalculator_CalculateModsTimed(
-        this.handle,
-        mods.handle,
-        null,
-        bufferSize,
-      ),
-    );
-
-    if (bufferSize[0] <= 0) {
-      return [];
-    }
-
-    const outAttrs = new Array<NativeTimedTaikoDifficultyAttributes>(
-      bufferSize[0],
-    );
+    const enumerator = new ManagedObjectHandle();
     OsuNative.assertOk(
-      "TaikoDifficultyCalculator_CalculateModsTimed",
-      raw.TaikoDifficultyCalculator_CalculateModsTimed(
+      "TaikoDifficultyCalculator_CalculateTimedLazy",
+      raw.TaikoDifficultyCalculator_CalculateTimedLazy(
         this.handle,
         mods.handle,
-        outAttrs,
-        bufferSize,
+        enumerator
       ),
     );
 
-    return outAttrs;
+    const attrs = new raw.NativeTimedTaikoDifficultyAttributes();
+    let destroyed = false;
+    return {
+      enumerator,
+      next: () => {
+        if (destroyed == true) return null;
+        OsuNative.assertOk(
+          "TaikoDifficultyCalculator_CalculateTimedLazy_Next",
+          raw.TaikoDifficultyCalculator_CalculateTimedLazy_Next(
+            enumerator,
+            attrs
+          ),
+        );
+
+        return attrs;
+      },
+      destroy: () => {
+        destroyed = true;
+
+        OsuNative.assertOk(
+          "TaikoDifficultyCalculator_CalculateTimedLazy_Destroy",
+          raw.TaikoDifficultyCalculator_CalculateTimedLazy_Destroy(
+            enumerator
+          ),
+        );
+
+        return true;
+      }
+    }
   }
 
   destroy(): void {

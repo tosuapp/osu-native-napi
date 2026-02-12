@@ -287,7 +287,7 @@ mods.add(modCl);
 mods.add(modHd);
 mods.add(modDt);
 
-const attributes = diffCalculator.calculateWithModsTimed(mods);
+const attributes = diffCalculator.calculateTimed(mods);
 const attr = attributes[attributes.length - 1].attributes;
 
 const scoreInfo: ScoreInfoInput = {

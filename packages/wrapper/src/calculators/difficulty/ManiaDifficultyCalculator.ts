@@ -3,13 +3,14 @@ import type {
   NativeManiaDifficultyCalculator,
   NativeTimedManiaDifficultyAttributes,
 } from "@tosuapp/osu-native-napi";
-import raw from "@tosuapp/osu-native-napi";
+import raw, { ManagedObjectHandle } from "@tosuapp/osu-native-napi";
 
 import { OsuNative } from "../../core/OsuNative";
 import { NativeHandleOwner } from "../../internal/NativeHandleOwner";
 import type { Beatmap } from "../../objects/Beatmap";
 import type { ModsCollection } from "../../objects/ModsCollection";
 import type { Ruleset } from "../../objects/Ruleset";
+import { TimedLazy } from "../../types/calculator";
 
 export class ManiaDifficultyCalculator extends NativeHandleOwner<NativeManiaDifficultyCalculator> {
   constructor(
@@ -33,22 +34,12 @@ export class ManiaDifficultyCalculator extends NativeHandleOwner<NativeManiaDiff
     return new ManiaDifficultyCalculator(native, ruleset, beatmap);
   }
 
-  calculate(): NativeManiaDifficultyAttributes {
+  calculate(mods: ModsCollection): NativeManiaDifficultyAttributes {
     this.ensureAlive();
     const attrs = new raw.NativeManiaDifficultyAttributes();
     OsuNative.assertOk(
       "ManiaDifficultyCalculator_Calculate",
-      raw.ManiaDifficultyCalculator_Calculate(this.handle, attrs),
-    );
-    return attrs;
-  }
-
-  calculateWithMods(mods: ModsCollection): NativeManiaDifficultyAttributes {
-    this.ensureAlive();
-    const attrs = new raw.NativeManiaDifficultyAttributes();
-    OsuNative.assertOk(
-      "ManiaDifficultyCalculator_CalculateMods",
-      raw.ManiaDifficultyCalculator_CalculateMods(
+      raw.ManiaDifficultyCalculator_Calculate(
         this.handle,
         mods.handle,
         attrs,
@@ -57,7 +48,9 @@ export class ManiaDifficultyCalculator extends NativeHandleOwner<NativeManiaDiff
     return attrs;
   }
 
-  calculateTimed(): NativeTimedManiaDifficultyAttributes[] {
+  calculateTimed(
+    mods: ModsCollection,
+  ): NativeTimedManiaDifficultyAttributes[] {
     this.ensureAlive();
 
     const bufferSize = new Int32Array(1);
@@ -65,6 +58,7 @@ export class ManiaDifficultyCalculator extends NativeHandleOwner<NativeManiaDiff
       "ManiaDifficultyCalculator_CalculateTimed",
       raw.ManiaDifficultyCalculator_CalculateTimed(
         this.handle,
+        mods.handle,
         null,
         bufferSize,
       ),
@@ -81,6 +75,7 @@ export class ManiaDifficultyCalculator extends NativeHandleOwner<NativeManiaDiff
       "ManiaDifficultyCalculator_CalculateTimed",
       raw.ManiaDifficultyCalculator_CalculateTimed(
         this.handle,
+        mods.handle,
         outAttrs,
         bufferSize,
       ),
@@ -89,40 +84,48 @@ export class ManiaDifficultyCalculator extends NativeHandleOwner<NativeManiaDiff
     return outAttrs;
   }
 
-  calculateWithModsTimed(
-    mods: ModsCollection,
-  ): NativeTimedManiaDifficultyAttributes[] {
+  calculateTimedLazy(mods: ModsCollection): TimedLazy<NativeTimedManiaDifficultyAttributes> {
     this.ensureAlive();
 
-    const bufferSize = new Int32Array(1);
-    OsuNative.assertSizeQuery(
-      "ManiaDifficultyCalculator_CalculateModsTimed",
-      raw.ManiaDifficultyCalculator_CalculateModsTimed(
-        this.handle,
-        mods.handle,
-        null,
-        bufferSize,
-      ),
-    );
-
-    if (bufferSize[0] <= 0) {
-      return [];
-    }
-
-    const outAttrs = new Array<NativeTimedManiaDifficultyAttributes>(
-      bufferSize[0],
-    );
+    const enumerator = new ManagedObjectHandle();
     OsuNative.assertOk(
-      "ManiaDifficultyCalculator_CalculateModsTimed",
-      raw.ManiaDifficultyCalculator_CalculateModsTimed(
+      "ManiaDifficultyCalculator_CalculateTimedLazy",
+      raw.ManiaDifficultyCalculator_CalculateTimedLazy(
         this.handle,
         mods.handle,
-        outAttrs,
-        bufferSize,
+        enumerator
       ),
     );
 
-    return outAttrs;
+    const attrs = new raw.NativeTimedManiaDifficultyAttributes();
+    let destroyed = false;
+    return {
+      enumerator,
+      next: () => {
+        if (destroyed == true) return null;
+        OsuNative.assertOk(
+          "ManiaDifficultyCalculator_CalculateTimedLazy_Next",
+          raw.ManiaDifficultyCalculator_CalculateTimedLazy_Next(
+            enumerator,
+            attrs
+          ),
+        );
+
+        return attrs;
+      },
+      destroy: () => {
+        destroyed = true;
+
+        OsuNative.assertOk(
+          "ManiaDifficultyCalculator_CalculateTimedLazy_Destroy",
+          raw.ManiaDifficultyCalculator_CalculateTimedLazy_Destroy(
+            enumerator
+          ),
+        );
+
+        return true;
+      }
+    }
   }
 
   destroy(): void {
