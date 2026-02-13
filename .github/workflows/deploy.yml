@@ -8,17 +8,141 @@ on:
         required: false
         type: string
 
+      publish_napi:
+        description: "Publish osu-native-napi?"
+        required: false
+        type: boolean
+        default: false
+
+      publish_wrapper:
+        description: "Publish osu-native-wrapper?"
+        required: false
+        type: boolean
+        default: false
+
 permissions:
   contents: read
   id-token: write
 
 jobs:
-  publish-custom-osu:
-    if: ${{ inputs.branch_name != '' }}
-    uses: ./.github/workflows/publish-custom-osu.yml
-    with:
-      branch_name: ${{ inputs.branch_name }}
+  publish:
+    runs-on: windows-latest
+    env:
+      BRANCH_NAME: ${{ inputs.branch_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  publish-standard:
-    if: ${{ inputs.branch_name == '' }}
-    uses: ./.github/workflows/publish-standard.yml
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.22.0"
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup npm 11
+        shell: bash
+        run: |
+          npm install -g npm@11
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: "10.10.0"
+
+      - name: Checkout osu-native
+        if: ${{ inputs.publish_napi == true }}
+        uses: actions/checkout@v4
+        with:
+          repository: tosuapp/osu-native
+          path: .work/osu-native
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Checkout osu PR branch
+        if: ${{ inputs.branch_name != '' && inputs.publish_napi == true }}
+        shell: bash
+        run: |
+          cd .work/osu-native/osu.Game
+          git fetch origin "${BRANCH_NAME}:${BRANCH_NAME}"
+          git checkout "${BRANCH_NAME}"
+
+      - name: Setup .NET
+        if: ${{ inputs.publish_napi == true }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Build osu-native
+        if: ${{ inputs.publish_napi == true }}
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE
+          dotnet publish ".work/osu-native/osu.Native/osu.Native.csproj" -c Release -r win-x64
+
+      - name: Copy osu.Native.dll
+        if: ${{ inputs.publish_napi == true }}
+        shell: bash
+        run: |
+          DLL_PATH="$(find ".work/osu-native/Artifacts/publish/osu.Native/release_win-x64" -name "osu.Native.dll" -print -quit)"
+          cp "$DLL_PATH" "packages/cpp-binding/osu.Native.dll"
+
+      - name: Bump versions
+        if: ${{ inputs.branch_name != '' }}
+        shell: bash
+        run: |
+          PR_SHA8="$(git -C "$GITHUB_WORKSPACE/.work/osu-native/osu.Game" rev-parse --short=8 HEAD)"
+          PR_VERSION_SUFFIX="${BRANCH_NAME}.${PR_SHA8}"
+
+          cd $GITHUB_WORKSPACE/packages/cpp-binding
+          BASE_BINDING_VERSION="$(node -p "require('./package.json').version")"
+          NEW_BINDING_VERSION="${BASE_BINDING_VERSION}-${PR_VERSION_SUFFIX}"
+          npm version "$NEW_BINDING_VERSION" --no-git-tag-version
+
+          cd $GITHUB_WORKSPACE/packages/wrapper
+          BASE_WRAPPER_VERSION="$(node -p "require('./package.json').version")"
+          NEW_WRAPPER_VERSION="${BASE_WRAPPER_VERSION}-${PR_VERSION_SUFFIX}"
+          npm version "$NEW_WRAPPER_VERSION" --no-git-tag-version
+          npm pkg set "dependencies.@tosuapp/osu-native-napi=$NEW_BINDING_VERSION"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build binding package
+        if: ${{ inputs.publish_napi == true }}
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE/packages/cpp-binding
+          pnpm build
+
+      - name: Build binding package
+        if: ${{ inputs.publish_wrapper == true }}
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE/packages/wrapper
+          pnpm build
+
+      - name: Publish binding
+        if: ${{ inputs.publish_napi == true }}
+        shell: bash
+        env:
+          NPM_CONFIG_PROVENANCE: true
+        run: |
+          cd $GITHUB_WORKSPACE/packages/cpp-binding
+          if [ -n "$BRANCH_NAME" ]; then
+            npm publish --access public --provenance --tag=dev
+          else
+            npm publish --access public --provenance
+          fi
+
+      - name: Publish wrapper
+        if: ${{ inputs.publish_wrapper == true }}
+        shell: bash
+        env:
+          NPM_CONFIG_PROVENANCE: true
+        run: |
+          cd $GITHUB_WORKSPACE/packages/wrapper
+          if [ -n "$BRANCH_NAME" ]; then
+            npm publish --access public --provenance --tag=dev
+          else
+            npm publish --access public --provenance
+          fi

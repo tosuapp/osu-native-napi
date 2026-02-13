@@ -20,8 +20,8 @@ importers:
   packages/wrapper:
     dependencies:
       '@tosuapp/osu-native-napi':
-        specifier: 1.0.2
-        version: 1.0.2
+        specifier: 1.0.7
+        version: 1.0.7
     devDependencies:
       '@swc/core':
         specifier: ^1.15.11
@@ -410,8 +410,8 @@ packages:
   '@swc/types@0.1.25':
     resolution: {integrity: sha512-iAoY/qRhNH8a/hBvm3zKj9qQ4oc2+3w1unPJa2XvTK3XjeLXtzcCingVPw/9e5mn1+0yPqxcBGp9Jf0pkfMb1g==}
 
-  '@tosuapp/osu-native-napi@1.0.2':
-    resolution: {integrity: sha512-H7sONpXPqIEuBgOnZAANddZZG4PJNm/ZOOc5GEJInyx3/dzEWJZmb7zWNGDjD1n4oJUWftbceHnj+To8hHzKHw==}
+  '@tosuapp/osu-native-napi@1.0.7':
+    resolution: {integrity: sha512-+rNdE4EprqpI/hsIMferht1QXt+8RMuXy24+JKxTTNFQn+wwr5c/se78WBV2UiWzQ6YWCjNUmNLHowJkk4mkPw==}
     cpu: [x64]
     os: [win32]
 
@@ -856,7 +856,7 @@ snapshots:
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@tosuapp/osu-native-napi@1.0.2': {}
+  '@tosuapp/osu-native-napi@1.0.7': {}
 
   '@types/estree@1.0.8': {}
 
