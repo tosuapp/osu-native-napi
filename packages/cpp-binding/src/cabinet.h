@@ -2,7 +2,7 @@
 // -- https://github.com/minisbett/cabinet
 //
 // Assembly: F:\coding\pr-check\osu-native\Artifacts\bin\osu.Native\release\osu.Native.dll
-//     Date: 2026-02-11 20:17:08 +03:00
+//     Date: 2026-02-24 12:15:08 +03:00
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -72,8 +72,11 @@ typedef struct NativeScoreInfo
     int32_t countGood;
     int32_t countGreat;
     int32_t countPerfect;
-    int32_t countSliderTailHit;
+    int32_t countSmallTickMiss;
+    int32_t countSmallTickHit;
     int32_t countLargeTickMiss;
+    int32_t countLargeTickHit;
+    int32_t countSliderTailHit;
 } NativeScoreInfo;
 
 typedef struct NativeCatchPerformanceAttributes

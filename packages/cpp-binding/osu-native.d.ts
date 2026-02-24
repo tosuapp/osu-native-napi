@@ -104,8 +104,11 @@ export class NativeScoreInfo
     countGood: number;
     countGreat: number;
     countPerfect: number;
-    countSliderTailHit: number;
+    countSmallTickMiss: number;
+    countSmallTickHit: number;
     countLargeTickMiss: number;
+    countLargeTickHit: number;
+    countSliderTailHit: number;
 }
 
 export class NativeCatchPerformanceAttributes

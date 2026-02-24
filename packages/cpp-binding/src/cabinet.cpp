@@ -1633,8 +1633,8 @@ static napi_value setter_field_NativeScoreInfo_countPerfect
     return nullptr;
 }
 
-// NativeScoreInfo::__countSliderTailHit
-static napi_value getter_field_NativeScoreInfo_countSliderTailHit(napi_env env, napi_callback_info info)
+// NativeScoreInfo::__countSmallTickMiss
+static napi_value getter_field_NativeScoreInfo_countSmallTickMiss(napi_env env, napi_callback_info info)
 {
     napi_status status;
     napi_value _this;
@@ -1646,13 +1646,13 @@ static napi_value getter_field_NativeScoreInfo_countSliderTailHit(napi_env env, 
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    napi_value ____countSliderTailHit;
-    status = napi_create_int32(env, instance->countSliderTailHit, &____countSliderTailHit);
+    napi_value ____countSmallTickMiss;
+    status = napi_create_int32(env, instance->countSmallTickMiss, &____countSmallTickMiss);
     assert(status == napi_ok);
-    return ____countSliderTailHit;
+    return ____countSmallTickMiss;
 }
 
-static napi_value setter_field_NativeScoreInfo_countSliderTailHit
+static napi_value setter_field_NativeScoreInfo_countSmallTickMiss
 (napi_env env, napi_callback_info info)
 {
     napi_status status;
@@ -1666,9 +1666,48 @@ static napi_value setter_field_NativeScoreInfo_countSliderTailHit
     status = napi_unwrap(env, _this, (void**) &instance);
     assert(status == napi_ok);
 
-    int32_t __countSliderTailHit;
-    status = napi_get_value_int32(env, args[0], &__countSliderTailHit);
-    instance->countSliderTailHit = (::int32_t)__countSliderTailHit;
+    int32_t __countSmallTickMiss;
+    status = napi_get_value_int32(env, args[0], &__countSmallTickMiss);
+    instance->countSmallTickMiss = (::int32_t)__countSmallTickMiss;
+    return nullptr;
+}
+
+// NativeScoreInfo::__countSmallTickHit
+static napi_value getter_field_NativeScoreInfo_countSmallTickHit(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeScoreInfo* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____countSmallTickHit;
+    status = napi_create_int32(env, instance->countSmallTickHit, &____countSmallTickHit);
+    assert(status == napi_ok);
+    return ____countSmallTickHit;
+}
+
+static napi_value setter_field_NativeScoreInfo_countSmallTickHit
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeScoreInfo* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    int32_t __countSmallTickHit;
+    status = napi_get_value_int32(env, args[0], &__countSmallTickHit);
+    instance->countSmallTickHit = (::int32_t)__countSmallTickHit;
     return nullptr;
 }
 
@@ -1711,6 +1750,84 @@ static napi_value setter_field_NativeScoreInfo_countLargeTickMiss
     return nullptr;
 }
 
+// NativeScoreInfo::__countLargeTickHit
+static napi_value getter_field_NativeScoreInfo_countLargeTickHit(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeScoreInfo* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____countLargeTickHit;
+    status = napi_create_int32(env, instance->countLargeTickHit, &____countLargeTickHit);
+    assert(status == napi_ok);
+    return ____countLargeTickHit;
+}
+
+static napi_value setter_field_NativeScoreInfo_countLargeTickHit
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeScoreInfo* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    int32_t __countLargeTickHit;
+    status = napi_get_value_int32(env, args[0], &__countLargeTickHit);
+    instance->countLargeTickHit = (::int32_t)__countLargeTickHit;
+    return nullptr;
+}
+
+// NativeScoreInfo::__countSliderTailHit
+static napi_value getter_field_NativeScoreInfo_countSliderTailHit(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc;
+    status = napi_get_cb_info(env, info, &argc, nullptr, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeScoreInfo* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    napi_value ____countSliderTailHit;
+    status = napi_create_int32(env, instance->countSliderTailHit, &____countSliderTailHit);
+    assert(status == napi_ok);
+    return ____countSliderTailHit;
+}
+
+static napi_value setter_field_NativeScoreInfo_countSliderTailHit
+(napi_env env, napi_callback_info info)
+{
+    napi_status status;
+    napi_value _this;
+    size_t argc = 1;
+    napi_value args[1];
+    status = napi_get_cb_info(env, info, &argc, args, &_this, nullptr);
+    assert(status == napi_ok);
+
+    NativeScoreInfo* instance;
+    status = napi_unwrap(env, _this, (void**) &instance);
+    assert(status == napi_ok);
+
+    int32_t __countSliderTailHit;
+    status = napi_get_value_int32(env, args[0], &__countSliderTailHit);
+    instance->countSliderTailHit = (::int32_t)__countSliderTailHit;
+    return nullptr;
+}
+
 static napi_value register_class__NativeScoreInfo(napi_env env)
 {
     napi_status status;
@@ -1730,8 +1847,11 @@ static napi_value register_class__NativeScoreInfo(napi_env env)
         { "countGood", nullptr, nullptr, getter_field_NativeScoreInfo_countGood, setter_field_NativeScoreInfo_countGood, nullptr, attributes, nullptr },
         { "countGreat", nullptr, nullptr, getter_field_NativeScoreInfo_countGreat, setter_field_NativeScoreInfo_countGreat, nullptr, attributes, nullptr },
         { "countPerfect", nullptr, nullptr, getter_field_NativeScoreInfo_countPerfect, setter_field_NativeScoreInfo_countPerfect, nullptr, attributes, nullptr },
-        { "countSliderTailHit", nullptr, nullptr, getter_field_NativeScoreInfo_countSliderTailHit, setter_field_NativeScoreInfo_countSliderTailHit, nullptr, attributes, nullptr },
+        { "countSmallTickMiss", nullptr, nullptr, getter_field_NativeScoreInfo_countSmallTickMiss, setter_field_NativeScoreInfo_countSmallTickMiss, nullptr, attributes, nullptr },
+        { "countSmallTickHit", nullptr, nullptr, getter_field_NativeScoreInfo_countSmallTickHit, setter_field_NativeScoreInfo_countSmallTickHit, nullptr, attributes, nullptr },
         { "countLargeTickMiss", nullptr, nullptr, getter_field_NativeScoreInfo_countLargeTickMiss, setter_field_NativeScoreInfo_countLargeTickMiss, nullptr, attributes, nullptr },
+        { "countLargeTickHit", nullptr, nullptr, getter_field_NativeScoreInfo_countLargeTickHit, setter_field_NativeScoreInfo_countLargeTickHit, nullptr, attributes, nullptr },
+        { "countSliderTailHit", nullptr, nullptr, getter_field_NativeScoreInfo_countSliderTailHit, setter_field_NativeScoreInfo_countSliderTailHit, nullptr, attributes, nullptr },
     };
 
     napi_value constructor;
