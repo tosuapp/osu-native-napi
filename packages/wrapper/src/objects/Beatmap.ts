@@ -14,7 +14,7 @@ export class Beatmap extends NativeHandleOwner<NativeBeatmap> {
     return new Beatmap(native);
   }
 
-  static fromText(text: string): Beatmap {
+  static fromText(text: Buffer | string): Beatmap {
     const native = new raw.NativeBeatmap();
     OsuNative.assertOk(
       "Beatmap_CreateFromText",

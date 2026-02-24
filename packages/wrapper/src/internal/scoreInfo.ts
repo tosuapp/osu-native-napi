@@ -40,8 +40,10 @@ export function makeScoreInfo(input: ScoreInfoInput): NativeScoreInfo {
   score.countGood = input.countGood ?? 0;
   score.countGreat = input.countGreat ?? 0;
   score.countPerfect = input.countPerfect ?? 0;
-  score.countSliderTailHit = input.countSliderTailHit ?? 0;
+  score.countSmallTickMiss = input.countSmallTickMiss ?? 0;
+  score.countSmallTickHit = input.countSmallTickHit ?? 0;
   score.countLargeTickMiss = input.countLargeTickMiss ?? 0;
+  score.countLargeTickHit = input.countLargeTickHit ?? 0;
 
   return score;
 }
