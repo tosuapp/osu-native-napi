@@ -47,6 +47,10 @@ export class OsuNative {
       return;
     }
 
+    if (value === raw.ErrorCode.END_OF_ENUMERATION) {
+      throw new OsuNativeError(operation, value, 'index out of bounce', 'END_OF_ENUMERATION', 'index out of bounce');
+    }
+
     throw this.toError(operation, value);
   }
 
