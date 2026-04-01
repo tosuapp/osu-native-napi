@@ -26,9 +26,8 @@ permissions:
 
 jobs:
   publish:
+    needs: build
     runs-on: windows-latest
-    env:
-      BRANCH_NAME: ${{ inputs.branch_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -49,42 +48,11 @@ jobs:
         with:
           version: "10.10.0"
 
-      - name: Checkout osu-native
-        if: ${{ inputs.publish_napi == true }}
-        uses: actions/checkout@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
         with:
-          repository: tosuapp/osu-native
-          path: .work/osu-native
-          fetch-depth: 1
-          submodules: recursive
-
-      - name: Checkout osu PR branch
-        if: ${{ inputs.branch_name != '' && inputs.publish_napi == true }}
-        shell: bash
-        run: |
-          cd .work/osu-native/osu.Game
-          git fetch origin "${BRANCH_NAME}:${BRANCH_NAME}"
-          git checkout "${BRANCH_NAME}"
-
-      - name: Setup .NET
-        if: ${{ inputs.publish_napi == true }}
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "10.0.x"
-
-      - name: Build osu-native
-        if: ${{ inputs.publish_napi == true }}
-        shell: bash
-        run: |
-          cd $GITHUB_WORKSPACE
-          dotnet publish ".work/osu-native/osu.Native/osu.Native.csproj" -c Release -r win-x64
-
-      - name: Copy osu.Native.dll
-        if: ${{ inputs.publish_napi == true }}
-        shell: bash
-        run: |
-          DLL_PATH="$(find ".work/osu-native/Artifacts/publish/osu.Native/release_win-x64" -name "osu.Native.dll" -print -quit)"
-          cp "$DLL_PATH" "packages/cpp-binding/osu.Native.dll"
+          pattern: osu-native-*
+          path: ./downloads
 
       - name: Bump versions
         if: ${{ inputs.branch_name != '' }}
@@ -107,14 +75,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build binding package
+      - name: Copy dll files
         if: ${{ inputs.publish_napi == true }}
         shell: bash
         run: |
-          cd $GITHUB_WORKSPACE/packages/cpp-binding
-          pnpm build
+          cd $GITHUB_WORKSPACE
+          mkdir -p packages/cpp-binding/dist/Release
 
-      - name: Build binding package
+          cp -rf ./downloads/osu-native-windows-x64/* packages/cpp-binding/dist/Release/
+          cp -rf ./downloads/osu-native-linux-x64/* packages/cpp-binding/dist/Release/
+
+      - name: Build Wrapper
         if: ${{ inputs.publish_wrapper == true }}
         shell: bash
         run: |
@@ -146,3 +117,124 @@ jobs:
           else
             npm publish --access public --provenance
           fi
+
+
+  build:
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: windows-x64
+            runner: windows-latest
+            platform: win-x64
+            extension: .dll
+
+          - name: linux-x64
+            runner: ubuntu-latest
+            platform: linux-x64
+            extension: .so
+
+    env:
+      BRANCH_NAME: ${{ inputs.branch_name }}
+      PLATFORM: ${{ matrix.platform }}
+      EXTENSION: ${{ matrix.extension }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: ${{ inputs.publish_napi == true }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.22.0"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Setup npm 11
+        if: ${{ inputs.publish_napi == true }}
+        shell: bash
+        run: |
+          npm install -g npm@11
+
+      - name: Setup pnpm
+        if: ${{ inputs.publish_napi == true }}
+        uses: pnpm/action-setup@v4
+        with:
+          version: "10.10.0"
+
+      - name: Checkout osu-native
+        if: ${{ inputs.publish_napi == true }}
+        uses: actions/checkout@v4
+        with:
+          repository: tosuapp/osu-native
+          path: .work/osu-native
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Checkout osu PR branch
+        if: ${{ inputs.branch_name != '' && inputs.publish_napi == true }}
+        shell: bash
+        run: |
+          cd .work/osu-native/osu.Game
+          git fetch origin "${BRANCH_NAME}:${BRANCH_NAME}"
+          git checkout "${BRANCH_NAME}"
+
+      - name: Setup .NET
+        if: ${{ inputs.publish_napi == true }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Build osu-native (${{ matrix.name }})
+        if: ${{ inputs.publish_napi == true }}
+        shell: bash
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          dotnet publish ".work/osu-native/osu.Native/osu.Native.csproj" \
+            -c Release \
+            -r "${PLATFORM}"
+
+      - name: Copy osu.Native${{ matrix.extension }}
+        if: ${{ inputs.publish_napi == true }}
+        shell: bash
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          LIB_PATH="$(find ".work/osu-native/Artifacts/publish/osu.Native/release_${PLATFORM}" \
+            -name "osu.Native${EXTENSION}" \
+            -print -quit)"
+          cp "$LIB_PATH" "packages/cpp-binding/osu.Native${EXTENSION}"
+          ls -la "packages/cpp-binding"
+
+      - name: Install dependencies
+        if: ${{ inputs.publish_napi == true }}
+        shell: bash
+        run: |
+          pnpm install --frozen-lockfile
+
+      - name: Build binding package
+        if: ${{ inputs.publish_napi == true }}
+        shell: bash
+        run: |
+          cd "$GITHUB_WORKSPACE/packages/cpp-binding"
+          ls -la
+          pnpm build
+
+          SRC_PATH="$(find . \
+            -name "osu-native-napi-${PLATFORM}.node" \
+            -print -quit)"
+          DEST_PATH="./dist/Release/osu-native-napi-${PLATFORM}.node"
+
+          echo "$SRC_PATH"
+          if [[ "${SRC_PATH,,}" != "${DEST_PATH,,}" ]]; then
+              cp "$SRC_PATH" "$DEST_PATH"
+          fi
+
+      - name: Upload artifact
+        if: ${{ inputs.publish_napi == true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: osu-native-${{ matrix.name }}
+          path: packages/cpp-binding/dist/Release/
+          retention-days: 1
+          if-no-files-found: error

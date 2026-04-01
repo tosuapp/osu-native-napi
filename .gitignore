@@ -7,6 +7,7 @@ cpp-binding/include/napi-inl.h
 cpp-binding/include/node_api.h
 cpp-binding/include/node_api_types.h
 packages/cpp-binding/osu.Native.dll
+packages/cpp-binding/osu.Native.so
 .cache
 dist
 node_modules

@@ -1,6 +1,6 @@
 {
   "name": "@tosuapp/osu-native-napi",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "author": "Cherry",
   "main": "index.js",
   "types": "osu-native.d.ts",
@@ -9,31 +9,24 @@
     "url": "https://github.com/tosuapp/osu-native-napi"
   },
   "os": [
-    "win32"
+    "win32",
+    "linux"
   ],
   "cpu": [
     "x64"
   ],
-  "exports": {
-    ".": {
-      "types": "./osu-native.d.ts",
-      "require": "./index.js",
-      "import": "./index.mjs"
-    }
-  },
   "files": [
     "index.js",
-    "index.mjs",
     "osu-native.d.ts",
     "dist/Release/*.node",
-    "dist/Release/*.dll"
+    "dist/Release/*.dll",
+    "dist/Release/*.so"
   ],
   "scripts": {
     "build": "cmake -B build && cmake --build build --config Release",
     "prepack": "npm run build"
   },
   "devDependencies": {
-    "@types/node": "^20.11.1",
-    "typescript": "^5.9.3"
+    "@types/node": "^20.11.1"
   }
 }
