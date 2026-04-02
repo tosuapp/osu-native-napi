@@ -203,7 +203,15 @@ jobs:
           cd "$GITHUB_WORKSPACE/packages/cpp-binding"
           pnpm build
 
-          ls -la
+          SRC_PATH="$(find . \
+            -name "osu-native-napi-${PLATFORM}.node" \
+            -print -quit)"
+          DEST_PATH="./dist/osu-native-napi-${PLATFORM}.node"
+
+          echo "$SRC_PATH"
+          if [[ "${SRC_PATH,,}" != "${DEST_PATH,,}" ]]; then
+              cp "$SRC_PATH" "$DEST_PATH"
+          fi
 
       - name: Upload artifact
         if: ${{ inputs.publish_napi == true }}
