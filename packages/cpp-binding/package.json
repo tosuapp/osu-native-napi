@@ -18,9 +18,9 @@
   "files": [
     "index.js",
     "osu-native.d.ts",
-    "dist/Release/*.node",
-    "dist/Release/*.dll",
-    "dist/Release/*.so"
+    "dist/*.node",
+    "dist/*.dll",
+    "dist/*.so"
   ],
   "scripts": {
     "build": "cmake -B build && cmake --build build --config Release",

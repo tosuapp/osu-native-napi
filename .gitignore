@@ -12,3 +12,6 @@ packages/cpp-binding/osu.Native.so
 dist
 node_modules
 test.ts
+
+.native-artifacts
+.work

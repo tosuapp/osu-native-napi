@@ -75,10 +75,10 @@ jobs:
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
-          mkdir -p packages/cpp-binding/dist/Release
+          mkdir -p packages/cpp-binding/dist
 
-          cp -rf ./downloads/osu-native-windows-x64/* packages/cpp-binding/dist/Release/
-          cp -rf ./downloads/osu-native-linux-x64/* packages/cpp-binding/dist/Release/
+          cp -rf ./downloads/osu-native-windows-x64/* packages/cpp-binding/dist/
+          cp -rf ./downloads/osu-native-linux-x64/* packages/cpp-binding/dist/
 
       - name: Build Wrapper
         if: ${{ inputs.publish_wrapper == true }}
@@ -180,19 +180,14 @@ jobs:
         shell: bash
         run: |
           cd "$GITHUB_WORKSPACE"
-          dotnet publish ".work/osu-native/osu.Native/osu.Native.csproj" \
-            -c Release \
-            -r "${PLATFORM}"
+          dotnet publish ".work/osu-native/osu.Native/osu.Native.csproj" -c Release -r "${PLATFORM}" -o .native-artifacts
 
       - name: Copy osu.Native${{ matrix.extension }}
         if: ${{ inputs.publish_napi == true }}
         shell: bash
         run: |
           cd "$GITHUB_WORKSPACE"
-          LIB_PATH="$(find ".work/osu-native/Artifacts/publish/osu.Native/release_${PLATFORM}" \
-            -name "osu.Native${EXTENSION}" \
-            -print -quit)"
-          cp "$LIB_PATH" "packages/cpp-binding/osu.Native${EXTENSION}"
+          cp ".native-artifacts/osu.Native${EXTENSION}" "packages/cpp-binding/osu.Native${EXTENSION}"
           ls -la "packages/cpp-binding"
 
       - name: Install dependencies
@@ -206,24 +201,15 @@ jobs:
         shell: bash
         run: |
           cd "$GITHUB_WORKSPACE/packages/cpp-binding"
-          ls -la
           pnpm build
 
-          SRC_PATH="$(find . \
-            -name "osu-native-napi-${PLATFORM}.node" \
-            -print -quit)"
-          DEST_PATH="./dist/Release/osu-native-napi-${PLATFORM}.node"
-
-          echo "$SRC_PATH"
-          if [[ "${SRC_PATH,,}" != "${DEST_PATH,,}" ]]; then
-              cp "$SRC_PATH" "$DEST_PATH"
-          fi
+          ls -la
 
       - name: Upload artifact
         if: ${{ inputs.publish_napi == true }}
         uses: actions/upload-artifact@v4
         with:
           name: osu-native-${{ matrix.name }}
-          path: packages/cpp-binding/dist/Release/
+          path: packages/cpp-binding/dist/
           retention-days: 1
           if-no-files-found: error

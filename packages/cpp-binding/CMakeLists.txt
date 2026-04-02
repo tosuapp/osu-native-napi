@@ -10,6 +10,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/dist)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR}/dist)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR}/dist)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL ${CMAKE_SOURCE_DIR}/dist)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${CMAKE_SOURCE_DIR}/dist)
+
 file(MAKE_DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 
 
@@ -62,15 +67,16 @@ endforeach()
 message(STATUS "Total Source Count: ${SOURCES}")
 message(STATUS "========================================")
 
+set(COPY_POSTFIX "")
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 if (WIN32)
     set(SRC_FILE "${CMAKE_SOURCE_DIR}/osu.Native.dll")
-    set(DEST_DIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Release")
+    set(DEST_DIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 else()
     set(SRC_FILE "${CMAKE_SOURCE_DIR}/osu.Native.so")
-    set(DEST_DIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Release")
+    set(DEST_DIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 endif()
 
 message(STATUS "  -> Folder: ${DEST_DIR}/")
@@ -86,7 +92,7 @@ if(EXISTS ${SRC_FILE})
         COMMAND ${CMAKE_COMMAND} -E copy
                 ${SRC_FILE}
                 ${DEST_DIR}/
-        COMMENT "Copying native dependency to dist/Release"
+        COMMENT "Copying native dependency to dist"
     )
 else()
     message(WARNING "  -> File NOT FOUND: ${SRC_FILE}. Skipping copy command to prevent build failure.")
